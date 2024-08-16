@@ -1,0 +1,51 @@
+[
+    {
+        "name": "Bomb",
+        "frontImageName": "bomb-1",
+        "backImageName" : "back-card",
+        "description": "Defuses an exploding kittens",
+        "score": 1
+    },
+    {
+        "name": "Defuse",
+        "frontImageName": "defuse-1",
+        "backImageName" : "back-card",
+        "description": "Defuses an exploding kittens",
+        "score": 1
+    },
+    {
+        "name": "Shuffle",
+        "frontImageName": "shuffle-1",
+        "backImageName" : "back-card",
+        "description": "Defuses an exploding kittens",
+        "score": 1
+    },
+    {
+        "name": "See The Future",
+        "frontImageName": "see-future-1",
+        "backImageName" : "back-card",
+        "description": "Defuses an exploding kittens",
+        "score": 1
+    },
+    {
+        "name": "Skip",
+        "frontImageName": "skip-1",
+        "backImageName" : "back-card",
+        "description": "Defuses an exploding kittens",
+        "score": 1
+    },
+    {
+        "name": "Attack",
+        "frontImageName": "attack-1",
+        "backImageName" : "back-card",
+        "description": "Defuses an exploding kittens",
+        "score": 1
+    },
+    {
+        "name": "Steal A Card",
+        "frontImageName": "steal-card-1",
+        "backImageName" : "back-card",
+        "description": "Defuses an exploding kittens",
+        "score": 1
+    }
+]
