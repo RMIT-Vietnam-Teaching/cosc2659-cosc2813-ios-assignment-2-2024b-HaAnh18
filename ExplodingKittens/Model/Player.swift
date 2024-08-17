@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Player: Equatable, Decodable {
+struct Player: Equatable, Codable {
     var name: String
     var cards: [Card] = []
     var numberOfTurn: Int = 1

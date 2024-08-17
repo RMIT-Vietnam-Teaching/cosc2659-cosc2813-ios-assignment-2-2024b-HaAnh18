@@ -7,26 +7,6 @@
 
 import SwiftUI
 
-//struct GameView: View {
-//    var body: some View {
-//        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-//    }
-//}
-//
-//#Preview {
-//    GameView()
-//}
-
-//
-//  DragCard.swift
-//  ExplodingKitten
-//
-//  Created by Nana on 10/8/24.
-//
-
-import Foundation
-import SwiftUI
-
 struct GameView: View {
     @State private var draggedCard: Card?
     @State private var cardGame: [Card] = []
@@ -38,8 +18,7 @@ struct GameView: View {
     @State private var currentTurn: Int = 0
     @State private var stealCard: Bool = false
     @State private var seeFuture: Bool = false
-    @State private var stealPlayerIndex: Int?
-    @State private var showStealOption: Bool = false
+    @State private var winGame: Bool = false
     
     var numberOfPlayers: Int
     
@@ -50,9 +29,10 @@ struct GameView: View {
             
             if !playerList.isEmpty {
                 HStack {
+                    Text("\(winGame)")
                     Button(action: {
-                        var card = playerList[0].cards[0]
-                        test(card: card, currentTurn: 1, players: &playerList)
+//                        var card = playerList[0].cards[0]
+//                        test(card: card, currentTurn: 1, players: &playerList)
                     }, label: {
                         Text("Leave Game")
                             .modifier(buttonCapsule())
@@ -67,6 +47,7 @@ struct GameView: View {
                 let size = $0.size
                 VStack(spacing: 10) {
                     if !playerList.isEmpty {
+                        
 //                        HStack {
 //                            Text("player 1: \(playerList[1].cards.count)")
 //                            Text("player 2: \(playerList[2].cards.count)")
@@ -171,14 +152,6 @@ struct GameView: View {
         }
     }
     
-    func test(card: Card, currentTurn: Int, players: inout [Player]) {
-        var currentPlayerCards = players[currentTurn].cards
-        var stealingPlayerCards = players[2].cards
-        aiGiveCard(to: &currentPlayerCards, from: &stealingPlayerCards)
-        players[currentTurn].cards = currentPlayerCards
-        players[2].cards = stealingPlayerCards
-    }
-    
     func aiTurn() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             if currentTurn != 0 {
@@ -194,73 +167,40 @@ struct GameView: View {
         }
     }
     
-    private func waitForStealCard(stealCard: Bool, completion: @escaping () -> Void) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            if stealCard {
-                // Recursively wait until stealCard becomes false
-                waitForStealCard(stealCard: stealCard, completion: completion)
-            } else {
-                // Once stealCard is false, continue the AI turn
-                completion()
-            }
-        }
-    }
-    
-    
     func performAiTurnActions() {
         withAnimation(.spring()) {
             let playCard = playRandomCard(from: &playerList[currentTurn].cards, to: &droppedCards)
             
             if let playCard = playCard {
-                checkCard(card: playCard, currentTurn: currentTurn, players: &playerList)
+                checkCard(card: playCard, currentTurn: currentTurn, players: &playerList, cardGame: &cardGame, numberOfPlayers: numberOfPlayers) {
+                    shouldSteal in
+                        stealCard = shouldSteal
+                }
             }
 
             for _ in 0..<playerList[currentTurn].numberOfTurn {
                 if !cardGame.isEmpty {
-                    getRandomCard(card: cardGame[cardGame.count - 1], to: &playerList[currentTurn].cards, from: &cardGame)
+                    let card = cardGame[cardGame.count - 1]
+                    getRandomCard(card: card, to: &playerList[currentTurn].cards, from: &cardGame)
+                    
+                    if card.name == "Bomb" {
+                        addCard(card: card, count: 1, to: &droppedCards, remove: true, from: &playerList[currentTurn].cards)
+                        
+                        if let defuseCard = playerList[currentTurn].cards.first(where: { $0.name == "Defuse" }) {
+                            
+                            addCard(card: defuseCard, count: 1, to: &droppedCards, remove: true, from: &playerList[currentTurn].cards)
+
+                            cardGame.insert(card, at: Int.random(in: 0...cardGame.count))
+                        } else {
+                            winGame = true
+                        }
+                    }
                 }
             }
-            
             playerList[currentTurn].numberOfTurn = 1
         }
-        if !stealCard {
-            currentTurn = (currentTurn + 1) % numberOfPlayers
-        }
+        currentTurn = (currentTurn + 1) % numberOfPlayers
     }
-    
-    func checkCard(card: Card, currentTurn: Int, players: inout [Player]) {
-        switch card.name {
-        case "Skip": 
-            players[currentTurn].numberOfTurn = players[currentTurn].numberOfTurn - 1
-            break
-            
-        case "Attack":
-            players[currentTurn].numberOfTurn -= 1
-            players[(currentTurn + 1) % numberOfPlayers].numberOfTurn += 1
-            break
-        case "See The Future":
-            break
-        case "Steal A Card":
-            let options = players.filter { $0.index != currentTurn }
-            stealPlayerIndex = options[Int.random(in: 0..<options.count)].index
-
-            if players[stealPlayerIndex!].name == players[0].name {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                    stealCard = true
-                }
-            } else {
-                var currentPlayerCards = players[currentTurn].cards
-                var stealingPlayerCards = players[stealPlayerIndex!].cards
-                aiGiveCard(to: &currentPlayerCards, from: &stealingPlayerCards)
-                players[currentTurn].cards = currentPlayerCards
-                players[stealPlayerIndex!].cards = stealingPlayerCards
-            }
-            break
-        default:
-            break
-        }
-    }
-    
     
     
 }

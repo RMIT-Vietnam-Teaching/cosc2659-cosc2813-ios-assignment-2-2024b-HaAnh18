@@ -23,14 +23,14 @@ struct Card: Codable, Equatable, Hashable  {
     var description: String
     var score: Int
     
-    static func == (lhs: Card, rhs: Card) -> Bool {
-        return lhs.id == rhs.id
-    }
+//    static func == (lhs: Card, rhs: Card) -> Bool {
+//        return lhs.id == rhs.id
+//    }
 //    
 //    func hash(into hasher: inout Hasher) {
 //        hasher.combine(id)
 //    }
-    
+//    
     mutating func assignUniqueID() {
             self.id = UUID()
         }

@@ -13,12 +13,13 @@ import SwiftUI
 
 func addCardFromList(cards: [Card], count: Int, to destination: inout [Card], remove: Bool, from cardList: inout [Card]) {
     for _ in 0..<count {
-        if var card = cards.randomElement() {
-            card.assignUniqueID()
+        if let card = cards.randomElement() {
+//            card.assignUniqueID()
             destination.append(card)
             if remove {
                 removeCard(card: card, from: &cardList)
             }
+            destination[destination.count - 1].assignUniqueID()
         }
     }
 }
@@ -33,6 +34,9 @@ func addCard(card: Card, count: Int, to destination: inout [Card], remove: Bool,
 }
 
 func removeCard(card: Card, from cards: inout [Card]) {
+//    if let index = cards.firstIndex(where: { $0.id == card.id }) {
+//            cards.remove(at: index)
+//    }
     if let index = cards.firstIndex(of: card) {
         cards.remove(at: index)
     }
@@ -86,3 +90,62 @@ func aiGiveCard(to destination: inout [Card], from removeList: inout [Card]) {
         addCard(card: card, count: 1, to: &destination, remove: true, from: &removeList)
     }
 }
+
+func waitForStealCard(stealCard: Bool, completion: @escaping () -> Void) {
+    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+        if stealCard {
+            // Recursively wait until stealCard becomes false
+            waitForStealCard(stealCard: stealCard, completion: completion)
+        } else {
+            // Once stealCard is false, continue the AI turn
+            completion()
+        }
+    }
+}
+
+func checkCard(card: Card, currentTurn: Int, players: inout [Player], cardGame: inout [Card], numberOfPlayers: Int, completion: @escaping (Bool) -> Void) {
+    switch card.name {
+    case "Skip":
+        players[currentTurn].numberOfTurn = players[currentTurn].numberOfTurn - 1
+        completion(false)
+        break
+        
+    case "Attack":
+        players[currentTurn].numberOfTurn -= 1
+        players[(currentTurn + 1) % numberOfPlayers].numberOfTurn += 1
+        completion(false)
+        break
+        
+    case "See The Future":
+        completion(false)
+        break
+        
+    case "Steal A Card":
+        let options = players.filter { $0.index != currentTurn }
+        let stealPlayerIndex = options[Int.random(in: 0..<options.count)].index
+
+        if players[stealPlayerIndex].name == players[0].name {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                completion(true) // Steal card was successful after delay
+            }
+        } else {
+            var currentPlayerCards = players[currentTurn].cards
+            var stealingPlayerCards = players[stealPlayerIndex].cards
+            aiGiveCard(to: &currentPlayerCards, from: &stealingPlayerCards)
+            players[currentTurn].cards = currentPlayerCards
+            players[stealPlayerIndex].cards = stealingPlayerCards
+            completion(false) // Steal card action does not need a delay
+        }
+        break
+        
+    case "Shuffle":
+        cardGame.shuffle()
+        completion(false)
+        break
+        
+    default:
+        completion(false)
+        break
+    }
+}
+
