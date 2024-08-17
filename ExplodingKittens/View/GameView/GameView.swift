@@ -48,27 +48,31 @@ struct GameView: View {
             Color("game-view-bg")
                 .ignoresSafeArea()
             
-            HStack {
-                Button(action: {
-                    
-                }, label: {
-                    Text("Leave Game")
-                        .modifier(buttonCapsule())
-                        .padding(.vertical, 20)
-                })
-                Spacer()
+            if !playerList.isEmpty {
+                HStack {
+                    Button(action: {
+                        var card = playerList[0].cards[0]
+                        test(card: card, currentTurn: 1, players: &playerList)
+                    }, label: {
+                        Text("Leave Game")
+                            .modifier(buttonCapsule())
+                            .padding(.vertical, 20)
+    
+                    })
+                    Spacer()
+                }
             }
             
             GeometryReader {
                 let size = $0.size
                 VStack(spacing: 10) {
                     if !playerList.isEmpty {
-                        HStack {
-                            Text("player 1: \(playerList[1].cards.count)")
-                            Text("player 2: \(playerList[2].cards.count)")
-                            Text("me: \(playerList[0].cards.count)")
-                            Text("\(stealCard)")
-                        }
+//                        HStack {
+//                            Text("player 1: \(playerList[1].cards.count)")
+//                            Text("player 2: \(playerList[2].cards.count)")
+//                            Text("me: \(playerList[0].cards.count)")
+//                            Text("\(stealCard)")
+//                        }
                         CardList(cards: numberOfPlayers == 2 ? playerList[1].cards : playerList[2].cards, position: "top")
                             .frame(height: size.height / 3 - 20)
                     }
@@ -107,16 +111,22 @@ struct GameView: View {
                     
                     if !playerList.isEmpty {
                         HStack{
-                            DragCardList(playerCards: $playerList[0].cards, draggedCard: $draggedCard, stealCard: $stealCard, playerList: $playerList, currentTurn: $currentTurn)
+                            DragCardList(playerCards: $playerList[0].cards, draggedCard: $draggedCard)
                         }
-                            .zIndex(1)
-                            .frame(height: size.height / 3 + 40)
+                        .zIndex(1)
+                        .frame(height: size.height / 3 + 40)
                     }
                 }
             }
             
             if seeFuture && !cardGame.isEmpty {
                 SeeFutureDialog(seeFuture: $seeFuture, cards: cardGame)
+            }
+        
+            
+            if stealCard && !playerList.isEmpty {
+                PickStealCard(playerCards: $playerList[0].cards, playerList: $playerList, currentTurn: $currentTurn, stealCard: $stealCard)
+                    
             }
         }
         .rotationEffect(.degrees(isRotated ? 0 : 180))
@@ -161,12 +171,20 @@ struct GameView: View {
         }
     }
     
+    func test(card: Card, currentTurn: Int, players: inout [Player]) {
+        var currentPlayerCards = players[currentTurn].cards
+        var stealingPlayerCards = players[2].cards
+        aiGiveCard(to: &currentPlayerCards, from: &stealingPlayerCards)
+        players[currentTurn].cards = currentPlayerCards
+        players[2].cards = stealingPlayerCards
+    }
+    
     func aiTurn() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             if currentTurn != 0 {
                 if stealCard {
                     // Wait until stealCard is false before proceeding
-                    waitForStealCard {
+                    waitForStealCard(stealCard: stealCard) {
                         self.performAiTurnActions()
                     }
                 } else {
@@ -176,11 +194,11 @@ struct GameView: View {
         }
     }
     
-    private func waitForStealCard(completion: @escaping () -> Void) {
+    private func waitForStealCard(stealCard: Bool, completion: @escaping () -> Void) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             if stealCard {
                 // Recursively wait until stealCard becomes false
-                self.waitForStealCard(completion: completion)
+                waitForStealCard(stealCard: stealCard, completion: completion)
             } else {
                 // Once stealCard is false, continue the AI turn
                 completion()
@@ -191,21 +209,23 @@ struct GameView: View {
     
     func performAiTurnActions() {
         withAnimation(.spring()) {
-                let playCard = playRandomCard(from: &playerList[currentTurn].cards, to: &droppedCards)
-                
-                if let playCard = playCard {
-                    checkCard(card: playCard, currentTurn: currentTurn, players: &playerList)
-                }
-
-                for _ in 0..<playerList[currentTurn].numberOfTurn {
-                    if !cardGame.isEmpty {
-                        getRandomCard(card: cardGame[cardGame.count - 1], to: &playerList[currentTurn].cards, from: &cardGame)
-                    }
-                }
-                
-                playerList[currentTurn].numberOfTurn = 1
+            let playCard = playRandomCard(from: &playerList[currentTurn].cards, to: &droppedCards)
+            
+            if let playCard = playCard {
+                checkCard(card: playCard, currentTurn: currentTurn, players: &playerList)
             }
+
+            for _ in 0..<playerList[currentTurn].numberOfTurn {
+                if !cardGame.isEmpty {
+                    getRandomCard(card: cardGame[cardGame.count - 1], to: &playerList[currentTurn].cards, from: &cardGame)
+                }
+            }
+            
+            playerList[currentTurn].numberOfTurn = 1
+        }
+        if !stealCard {
             currentTurn = (currentTurn + 1) % numberOfPlayers
+        }
     }
     
     func checkCard(card: Card, currentTurn: Int, players: inout [Player]) {
@@ -225,7 +245,9 @@ struct GameView: View {
             stealPlayerIndex = options[Int.random(in: 0..<options.count)].index
 
             if players[stealPlayerIndex!].name == players[0].name {
-                stealCard = true
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    stealCard = true
+                }
             } else {
                 var currentPlayerCards = players[currentTurn].cards
                 var stealingPlayerCards = players[stealPlayerIndex!].cards
@@ -244,7 +266,7 @@ struct GameView: View {
 }
 
 #Preview {
-    GameView(numberOfPlayers: 3)
+    GameView(numberOfPlayers: 2)
 }
 
 

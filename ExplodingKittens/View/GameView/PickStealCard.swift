@@ -8,9 +8,13 @@
 import SwiftUI
 
 struct PickStealCard: View {
-    @Binding var cards: [Card]
-    @State private var chosenCard: Card?
+    @Binding var playerCards: [Card]
+    @Binding var playerList: [Player]
+    @Binding var currentTurn: Int
+    @Binding var stealCard: Bool
     
+    @State var chosenCard: Card?
+
     var body: some View {
         GeometryReader { geometry in
             let size = geometry.size
@@ -24,39 +28,67 @@ struct PickStealCard: View {
                     .alignmentGuide(.top) { d in
                         (size.height - d.height) / 2
                     }
-//                    .foregroundColor(.white)
-                    .foregroundColor(.yellow)
+                    .foregroundColor(.white)
+//                    .foregroundColor(.yellow)
                 
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: 5) {
-                        ForEach(cards, id: \.self) {
-                            card in
-                            VStack {
-                                card.frontImage
-                                    .resizable()
-                                    .frame(width: 160, height: 160)
-                                    .padding(-10)
-//                                    .background(.pink)
+                VStack {
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: 10) {
+                            ForEach(playerCards, id: \.self) {
+                                card in
+                                VStack {
+                                    card.frontImage
+                                        .resizable()
+                                        .frame(width: 160, height: 160)
+                                        .padding(0)
+                                        .overlay {
+                                            if chosenCard == card {
+                                                RoundedRectangle(cornerRadius: 5.0)
+                                                    .stroke(.black, lineWidth: 1)
+                                                    .frame(width: 150, height: 150)
+                                            }
+                                        }
                                 
-                                Button(action: {
-                                    chosenCard = card
-                                }, label: {
-                                    Text("Choose")
-                                        .modifier(buttonCapsule())
-                                })
+                                    Button(action: {
+                                        chosenCard = card
+                                    }, label: {
+                                        Text("Choose")
+                                            .modifier(buttonCapsule())
+                                    })
+                                }
+                                
                             }
                         }
                     }
+                    .frame(width: size.width - 100)
+                    
+                    if chosenCard != nil {
+                        withAnimation(.easeIn(duration: 1)) {
+                            Button(action: {
+                                withAnimation {
+                                    addCard(card: chosenCard!, count: 1, to: &playerList[ (currentTurn - 1 + playerList.count) % playerList.count].cards, remove: false, from:  &playerCards)
+                                    
+                                    removeCard(card: chosenCard!, from: &playerCards)
+                                    
+                                    stealCard = false
+                                }
+                            }, label: {
+                                Text("Confirm")
+                            })
+                        }
+                    }
                 }
-                .frame(width: size.width - 100)
-                
+               
             }
             .ignoresSafeArea()
             .frame(width: size.width, height: size.height)
+            .offset(y: self.stealCard ? 0 : -300)
+            .animation(.interpolatingSpring(mass: 1.0, stiffness: 150.0, damping: 7), value: stealCard)
         }
     }
 }
 
 #Preview {
-    PickStealCard(cards: .constant(cards))
+//    PickStealCard(cards: .constant(cards), chosenCard: .constant(cards[0]))
+    GameView(numberOfPlayers: 2)
 }

@@ -55,7 +55,6 @@ struct PickCardList: View {
                     if playerList[currentTurn].numberOfTurn == 0 {
                         playerList[currentTurn].numberOfTurn = 1
                         currentTurn = (currentTurn + 1) % numberOfPlayers
-
                     }
                 }
             }

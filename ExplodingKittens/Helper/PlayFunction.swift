@@ -13,7 +13,8 @@ import SwiftUI
 
 func addCardFromList(cards: [Card], count: Int, to destination: inout [Card], remove: Bool, from cardList: inout [Card]) {
     for _ in 0..<count {
-        if let card = cards.randomElement() {
+        if var card = cards.randomElement() {
+            card.assignUniqueID()
             destination.append(card)
             if remove {
                 removeCard(card: card, from: &cardList)
@@ -77,14 +78,11 @@ func playRandomCard(from removeList: inout [Card], to destination: inout [Card])
 }
 
 func aiGiveCard(to destination: inout [Card], from removeList: inout [Card]) {
-    let cardNames = ["See The Future", "Steal A Card", "Skip", "Attack", "Defuse"]
+    let cardNames = ["Shuffle", "See The Future", "Steal A Card", "Skip", "Attack", "Defuse"]
     
     
     if let cardName = cardNames.first(where: { name in removeList.contains(where: { $0.name.contains(name) }) }),
        let card = removeList.first(where: { $0.name == cardName }) {
         addCard(card: card, count: 1, to: &destination, remove: true, from: &removeList)
-        removeCard(card: card, from: &removeList)
-        print("List: \(destination.count)")
-        print("removeList: \(removeList.count)")
     }
 }

@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct Card: Codable, Equatable, Hashable  {
-    
+    var id: UUID?
     var name: String
     var frontImageName: String
     var frontImage: Image {
@@ -22,6 +22,18 @@ struct Card: Codable, Equatable, Hashable  {
 //    var descri[t]
     var description: String
     var score: Int
+    
+    static func == (lhs: Card, rhs: Card) -> Bool {
+        return lhs.id == rhs.id
+    }
+//    
+//    func hash(into hasher: inout Hasher) {
+//        hasher.combine(id)
+//    }
+    
+    mutating func assignUniqueID() {
+            self.id = UUID()
+        }
 }
 
 extension Card: Transferable {
