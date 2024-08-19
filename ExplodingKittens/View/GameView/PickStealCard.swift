@@ -12,7 +12,7 @@ struct PickStealCard: View {
     @Binding var playerList: [Player]
     @Binding var currentTurn: Int
     @Binding var stealCard: Bool
-    
+//    @State private var isVisible = false
     @State var chosenCard: Card?
 
     var body: some View {
@@ -82,13 +82,18 @@ struct PickStealCard: View {
             }
             .ignoresSafeArea()
             .frame(width: size.width, height: size.height)
-            .offset(y: self.stealCard ? 0 : -300)
-            .animation(.interpolatingSpring(mass: 1.0, stiffness: 150.0, damping: 7), value: stealCard)
+//            .scaleEffect(isVisible ? 1 : 0.5) // Adjust the scale effect for animation
+//            .opacity(isVisible ? 1 : 0)
+//            .onAppear {
+//                withAnimation(.easeInOut(duration: 1.0)) {
+//                    isVisible = true
+//                }
+//            }
         }
     }
 }
 
 #Preview {
 //    PickStealCard(cards: .constant(cards), chosenCard: .constant(cards[0]))
-    GameView(numberOfPlayers: 2)
+    GameView(numberOfPlayers: 4)
 }

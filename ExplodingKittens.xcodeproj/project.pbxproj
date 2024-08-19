@@ -7,8 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		397E18C82C738B4E00D66D51 /* GameOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397E18C72C738B4E00D66D51 /* GameOverView.swift */; };
+		397E18CA2C738D7900D66D51 /* GifImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397E18C92C738D7900D66D51 /* GifImage.swift */; };
+		397E18CF2C738FBF00D66D51 /* bomb.gif in Resources */ = {isa = PBXBuildFile; fileRef = 397E18CE2C738FBF00D66D51 /* bomb.gif */; };
+		397E18D12C7394FD00D66D51 /* WinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397E18D02C7394FD00D66D51 /* WinView.swift */; };
+		397E18D72C73960100D66D51 /* win.gif in Resources */ = {isa = PBXBuildFile; fileRef = 397E18D62C73960100D66D51 /* win.gif */; };
+		397E18E22C73A08E00D66D51 /* OrientationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397E18E12C73A08E00D66D51 /* OrientationManager.swift */; };
 		3993DE472C6E300C009D31CE /* SeeFutureDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3993DE462C6E300C009D31CE /* SeeFutureDialog.swift */; };
-		3993DE492C6E47CD009D31CE /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3993DE482C6E47CD009D31CE /* Test.swift */; };
 		39A148CD2C68CE2500D35D71 /* ExplodingKittensApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A148CC2C68CE2500D35D71 /* ExplodingKittensApp.swift */; };
 		39A148CF2C68CE2500D35D71 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A148CE2C68CE2500D35D71 /* ContentView.swift */; };
 		39A148D12C68CE2700D35D71 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39A148D02C68CE2700D35D71 /* Assets.xcassets */; };
@@ -27,11 +32,18 @@
 		39A148F72C691C1A00D35D71 /* PickCardList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A148F62C691C1A00D35D71 /* PickCardList.swift */; };
 		39A148F92C6B5A0800D35D71 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A148F82C6B5A0800D35D71 /* Player.swift */; };
 		39BBB71F2C6FA37700AA77E6 /* PickStealCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39BBB71E2C6FA37700AA77E6 /* PickStealCard.swift */; };
+		39BBB7232C731BA400AA77E6 /* PickStealPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39BBB7222C731BA400AA77E6 /* PickStealPlayer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		397E18C72C738B4E00D66D51 /* GameOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverView.swift; sourceTree = "<group>"; };
+		397E18C92C738D7900D66D51 /* GifImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifImage.swift; sourceTree = "<group>"; };
+		397E18CE2C738FBF00D66D51 /* bomb.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = bomb.gif; sourceTree = "<group>"; };
+		397E18D02C7394FD00D66D51 /* WinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinView.swift; sourceTree = "<group>"; };
+		397E18D62C73960100D66D51 /* win.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = win.gif; path = ../../../../../../../../Downloads/win.gif; sourceTree = "<group>"; };
+		397E18DE2C739EE700D66D51 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		397E18E12C73A08E00D66D51 /* OrientationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrientationManager.swift; sourceTree = "<group>"; };
 		3993DE462C6E300C009D31CE /* SeeFutureDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeFutureDialog.swift; sourceTree = "<group>"; };
-		3993DE482C6E47CD009D31CE /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		39A148C92C68CE2500D35D71 /* ExplodingKittens.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExplodingKittens.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		39A148CC2C68CE2500D35D71 /* ExplodingKittensApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplodingKittensApp.swift; sourceTree = "<group>"; };
 		39A148CE2C68CE2500D35D71 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -51,6 +63,7 @@
 		39A148F62C691C1A00D35D71 /* PickCardList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickCardList.swift; sourceTree = "<group>"; };
 		39A148F82C6B5A0800D35D71 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		39BBB71E2C6FA37700AA77E6 /* PickStealCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickStealCard.swift; sourceTree = "<group>"; };
+		39BBB7222C731BA400AA77E6 /* PickStealPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickStealPlayer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +77,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		397E18CB2C738EED00D66D51 /* GIF */ = {
+			isa = PBXGroup;
+			children = (
+				397E18CE2C738FBF00D66D51 /* bomb.gif */,
+				397E18D62C73960100D66D51 /* win.gif */,
+			);
+			path = GIF;
+			sourceTree = "<group>";
+		};
 		39A148C02C68CE2500D35D71 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +105,8 @@
 		39A148CB2C68CE2500D35D71 /* ExplodingKittens */ = {
 			isa = PBXGroup;
 			children = (
+				397E18DE2C739EE700D66D51 /* Info.plist */,
+				397E18CB2C738EED00D66D51 /* GIF */,
 				39A148E72C68D5B300D35D71 /* Helper */,
 				39A148E12C68D3C600D35D71 /* View */,
 				39A148DA2C68CE3600D35D71 /* Model */,
@@ -130,8 +154,10 @@
 				39A148F22C690E3900D35D71 /* DragCardList.swift */,
 				39A148F62C691C1A00D35D71 /* PickCardList.swift */,
 				3993DE462C6E300C009D31CE /* SeeFutureDialog.swift */,
-				3993DE482C6E47CD009D31CE /* Test.swift */,
 				39BBB71E2C6FA37700AA77E6 /* PickStealCard.swift */,
+				39BBB7222C731BA400AA77E6 /* PickStealPlayer.swift */,
+				397E18C72C738B4E00D66D51 /* GameOverView.swift */,
+				397E18D02C7394FD00D66D51 /* WinView.swift */,
 			);
 			path = GameView;
 			sourceTree = "<group>";
@@ -143,6 +169,8 @@
 				39A148E92C68D5BC00D35D71 /* DragDropDelegate.swift */,
 				39A148EA2C68D5BC00D35D71 /* Modifier.swift */,
 				39A148F42C690F2B00D35D71 /* PlayFunction.swift */,
+				397E18C92C738D7900D66D51 /* GifImage.swift */,
+				397E18E12C73A08E00D66D51 /* OrientationManager.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -205,7 +233,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				397E18CF2C738FBF00D66D51 /* bomb.gif in Resources */,
 				39A148D42C68CE2700D35D71 /* Preview Assets.xcassets in Resources */,
+				397E18D72C73960100D66D51 /* win.gif in Resources */,
 				39A148DF2C68CE4300D35D71 /* cards.json in Resources */,
 				39A148D12C68CE2700D35D71 /* Assets.xcassets in Resources */,
 			);
@@ -220,20 +250,24 @@
 			files = (
 				39A148ED2C68D5BC00D35D71 /* Modifier.swift in Sources */,
 				39A148F52C690F2B00D35D71 /* PlayFunction.swift in Sources */,
+				397E18E22C73A08E00D66D51 /* OrientationManager.swift in Sources */,
 				39A148F32C690E3900D35D71 /* DragCardList.swift in Sources */,
+				397E18CA2C738D7900D66D51 /* GifImage.swift in Sources */,
 				39A148F12C68FAEC00D35D71 /* DropDestination.swift in Sources */,
+				397E18D12C7394FD00D66D51 /* WinView.swift in Sources */,
 				39A148F92C6B5A0800D35D71 /* Player.swift in Sources */,
-				3993DE492C6E47CD009D31CE /* Test.swift in Sources */,
 				39A148EB2C68D5BC00D35D71 /* AppDelegate.swift in Sources */,
 				39A148EC2C68D5BC00D35D71 /* DragDropDelegate.swift in Sources */,
 				39A148CF2C68CE2500D35D71 /* ContentView.swift in Sources */,
 				39A148EF2C68D5D300D35D71 /* CardList.swift in Sources */,
 				39A148F72C691C1A00D35D71 /* PickCardList.swift in Sources */,
+				39BBB7232C731BA400AA77E6 /* PickStealPlayer.swift in Sources */,
 				39A148CD2C68CE2500D35D71 /* ExplodingKittensApp.swift in Sources */,
 				39A148DE2C68CE4300D35D71 /* ModelData.swift in Sources */,
 				39BBB71F2C6FA37700AA77E6 /* PickStealCard.swift in Sources */,
 				3993DE472C6E300C009D31CE /* SeeFutureDialog.swift in Sources */,
 				39A148E02C68CE4300D35D71 /* Card.swift in Sources */,
+				397E18C82C738B4E00D66D51 /* GameOverView.swift in Sources */,
 				39A148E42C68D3DC00D35D71 /* GameView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -371,6 +405,7 @@
 				DEVELOPMENT_TEAM = 87AJUFVFXW;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ExplodingKittens/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -400,6 +435,7 @@
 				DEVELOPMENT_TEAM = 87AJUFVFXW;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ExplodingKittens/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

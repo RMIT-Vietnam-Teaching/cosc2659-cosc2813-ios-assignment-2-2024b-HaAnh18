@@ -12,5 +12,6 @@ struct Player: Equatable, Codable {
     var cards: [Card] = []
     var numberOfTurn: Int = 1
     var index: Int
+    var countinuePlay: Bool
 }
 

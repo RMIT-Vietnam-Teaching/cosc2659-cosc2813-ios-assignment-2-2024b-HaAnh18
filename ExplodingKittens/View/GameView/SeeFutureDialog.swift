@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SeeFutureDialog: View {
     @State private var open: Bool = false
+    @State private var isVisible = false
     @Binding var seeFuture: Bool
     var cards: [Card]
     var body: some View {
@@ -24,19 +25,25 @@ struct SeeFutureDialog: View {
                 
                 VStack {
                     ZStack {
-                        cards[cards.count - 3].frontImage
-                            .resizable()
-                            .frame(width: 150, height: 150)
-                            .rotationEffect(.degrees(self.open ? 5 : 0))
-                            .offset(x: self.open ? 50 : 0, y: self.open ? -50 : 0)
-                            .animation(.easeInOut, value: open)
+                        if cards.count > 2 {
+                            cards[cards.count - 3].frontImage
+                                .resizable()
+                                .frame(width: 150, height: 150)
+                                .rotationEffect(.degrees(self.open ? 5 : 0))
+                                .offset(x: self.open ? 50 : 0, y: self.open ? -50 : 0)
+                                .animation(.easeInOut, value: open)
+                        }
                         
-                        cards[cards.count - 2].frontImage
-                            .resizable()
-                            .frame(width: 150, height: 150)
-                            .rotationEffect(.degrees(self.open ? -5 : 0))
-                            .offset(x: 0, y: 0)
-                            .animation(.easeInOut, value: open)
+                        if cards.count > 1 {
+                            cards[cards.count - 2].frontImage
+                                .resizable()
+                                .frame(width: 150, height: 150)
+                                .rotationEffect(.degrees(self.open ? -5 : 0))
+                                .offset(x: 0, y: 0)
+                                .animation(.easeInOut, value: open)
+                        }
+                        
+                        
                         
                         ZStack(alignment: .top) {
                             Text("Top Card")
@@ -55,7 +62,10 @@ struct SeeFutureDialog: View {
                     Text("Got it")
                         .modifier(buttonCapsule())
                         .onTapGesture {
-                            seeFuture = false
+                            withAnimation {
+                                isVisible = false
+                                seeFuture = false
+                            }
                         }
                         .offset(y: 30)
                 }
@@ -63,11 +73,22 @@ struct SeeFutureDialog: View {
             }
         }
         .onAppear {
-            open = true
+            withAnimation(.easeInOut(duration: 0.5)) {
+                isVisible = true
+            }
+            
+            withAnimation(.easeInOut(duration: 1.0)) {
+                open = true
+            }
+            
+
         }
+//        .scaleEffect(isVisible ? 1 : 0.5) // Adjust the scale effect for animation
+        .opacity(isVisible ? 1 : 0)
     }
 }
 
 #Preview {
-    SeeFutureDialog(seeFuture: .constant(true), cards: cards)
+//    SeeFutureDialog(seeFuture: .constant(true), cards: cards)
+    GameView(numberOfPlayers: 2)
 }

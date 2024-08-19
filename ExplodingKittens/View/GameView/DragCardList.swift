@@ -16,7 +16,6 @@ struct DragCardList: View {
     var body: some View {
         GeometryReader {
             let size = $0.size  // Get the size of the geometry
-            
             ScrollView(.horizontal, showsIndicators: false, content: {
                 HStack(spacing: -60) {
                     ForEach(playerCards.indices, id: \.self) { index in
@@ -33,7 +32,7 @@ struct DragCardList: View {
                                 .onDrop(of: ["public.text"], delegate: DropViewDelegate(destinationIndex: index, cards: $playerCards, draggedCard: $draggedCard))
                     }
                 }
-                .offset(y: 10)
+//                .offset(y: 10)
                 .padding(.horizontal, max((size.width - (CGFloat(playerCards.count) * 80 + CGFloat(playerCards.count - 1) * -20)) / 2, 0))
             })
 

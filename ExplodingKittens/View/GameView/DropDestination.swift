@@ -13,6 +13,13 @@ struct DropDestination: View {
     @Binding var draggedCard: Card?
     @Binding var playerCards: [Card]
     @Binding var currentCard: Card?
+    @Binding var seeFuture: Bool
+    @Binding var currentTurn: Int
+    @Binding var playerList: [Player]
+    @Binding var stealOther: Bool
+    @Binding var cardGame: [Card]
+//    let checkPlayerCard: (Card) -> Void
+
     
     var body: some View {
         ZStack {
@@ -47,11 +54,55 @@ struct DropDestination: View {
                 withAnimation {
                     playerCards.removeAll { $0 == draggedCard }
                     currentCard = draggedCard
+                    checkPlayerCard(card: currentCard!)
                     droppedCards.append(draggedCard)
+                    
                 }
             }
             draggedCard = nil
+            currentCard = nil
             return true
+        }
+    }
+    
+    func checkPlayerCard(card: Card) {
+        switch card.name {
+        case "Skip":
+            playerList[currentTurn].numberOfTurn -= 1
+            
+            if playerList[currentTurn].numberOfTurn == 0 {
+                playTurn = false
+                playerList[currentTurn].numberOfTurn = 1
+                currentTurn = (currentTurn + 1) % playerList.count
+            }
+            break
+        case "Attack":
+            playerList[currentTurn].numberOfTurn = 0
+            playerList[(currentTurn + 1) % playerList.count].numberOfTurn += 1
+            
+            if playerList[currentTurn].numberOfTurn == 0 {
+                playTurn = false
+                playerList[currentTurn].numberOfTurn = 1
+                currentTurn = (currentTurn + 1) % playerList.count
+            }
+            break
+        case "See The Future":
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                seeFuture = true
+            }
+            break
+        case "Steal A Card":
+            if playerList.count > 2 {
+                stealOther = true
+            } else {
+                aiGiveCard(to: &playerCards, from: &playerList[1].cards)
+            }
+            break
+        case "Shuffle":
+            cardGame.shuffle()
+            break
+        default:
+            break
         }
     }
 }

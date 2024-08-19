@@ -13,12 +13,13 @@ struct GameView: View {
     @State private var droppedCards: [Card] = []
     @State private var currentCard: Card? = nil
     @State private var playTurn: Bool = true
-    @State private var isRotated: Bool = true // Control variable for rotation
+    @State private var isRotated: Bool = false // Control variable for rotation
     @State private var playerList: [Player] = []
     @State private var currentTurn: Int = 0
     @State private var stealCard: Bool = false
     @State private var seeFuture: Bool = false
-    @State private var winGame: Bool = false
+    @State private var winGame: Bool?
+    @State private var stealOther: Bool = false
     
     var numberOfPlayers: Int
     
@@ -29,10 +30,10 @@ struct GameView: View {
             
             if !playerList.isEmpty {
                 HStack {
-                    Text("\(winGame)")
+                    if playTurn {
+                        Text("Your Turn")
+                    }
                     Button(action: {
-//                        var card = playerList[0].cards[0]
-//                        test(card: card, currentTurn: 1, players: &playerList)
                     }, label: {
                         Text("Leave Game")
                             .modifier(buttonCapsule())
@@ -45,21 +46,21 @@ struct GameView: View {
             
             GeometryReader {
                 let size = $0.size
-                VStack(spacing: 10) {
+                VStack(spacing: 15) {
                     if !playerList.isEmpty {
-                        
-//                        HStack {
-//                            Text("player 1: \(playerList[1].cards.count)")
-//                            Text("player 2: \(playerList[2].cards.count)")
-//                            Text("me: \(playerList[0].cards.count)")
-//                            Text("\(stealCard)")
-//                        }
-                        CardList(cards: numberOfPlayers == 2 ? playerList[1].cards : playerList[2].cards, position: "top")
-                            .frame(height: size.height / 3 - 20)
+                        if numberOfPlayers == 2 && playerList[1].countinuePlay {
+                            CardList(cards:  playerList[1].cards, position: "top")
+                                .frame(height: size.height / 3 - 20)
+                        } else if numberOfPlayers > 2 && playerList[2].countinuePlay {
+                            CardList(cards:  playerList[2].cards, position: "top")
+                                .frame(height: size.height / 3 - 20)
+                        } else {
+                            Spacer()
+                        }
                     }
                     
                     HStack {
-                        if numberOfPlayers > 3 && !playerList.isEmpty {
+                        if numberOfPlayers > 3 && !playerList.isEmpty && playerList[3].countinuePlay {
                             CardList(cards: playerList[3].cards, position: "left")
                         } else {
                             Spacer()
@@ -69,19 +70,23 @@ struct GameView: View {
                         VStack {
                             Text("\(currentTurn)")
                             Text("\(playTurn)")
+//                            Text("\(cardGame.count)")
                         }
                         
                         HStack {
                             if !playerList.isEmpty {
-                                PickCardList(cardGame: $cardGame, playTurn: $playTurn, playerCards: $playerList[0].cards, currentTurn: $currentTurn, playerList: $playerList, numberOfPlayers: numberOfPlayers, aiTurn: aiTurn)
+                                PickCardList(cardGame: $cardGame, playTurn: $playTurn, playerCards: $playerList[0].cards, currentTurn: $currentTurn, playerList: $playerList, droppedCards: $droppedCards, winGame: $winGame, numberOfPlayers: numberOfPlayers, aiTurn: aiTurn)
+                                    .onChange(of: currentTurn, initial: true) {
+                                        checkWin()
+                                    }
                             
-                                DropDestination(droppedCards: $droppedCards, playTurn: $playTurn, draggedCard: $draggedCard, playerCards: $playerList[0].cards, currentCard: $currentCard)
+                                DropDestination(droppedCards: $droppedCards, playTurn: $playTurn, draggedCard: $draggedCard, playerCards: $playerList[0].cards, currentCard: $currentCard, seeFuture: $seeFuture, currentTurn: $currentTurn, playerList: $playerList, stealOther: $stealOther, cardGame: $cardGame)
                             }
                         }
                         
                         Spacer()
                         if numberOfPlayers > 2 && !playerList.isEmpty {
-                            CardList(cards: playerList[1].cards, position: "right")
+                            CardList(cards: playerList[playerList.count - 2].cards, position: "right")
                         } else {
                             Spacer()
                         }
@@ -103,51 +108,46 @@ struct GameView: View {
             if seeFuture && !cardGame.isEmpty {
                 SeeFutureDialog(seeFuture: $seeFuture, cards: cardGame)
             }
+            
+            if winGame != nil {
+                if winGame! {
+                    WinView()
+                }
+                
+            }
         
+            if winGame != nil {
+                if !winGame! {
+                    GameOverView()
+                }
+                
+            }
             
             if stealCard && !playerList.isEmpty {
                 PickStealCard(playerCards: $playerList[0].cards, playerList: $playerList, currentTurn: $currentTurn, stealCard: $stealCard)
-                    
             }
+            
+            if stealOther && playerList.count > 2 {
+                PickStealPlayer(playerCard: $playerList[0].cards, playerList: $playerList, currentTurn: $currentTurn, stealOther: $stealOther)
+            }
+            
+            
         }
-        .rotationEffect(.degrees(isRotated ? 0 : 180))
-        .animation(.easeInOut(duration: 0.5), value: isRotated)
         .onAppear {
+
             getCardsForGame(to: &cardGame, numberOfPlayers: numberOfPlayers, level: "Easy")
             setUpPlayers()
-            
-            withAnimation {
-                isRotated = true // Start rotation animation
-            }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                UIDevice.current.setValue(UIInterfaceOrientation.landscapeRight.rawValue, forKey: "orientation")
-                AppDelegate.orientationLock = .landscapeRight
-            }
-            //            withAnimation {
-            //                UIDevice.current.setValue(UIInterfaceOrientation.landscapeRight.rawValue, forKey: "orientation")
-            //                AppDelegate.orientationLock = .landscapeRight
-            //            }
-            
         }
         .onDisappear {
-            withAnimation{
-                isRotated = false
-            }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                AppDelegate.orientationLock = .all
-                
-            }
-            //            withAnimation {
-            //                AppDelegate.orientationLock = .all
-            //            }
+            OrientationManager.shared.lockOrientation(.all, andRotateTo: .portrait)
         }
     }
     
     func setUpPlayers() {
-        playerList = [Player(name: "player", cards: [], index: 0)]
+        playerList = [Player(name: "player", cards: [], index: 0, countinuePlay: true)]
         getCardForPlayer(to: &playerList[0].cards, from: &cardGame)
         for i in 1..<numberOfPlayers {
-            playerList.append(Player(name: "aiPlayer\(i)", cards: [], index: i))
+            playerList.append(Player(name: "aiPlayer\(i)", cards: [], index: i, countinuePlay: true))
             getCardForPlayer(to: &playerList[i].cards, from: &cardGame)
         }
     }
@@ -177,12 +177,14 @@ struct GameView: View {
                         stealCard = shouldSteal
                 }
             }
+            
 
             for _ in 0..<playerList[currentTurn].numberOfTurn {
                 if !cardGame.isEmpty {
                     let card = cardGame[cardGame.count - 1]
-                    getRandomCard(card: card, to: &playerList[currentTurn].cards, from: &cardGame)
                     
+                    getRandomCard(card: card, to: &playerList[currentTurn].cards, from: &cardGame)
+
                     if card.name == "Bomb" {
                         addCard(card: card, count: 1, to: &droppedCards, remove: true, from: &playerList[currentTurn].cards)
                         
@@ -190,18 +192,34 @@ struct GameView: View {
                             
                             addCard(card: defuseCard, count: 1, to: &droppedCards, remove: true, from: &playerList[currentTurn].cards)
 
-                            cardGame.insert(card, at: Int.random(in: 0...cardGame.count))
+                            addCard(card: card, count: 1, to: &cardGame, remove: true, from: &droppedCards)
                         } else {
-                            winGame = true
+                            playerList[currentTurn].countinuePlay = false
                         }
                     }
                 }
+                
             }
             playerList[currentTurn].numberOfTurn = 1
+           
         }
         currentTurn = (currentTurn + 1) % numberOfPlayers
     }
     
+    func checkWin() {
+        var checking = true
+        
+        for index in 1..<playerList.count {
+            if playerList[index].countinuePlay {
+                checking = false
+                break
+            }
+        }
+        
+        if checking {
+            winGame = true
+        }
+    }
     
 }
 
