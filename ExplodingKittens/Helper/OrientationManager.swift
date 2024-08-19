@@ -16,7 +16,7 @@ class OrientationManager {
 
         let geometryPreferences = UIWindowScene.GeometryPreferences.iOS(interfaceOrientations: orientation)
         windowScene.requestGeometryUpdate(geometryPreferences) { error in
-            if let error = error as Error? {
+            if let error = error as Error?  {
                 print("Error changing orientation: \(error.localizedDescription)")
             } else {
                 UIDevice.current.setValue(rotateOrientation.rawValue, forKey: "orientation")
@@ -26,16 +26,5 @@ class OrientationManager {
                 }
             }
         }
-    }
-}
-
-
-class LandscapeHostingController<Content>: UIHostingController<Content> where Content: View {
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return .landscape
-    }
-    
-    override var shouldAutorotate: Bool {
-        return true
     }
 }

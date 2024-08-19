@@ -13,7 +13,6 @@ struct GameView: View {
     @State private var droppedCards: [Card] = []
     @State private var currentCard: Card? = nil
     @State private var playTurn: Bool = true
-    @State private var isRotated: Bool = false // Control variable for rotation
     @State private var playerList: [Player] = []
     @State private var currentTurn: Int = 0
     @State private var stealCard: Bool = false
@@ -134,11 +133,13 @@ struct GameView: View {
             
         }
         .onAppear {
-
+            AppDelegate.orientationLock = UIInterfaceOrientationMask.landscapeRight
+            OrientationManager.shared.lockOrientation(.all, andRotateTo: .landscapeRight)
             getCardsForGame(to: &cardGame, numberOfPlayers: numberOfPlayers, level: "Easy")
             setUpPlayers()
         }
         .onDisappear {
+            AppDelegate.orientationLock = .all
             OrientationManager.shared.lockOrientation(.all, andRotateTo: .portrait)
         }
     }
