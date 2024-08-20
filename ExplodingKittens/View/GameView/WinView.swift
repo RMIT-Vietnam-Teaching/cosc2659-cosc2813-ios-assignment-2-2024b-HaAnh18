@@ -36,5 +36,6 @@ struct WinView: View {
 }
 
 #Preview {
-    WinView()
+//    WinView()
+    GameView(numberOfPlayers: 2)
 }

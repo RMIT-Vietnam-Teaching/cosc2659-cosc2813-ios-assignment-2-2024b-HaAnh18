@@ -10,38 +10,58 @@ import SwiftUI
 struct CardList: View {
     var cards: [Card]
     var position: String
+    var screenSize: ScreenSizeCategory
+    @State private var cardSize: CGFloat? = nil
+    
     var body: some View {
-        GeometryReader {
-            let size = $0.size  // Get the size of the geometry
-            
-            if position == "top" {
-                HStack(spacing: -60) {
-                    ForEach(cards, id: \.self) { card in
-                        card.frontImage
-                            .resizable()
-                            .frame(width: 90, height: 90)
-                            .scaledToFit()
-                            .rotationEffect(.degrees(position == "top" ? 180 : position == "left" ? 90 : -90))
-                    }
-                    .padding(.vertical, -7)
+        
+        if position == "top" {
+            HStack(spacing: -60) {
+                ForEach(cards, id: \.self) { card in
+                    card.backImage
+                        .resizable()
+                        .frame(width: cardSize , height: cardSize)
+                        .scaledToFit()
+                        .rotationEffect(.degrees(position == "top" ? 180 : position == "left" ? 90 : -90))
                 }
-                .padding(.horizontal, max((size.width - (CGFloat(cards.count) * 60 + CGFloat(cards.count - 1) * -10)) / 2, 0))
-            } else {
-                VStack(spacing: -70) {
-                    ForEach(cards, id: \.self) { card in
-                        card.frontImage
-                            .resizable()
-                            .frame(width: 90, height: 90)
-                            .scaledToFit()
-                            .rotationEffect(.degrees(position == "top" ? 180 : position == "left" ? 90 : -90))
-                    }
-                }
-                .padding(.vertical, max((size.width - (CGFloat(cards.count) * 40 + CGFloat(cards.count - 1) * -10)) / 2, 0))
+                .padding(.vertical, -7)
             }
-            
+            .onAppear {
+                setComponentSize()
+            }
+        } else {
+            VStack(spacing: -70) {
+                ForEach(cards, id: \.self) { card in
+                    card.backImage
+                        .resizable()
+                        .frame(width: cardSize, height: cardSize)
+                        .scaledToFit()
+                        .rotationEffect(.degrees(position == "top" ? 180 : position == "left" ? 90 : -90))
+                }
+            }
+            .onAppear {
+                setComponentSize()
+            }
+            .frame(width: position == "top" ? 300 : 80, height: position == "top" ? 80 : 200)
+            .padding(0)
         }
-        .frame(width: position == "top" ? 300 : 80, height: position == "top" ? 80 : 200)
-        .padding(0)
+    }
+    
+    func setComponentSize() {
+        switch screenSize {
+        case .small:
+            cardSize = 90
+        case .medium:
+            cardSize = 110
+        case .large:
+            if position == "top" {
+                cardSize = 180
+            } else {
+                cardSize = 150
+            }
+        case .extraLarge:
+            cardSize = 120
+        }
     }
 }
 

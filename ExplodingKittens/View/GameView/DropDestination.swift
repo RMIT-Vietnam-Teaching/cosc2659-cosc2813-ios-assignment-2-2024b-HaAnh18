@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct DropDestination: View {
+    @State private var dropSize: CGFloat? = nil
+    @State private var cardSize: CGFloat? = nil
     @Binding var droppedCards: [Card]
     @Binding var playTurn: Bool
     @Binding var draggedCard: Card?
@@ -18,6 +20,8 @@ struct DropDestination: View {
     @Binding var playerList: [Player]
     @Binding var stealOther: Bool
     @Binding var cardGame: [Card]
+    var screenSize: ScreenSizeCategory
+
 //    let checkPlayerCard: (Card) -> Void
 
     
@@ -25,7 +29,7 @@ struct DropDestination: View {
         ZStack {
             Rectangle()
                 .strokeBorder(style: StrokeStyle(lineWidth: 2, dash: [10, 5]))
-                .frame(width: 155, height: 155)
+                .frame(width: dropSize, height: dropSize)
             
             if droppedCards.count == 0 {
                 Text("Drop Your Card Here")
@@ -39,7 +43,7 @@ struct DropDestination: View {
                 card.frontImage
                     .resizable()
                     .rotationEffect(.degrees(index % 2 == 0 ? Double(index) * 1 : Double(index) * -1))
-                    .frame(width: 150, height: 150)
+                    .frame(width: cardSize, height: cardSize)
                     .scaledToFit()
             }
             .frame(width: 160, height: 160)
@@ -63,7 +67,11 @@ struct DropDestination: View {
             currentCard = nil
             return true
         }
+        .onAppear {
+            setComponentSize()
+        }
     }
+        
     
     func checkPlayerCard(card: Card) {
         switch card.name {
@@ -103,6 +111,23 @@ struct DropDestination: View {
             break
         default:
             break
+        }
+    }
+    
+    func setComponentSize() {
+        switch screenSize {
+        case .small:
+            dropSize = 150
+            cardSize = 140
+        case .medium:
+            dropSize = 160
+            cardSize = 150
+        case .large:
+            dropSize = 220
+            cardSize = 220
+        case .extraLarge:
+            dropSize = 120
+            cardSize = 100
         }
     }
 }
