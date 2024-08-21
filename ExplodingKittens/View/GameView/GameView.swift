@@ -17,7 +17,7 @@ struct GameView: View {
     @State private var currentTurn: Int = 0
     @State private var stealCard: Bool = false
     @State private var seeFuture: Bool = false
-    @State private var winGame: Bool? = true
+    @State private var winGame: Bool?
     @State private var stealOther: Bool = false
     @State private var showTurn: Bool = true
     
@@ -43,7 +43,7 @@ struct GameView: View {
                             
                         })
                         Spacer()
-                        Text("\(playerList[currentTurn].name)")
+//                        Text("\(playerList[currentTurn].name)")
                     }
                 }
                 
@@ -105,11 +105,14 @@ struct GameView: View {
                                     .resizable()
                                     .frame(width: 200, height: 200)
                                     .scaledToFit()
-                                    .offset(x: sizeCategory == .small ? -120 : sizeCategory == .medium ? -180 : 0, y: sizeCategory == .small ? -80 : sizeCategory == .medium ? -100 : -100)
+                                    .offset(x: sizeCategory == .small ? -130 : sizeCategory == .medium ? -180 : 0, y: sizeCategory == .small ? -80 : sizeCategory == .medium ? -100 : -100)
+                                    .scaleEffect(showTurn ? 1 : 0.5) // Adjust the scale effect for animation
+                                    .opacity(showTurn ? 1 : 0)
                             }
                             
                             HStack{
                                 DragCardList(playerCards: $playerList[0].cards, draggedCard: $draggedCard, screenSize: sizeCategory)
+//                                TestDrag(playerCards: $playerList[0].cards, draggedCard: $draggedCard, screenSize: sizeCategory)
                             }
                         }
                         .zIndex(1)
@@ -150,14 +153,13 @@ struct GameView: View {
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .onAppear {
-                AppDelegate.orientationLock = UIInterfaceOrientationMask.landscapeRight
-                OrientationManager.shared.lockOrientation(.all, andRotateTo: .landscapeRight)
+                setOrientation(.landscape)
                 getCardsForGame(to: &cardGame, numberOfPlayers: numberOfPlayers, level: "Easy")
                 setUpPlayers()
             }
             .onDisappear {
-                AppDelegate.orientationLock = .all
-                OrientationManager.shared.lockOrientation(.all, andRotateTo: .portrait)
+                setOrientation(.all) // Revert to allowing all orientations
+
             }
         }
     }
@@ -248,7 +250,7 @@ struct GameView: View {
 }
 
 #Preview {
-    GameView(numberOfPlayers: 3)
+    GameView(numberOfPlayers: 2)
 }
 
 

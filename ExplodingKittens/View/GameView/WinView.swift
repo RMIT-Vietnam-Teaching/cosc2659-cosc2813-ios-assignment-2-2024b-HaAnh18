@@ -10,17 +10,27 @@ import SwiftUI
 struct WinView: View {
     @State private var isVisible = false
     var body: some View {
-        ZStack {
-            GifImage(name: "win")
-                .ignoresSafeArea()
-                .aspectRatio(contentMode: .fill)
-                .overlay(.pink.opacity(0.2))
+        GeometryReader {
+            let size = $0.size
+//            Color(.blue)
+//                .ignoresSafeArea()
             
-            VStack {
-                Text("Winning")
+            ZStack {
+                GifImage(name: "win")
+                    .ignoresSafeArea()
+    //                .frame(height: 300)
+                    .frame(width: size.width, height: size.height)
+                    .aspectRatio(contentMode: .fill)
+                    .overlay(.pink.opacity(0.2))
                 
-                Text("Return")
-                    .modifier(buttonCapsule())
+
+                    VStack {
+                        Text("Winning")
+                        
+                        Text("Return")
+                            .modifier(buttonCapsule())
+                    }
+                
             }
         }
         .scaleEffect(isVisible ? 1 : 0.5) // Adjust the scale effect for animation

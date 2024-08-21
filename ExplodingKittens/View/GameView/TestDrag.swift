@@ -1,19 +1,20 @@
 //
-//  DragCardList.swift
+//  TestDrag.swift
 //  ExplodingKittens
 //
-//  Created by Nana on 11/8/24.
+//  Created by Nana on 21/8/24.
 //
 
 import SwiftUI
 
-struct DragCardList: View {
+struct TestDrag: View {
     @State private var cardSize: CGFloat? = nil
     @State private var paddingSize: CGFloat = 80
     @Binding var playerCards: [Card]
     @Binding var draggedCard: Card?
     var screenSize: ScreenSizeCategory
-
+    @State private var offset = CGSize.zero
+       @State private var startPosition = CGSize.zero
 //    @Binding var playerList: [Player]
 //    @Binding var currentTurn: Int
     
@@ -23,15 +24,16 @@ struct DragCardList: View {
 
             VStack {
                 Spacer()
-                ScrollView(.horizontal, showsIndicators: false, content: {
-                    HStack(spacing: -60) {
+//                ScrollView(.horizontal, showsIndicators: false, content: {
+                    HStack(spacing: 0) {
                         ForEach(playerCards.indices, id: \.self) { index in
                             let card = playerCards[index]
+//                            DraggableCard(card: card)
                                 card.frontImage
                                     .resizable()
                                     .frame(width: cardSize, height: cardSize)
-                                    .padding(-14)
-                                    .scaledToFit()
+////                                    .padding(-14)
+//                                    .scaledToFit()
                                     .onDrag {
                                         self.draggedCard = card
                                         return NSItemProvider(object: String(index) as NSString)
@@ -40,8 +42,8 @@ struct DragCardList: View {
                         }
                     }
     //                .offset(y: 10)
-                    .padding(.horizontal, max((size.width - (CGFloat(playerCards.count) * paddingSize + CGFloat(playerCards.count - 1) * -20)) / 2, 0))
-                })
+//                    .padding(.horizontal, max((size.width - (CGFloat(playerCards.count) * paddingSize + CGFloat(playerCards.count - 1) * -20)) / 2, 0))
+//                })
             }
 
         }
@@ -71,6 +73,7 @@ struct DragCardList: View {
 }
 
 #Preview {
-    DragCardList(playerCards: .constant(cards), draggedCard: .constant(cards[0]), screenSize: .small)
-//    GameView(numberOfPlayers: 4)
+//    DragCardList(playerCards: .constant(cards), draggedCard: .constant(cards[0]))
+    GameView(numberOfPlayers: 4)
 }
+

@@ -12,6 +12,8 @@ struct ContentView: View {
 //        LandscapeViewControllerRepresentable()
         GameView(numberOfPlayers: 2)
 //        Test(numberOfPlayers: 2)
+//        MenuView()
+//        Text("\(AppDelegate.orientationLock)")
     }
 }
 

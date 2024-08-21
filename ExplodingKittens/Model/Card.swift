@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct Card: Codable, Equatable, Hashable  {
+struct Card: Codable, Equatable  {
     var id: UUID?
     var name: String
     var frontImageName: String
@@ -22,6 +22,8 @@ struct Card: Codable, Equatable, Hashable  {
 //    var descri[t]
     var description: String
     var score: Int
+//    var offset: CGSize = .zero
+//    var startPosition: CGSize = .zero
     
 //    static func == (lhs: Card, rhs: Card) -> Bool {
 //        return lhs.id == rhs.id
@@ -34,6 +36,27 @@ struct Card: Codable, Equatable, Hashable  {
     mutating func assignUniqueID() {
             self.id = UUID()
         }
+    
+    // Implementing Hashable manually
+       func hash(into hasher: inout Hasher) {
+           hasher.combine(id)
+           hasher.combine(name)
+           hasher.combine(frontImageName)
+           hasher.combine(backImageName)
+           hasher.combine(description)
+           hasher.combine(score)
+       }
+}
+
+extension Card: Hashable {
+    static func == (lhs: Card, rhs: Card) -> Bool {
+        return lhs.id == rhs.id &&
+               lhs.name == rhs.name &&
+               lhs.frontImageName == rhs.frontImageName &&
+               lhs.backImageName == rhs.backImageName &&
+               lhs.description == rhs.description &&
+               lhs.score == rhs.score
+    }
 }
 
 extension Card: Transferable {

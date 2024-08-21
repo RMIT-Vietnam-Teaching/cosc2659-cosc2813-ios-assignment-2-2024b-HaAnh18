@@ -11,29 +11,25 @@ struct GameOverView: View {
     @State private var isVisible = false
 
     var body: some View {
-        ZStack {
+        GeometryReader {
+            let size = $0.size
             
-//            Color(.pink.opacity(0.2))
-//                .ignoresSafeArea()
-            
-            GifImage(name: "bomb")
-                .aspectRatio(contentMode: .fill)
-                .overlay(.pink.opacity(0.2))
-//                .frame(width: )
-           
-            VStack(spacing: 30) {
-//                ZStack {
-//                    GifImage(name: "bomb")
-//                        .aspectRatio(contentMode: .fit)
-//                        .overlay(.pink.opacity(0.2))
-//                    
-                    Text("Gameover")
-//                }
-//                
-//                Spacer()
-                Text("Return")
-                    .modifier(buttonCapsule())
-//                
+            ZStack {
+                
+                GifImage(name: "bomb")
+                    .ignoresSafeArea()
+    //                .frame(height: 300)
+                    .frame(width: size.width, height: size.height)
+                    .aspectRatio(contentMode: .fill)
+                    .overlay(Color("game-view-bg").opacity(0.5))
+               
+                VStack(spacing: 30) {
+  
+                        Text("Gameover")
+ 
+                    Text("Return")
+                        .modifier(buttonCapsule())
+                }
             }
         }
         .scaleEffect(isVisible ? 1 : 0.5) // Adjust the scale effect for animation
@@ -47,5 +43,6 @@ struct GameOverView: View {
 }
 
 #Preview {
-    GameOverView()
+//    GameOverView()
+    GameView(numberOfPlayers: 2)
 }
