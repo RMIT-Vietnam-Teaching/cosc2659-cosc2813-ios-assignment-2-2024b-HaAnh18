@@ -116,5 +116,7 @@ struct PickStealPlayer: View {
 
 #Preview {
 //    PickStealPlayer()
-    GameView(numberOfPlayers: 4)
+    MenuView()
+
+//    GameView(numberOfPlayers: 4)
 }

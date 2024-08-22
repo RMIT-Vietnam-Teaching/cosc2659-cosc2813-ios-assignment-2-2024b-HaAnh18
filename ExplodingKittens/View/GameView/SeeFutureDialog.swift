@@ -90,5 +90,7 @@ struct SeeFutureDialog: View {
 
 #Preview {
 //    SeeFutureDialog(seeFuture: .constant(true), cards: cards)
-    GameView(numberOfPlayers: 2)
+    MenuView()
+
+//    GameView(numberOfPlayers: 2)
 }

@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct GameView: View {
+    @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
+    
     @State private var draggedCard: Card?
     @State private var cardGame: [Card] = []
     @State private var droppedCards: [Card] = []
@@ -17,11 +19,16 @@ struct GameView: View {
     @State private var currentTurn: Int = 0
     @State private var stealCard: Bool = false
     @State private var seeFuture: Bool = false
-    @State private var winGame: Bool?
     @State private var stealOther: Bool = false
     @State private var showTurn: Bool = true
+    @State private var showInput: Bool = true
+    @State private var numberOfPlayers: Int = 2
+    @State private var winGame: Bool?
+    @State private var playerName: String = ""
     
-    var numberOfPlayers: Int
+    @Binding var isGameDataAvailable: Bool
+    
+    var resumeGame: Bool
     
     var body: some View {
         GeometryReader {
@@ -32,20 +39,20 @@ struct GameView: View {
                 Color("game-view-bg")
                     .ignoresSafeArea()
                 
-                if !playerList.isEmpty {
-                    HStack {
-                        Button(action: {
-                        }, label: {
-                            Text("Leave Game")
-                                .modifier(buttonCapsule())
-                                .padding(.vertical, 20)
-                                .padding(.horizontal, 20)
-                            
-                        })
-                        Spacer()
-//                        Text("\(playerList[currentTurn].name)")
-                    }
-                }
+//                if !playerList.isEmpty {
+//                    HStack {
+//                        Button(action: {
+//                        }, label: {
+//                            Text("Leave Game")
+//                                .modifier(buttonCapsule())
+//                                .padding(.vertical, 20)
+//                                .padding(.horizontal, 20)
+//                            
+//                        })
+//                        Spacer()
+////                        Text("\(playerList[currentTurn].name)")
+//                    }
+//                }
                 
                 let height = size.height / 3
                 
@@ -78,9 +85,10 @@ struct GameView: View {
                         
                         HStack {
                             if !playerList.isEmpty {
-                                PickCardList(cardGame: $cardGame, playTurn: $playTurn, playerCards: $playerList[0].cards, currentTurn: $currentTurn, playerList: $playerList, droppedCards: $droppedCards, winGame: $winGame, stealCard: $stealCard, showTurn: $showTurn, numberOfPlayers: numberOfPlayers, aiTurn: aiTurn, screenSize: sizeCategory)
+                                PickCardList(cardGame: $cardGame, playTurn: $playTurn, playerCards: $playerList[0].cards, currentTurn: $currentTurn, playerList: $playerList, droppedCards: $droppedCards, winGame: $winGame, stealCard: $stealCard, showTurn: $showTurn, isGameDataAvailable: $isGameDataAvailable, numberOfPlayers: numberOfPlayers, aiTurn: aiTurn, screenSize: sizeCategory)
                                     .onChange(of: currentTurn, initial: true) {
                                         checkWin()
+                                        saveGameDataToUserDefaults()
                                     }
                                 
                                 DropDestination(droppedCards: $droppedCards, playTurn: $playTurn, draggedCard: $draggedCard, playerCards: $playerList[0].cards, currentCard: $currentCard, seeFuture: $seeFuture, currentTurn: $currentTurn, playerList: $playerList, stealOther: $stealOther, cardGame: $cardGame, screenSize: sizeCategory)
@@ -149,23 +157,62 @@ struct GameView: View {
                     PickStealPlayer(playerCard: $playerList[0].cards, playerList: $playerList, currentTurn: $currentTurn, stealOther: $stealOther, screenSize: sizeCategory)
                 }
                 
-                
+                if showInput {
+                    InputInfo(playerName: $playerName, numberOfPlayers: $numberOfPlayers, showInput: $showInput)
+                }
             }
+            .navigationBarBackButtonHidden(true)
+            .toolbar(content: {
+                ToolbarItem (placement: .topBarLeading)  {
+                    VStack {
+                        Spacer().frame(height: 20) // Add a Spacer with a specific height
+                        Button(action: {
+                            presentationMode.wrappedValue.dismiss()
+//                            removeGameDataFromUserDefaults()
+                        }, label: {
+                            Text("Leave Game")
+                                .modifier(buttonCapsule())
+                                .padding(.vertical, 20)
+                        })
+                        .padding(.vertical, 20)
+                        .frame(height: 100)
+                    }
+                }
+                })
+
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .onAppear {
-                setOrientation(.landscape)
-                getCardsForGame(to: &cardGame, numberOfPlayers: numberOfPlayers, level: "Easy")
-                setUpPlayers()
+                if resumeGame {
+                    loadGameDataFromUserDefaults()
+//                } else {
+//                    removeGameDataFromUserDefaults()
+                }
+//                setOrientation(.landscape)
+//                getCardsForGame(to: &cardGame, numberOfPlayers: numberOfPlayers, level: "Easy")
+//                setUpPlayers()
+            }
+            .onChange(of: showInput, initial: true) {
+                oldValue, newValue in
+                if oldValue != newValue {
+                    if UserDefaults.standard.data(forKey: "gameData") == nil {
+//                        loadGameDataFromUserDefaults()
+                        getCardsForGame(to: &cardGame, numberOfPlayers: numberOfPlayers, level: "Easy")
+                        setUpPlayers()
+                    }
+                    
+                }
             }
             .onDisappear {
                 setOrientation(.all) // Revert to allowing all orientations
+                
 
             }
+
         }
     }
     
     func setUpPlayers() {
-        playerList = [Player(name: "player", cards: [], index: 0, countinuePlay: true)]
+        playerList = [Player(name: playerName, cards: [], index: 0, countinuePlay: true)]
         getCardForPlayer(to: &playerList[0].cards, from: &cardGame)
         for i in 1..<numberOfPlayers {
             playerList.append(Player(name: "aiPlayer\(i)", cards: [], index: i, countinuePlay: true))
@@ -244,13 +291,71 @@ struct GameView: View {
         if checking {
             winGame = true
             stealCard = false
+            updatePlayerResult(name: playerName, didWin: true)
+            removeGameDataFromUserDefaults()
+            isGameDataAvailable = false
         }
     }
+    
+    
+    
+    func saveGameDataToUserDefaults() {
+        let gameData = GameData(
+            playerList: self.playerList,
+            draggedCard: self.draggedCard,
+            cardGame: self.cardGame,
+            droppedCards: self.droppedCards,
+            currentCard: self.currentCard,
+            playTurn: self.playTurn,
+            currentTurn: self.currentTurn,
+            stealCard: self.stealCard,
+            seeFuture: self.seeFuture,
+            stealOther: self.stealOther,
+            showTurn: self.showTurn,
+            showInput: self.showInput,
+            numberOfPlayers: self.numberOfPlayers
+        )
+        
+        if let encodedData = try? JSONEncoder().encode(gameData) {
+            UserDefaults.standard.set(encodedData, forKey: "gameData")
+            print("Game data saved to UserDefaults.")
+        } else {
+            print("Failed to save game data.")
+        }
+    }
+    
+    func loadGameDataFromUserDefaults() {
+        if let savedData = UserDefaults.standard.data(forKey: "gameData"),
+           let decodedData = try? JSONDecoder().decode(GameData.self, from: savedData) {
+            // Assign the decoded data to the state variables
+            self.playerList = decodedData.playerList
+            self.draggedCard = decodedData.draggedCard
+            self.cardGame = decodedData.cardGame
+            self.droppedCards = decodedData.droppedCards
+            self.currentCard = decodedData.currentCard
+            self.playTurn = decodedData.playTurn
+            self.currentTurn = decodedData.currentTurn
+            self.stealCard = decodedData.stealCard
+            self.seeFuture = decodedData.seeFuture
+            self.stealOther = decodedData.stealOther
+            self.showTurn = decodedData.showTurn
+            self.showInput = decodedData.showInput
+            self.numberOfPlayers = decodedData.numberOfPlayers
+            print("Game data loaded from UserDefaults.")
+        } else {
+            print("No saved game data found in UserDefaults.")
+        }
+    }
+
+
+
     
 }
 
 #Preview {
-    GameView(numberOfPlayers: 2)
+//    GameView(numberOfPlayers: 2)
+    MenuView()
+//    GameView()
 }
 
 

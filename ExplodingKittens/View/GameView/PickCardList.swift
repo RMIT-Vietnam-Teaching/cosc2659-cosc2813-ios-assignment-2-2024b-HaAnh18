@@ -18,6 +18,7 @@ struct PickCardList: View {
     @Binding var winGame: Bool?
     @Binding var stealCard: Bool
     @Binding var showTurn: Bool
+    @Binding var isGameDataAvailable: Bool
     var numberOfPlayers: Int
     let aiTurn: () -> Void
     var screenSize: ScreenSizeCategory
@@ -51,11 +52,12 @@ struct PickCardList: View {
                                             }
 
                                         } else {
+                                            updatePlayerResult(name: playerList[0].name, didWin: false)
+                                            removeGameDataFromUserDefaults()
                                             winGame = false
                                             stealCard = false
-
+                                            isGameDataAvailable = false
                                         }
-                                        
                                     }
                                 }
                             }
@@ -125,6 +127,8 @@ struct PickCardList: View {
 
 #Preview {
 //    PickCardList(cardGame: .constant(cards), playTurn: .constant(true), playerCards: .constant(cards))
-    GameView(numberOfPlayers: 3)
+//    GameView(numberOfPlayers: 3)
 //    Test(numberOfPlayers: 2)
+    MenuView()
+
 }

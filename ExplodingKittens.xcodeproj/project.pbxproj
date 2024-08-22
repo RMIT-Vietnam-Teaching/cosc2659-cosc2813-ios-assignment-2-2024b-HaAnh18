@@ -13,6 +13,9 @@
 		393FD4002C75A00700787514 /* PlayCardTutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393FD3FF2C75A00700787514 /* PlayCardTutorial.swift */; };
 		393FD4102C76235300787514 /* DragCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393FD40F2C76235300787514 /* DragCard.swift */; };
 		393FD4122C7623BA00787514 /* DropZoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393FD4112C7623BA00787514 /* DropZoneView.swift */; };
+		393FD4142C76360600787514 /* InputInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393FD4132C76360500787514 /* InputInfo.swift */; };
+		393FD4172C77197B00787514 /* Leaderboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393FD4162C77197B00787514 /* Leaderboard.swift */; };
+		393FD4192C77204B00787514 /* GameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393FD4182C77204B00787514 /* GameData.swift */; };
 		397E18C82C738B4E00D66D51 /* GameOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397E18C72C738B4E00D66D51 /* GameOverView.swift */; };
 		397E18CA2C738D7900D66D51 /* GifImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397E18C92C738D7900D66D51 /* GifImage.swift */; };
 		397E18CF2C738FBF00D66D51 /* bomb.gif in Resources */ = {isa = PBXBuildFile; fileRef = 397E18CE2C738FBF00D66D51 /* bomb.gif */; };
@@ -50,6 +53,9 @@
 		393FD3FF2C75A00700787514 /* PlayCardTutorial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayCardTutorial.swift; sourceTree = "<group>"; };
 		393FD40F2C76235300787514 /* DragCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragCard.swift; sourceTree = "<group>"; };
 		393FD4112C7623BA00787514 /* DropZoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropZoneView.swift; sourceTree = "<group>"; };
+		393FD4132C76360500787514 /* InputInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputInfo.swift; sourceTree = "<group>"; };
+		393FD4162C77197B00787514 /* Leaderboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Leaderboard.swift; sourceTree = "<group>"; };
+		393FD4182C77204B00787514 /* GameData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameData.swift; sourceTree = "<group>"; };
 		397E18C72C738B4E00D66D51 /* GameOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverView.swift; sourceTree = "<group>"; };
 		397E18C92C738D7900D66D51 /* GifImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifImage.swift; sourceTree = "<group>"; };
 		397E18CE2C738FBF00D66D51 /* bomb.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = bomb.gif; sourceTree = "<group>"; };
@@ -111,6 +117,14 @@
 			path = HowToPlayView;
 			sourceTree = "<group>";
 		};
+		393FD4152C77196A00787514 /* LeaderboardView */ = {
+			isa = PBXGroup;
+			children = (
+				393FD4162C77197B00787514 /* Leaderboard.swift */,
+			);
+			path = LeaderboardView;
+			sourceTree = "<group>";
+		};
 		397E18CB2C738EED00D66D51 /* GIF */ = {
 			isa = PBXGroup;
 			children = (
@@ -167,6 +181,7 @@
 				39A148DC2C68CE4300D35D71 /* cards.json */,
 				39A148DB2C68CE4300D35D71 /* ModelData.swift */,
 				39A148F82C6B5A0800D35D71 /* Player.swift */,
+				393FD4182C77204B00787514 /* GameData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -174,6 +189,7 @@
 		39A148E12C68D3C600D35D71 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				393FD4152C77196A00787514 /* LeaderboardView */,
 				393FD3F22C75849900787514 /* HowToPlayView */,
 				393FD3EF2C74F72C00787514 /* MenuView */,
 				39A148CE2C68CE2500D35D71 /* ContentView.swift */,
@@ -197,6 +213,7 @@
 				397E18D02C7394FD00D66D51 /* WinView.swift */,
 				393FD3F72C75907200787514 /* TestDrag.swift */,
 				393FD3F92C7591F200787514 /* DraggableCard.swift */,
+				393FD4132C76360500787514 /* InputInfo.swift */,
 			);
 			path = GameView;
 			sourceTree = "<group>";
@@ -308,7 +325,10 @@
 				39A148CF2C68CE2500D35D71 /* ContentView.swift in Sources */,
 				39A148EF2C68D5D300D35D71 /* CardList.swift in Sources */,
 				39A148F72C691C1A00D35D71 /* PickCardList.swift in Sources */,
+				393FD4172C77197B00787514 /* Leaderboard.swift in Sources */,
 				393FD3F82C75907200787514 /* TestDrag.swift in Sources */,
+				393FD4142C76360600787514 /* InputInfo.swift in Sources */,
+				393FD4192C77204B00787514 /* GameData.swift in Sources */,
 				39BBB7232C731BA400AA77E6 /* PickStealPlayer.swift in Sources */,
 				39A148CD2C68CE2500D35D71 /* ExplodingKittensApp.swift in Sources */,
 				39A148DE2C68CE4300D35D71 /* ModelData.swift in Sources */,
@@ -454,6 +474,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ExplodingKittens/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Fonts provided by application";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -483,6 +504,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ExplodingKittens/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Fonts provided by application";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

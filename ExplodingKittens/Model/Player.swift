@@ -13,5 +13,56 @@ struct Player: Equatable, Codable {
     var numberOfTurn: Int = 1
     var index: Int
     var countinuePlay: Bool
+    var win: Int = 0
+    var lose: Int = 0
+    var level: Int = 1
+    
+    // Computed property to calculate the win rate
+    var winRate: Double {
+        let totalGames = win + lose
+        return totalGames > 0 ? (Double(win) / Double(totalGames)) * 100 : 0.0
+    }
+    
+    mutating func updateLevel() {
+        // Level up for every 3 wins
+        level = 1 + (win / 3)
+    }
 }
 
+func getPlayers() -> [Player] {
+    if let savedPlayersData = UserDefaults.standard.data(forKey: "players") {
+        if let decodedPlayers = try? JSONDecoder().decode([Player].self, from: savedPlayersData) {
+            return decodedPlayers
+        }
+    }
+    return []
+}
+
+func savePlayers(_ players: [Player]) {
+    if let encodedPlayers = try? JSONEncoder().encode(players) {
+        print("Save player")
+        UserDefaults.standard.set(encodedPlayers, forKey: "players")
+    }
+}
+
+func updatePlayerResult(name: String, didWin: Bool) {
+    var players = getPlayers()
+    
+    if let index = players.firstIndex(where: { $0.name == name }) {
+        if didWin {
+            players[index].win += 1
+            players[index].updateLevel()
+        } else {
+            players[index].lose += 1
+        }
+    } else {
+        // If the player does not exist, you can add a new player
+        var newPlayer = Player(name: name, index: players.count, countinuePlay: true, win: didWin ? 1 : 0, lose: didWin ? 0 : 1)
+        if didWin {
+            newPlayer.updateLevel() // Update level if the player wins the first game
+        }
+        players.append(newPlayer)
+    }
+    
+    savePlayers(players)
+}

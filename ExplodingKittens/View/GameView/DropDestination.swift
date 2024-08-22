@@ -134,5 +134,7 @@ struct DropDestination: View {
 
 #Preview {
 //    DropDestination()
-    GameView(numberOfPlayers: 4)
+    MenuView()
+
+//    GameView(numberOfPlayers: 4)
 }

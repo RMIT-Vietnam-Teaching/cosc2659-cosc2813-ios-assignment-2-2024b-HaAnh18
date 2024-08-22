@@ -10,9 +10,9 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
 //        LandscapeViewControllerRepresentable()
-        GameView(numberOfPlayers: 2)
+//        GameView(numberOfPlayers: 2)
 //        Test(numberOfPlayers: 2)
-//        MenuView()
+        MenuView()
 //        Text("\(AppDelegate.orientationLock)")
     }
 }

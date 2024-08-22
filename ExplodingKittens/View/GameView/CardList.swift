@@ -27,6 +27,7 @@ struct CardList: View {
                 }
                 .padding(.vertical, -7)
             }
+            .offset(y: -10)
             .onAppear {
                 setComponentSize()
             }
@@ -67,6 +68,7 @@ struct CardList: View {
 }
 
 #Preview {
+    MenuView()
 //    CardList(cards: cards, position: "right")
-    GameView(numberOfPlayers: 4)
+//    GameView(numberOfPlayers: 4)
 }

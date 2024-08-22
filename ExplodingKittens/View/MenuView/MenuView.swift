@@ -8,35 +8,39 @@
 import SwiftUI
 
 struct MenuView: View {
+    @State private var isGameDataAvailable: Bool = false
+
     var body: some View {
-        ZStack {
-            Color("game-view-bg")
-                .ignoresSafeArea()
-            
-            VStack {
-                VStack(spacing: 20) {
-                    Button("New Game") {
+        NavigationStack {
+            ZStack {
+                Color("game-view-bg")
+                    .ignoresSafeArea()
+                
+                VStack {
+                    VStack(spacing: 20) {
+                        if isGameDataAvailable {
+                            NavigationLink(destination: GameView(isGameDataAvailable: $isGameDataAvailable, resumeGame: true)) {
+                                Text("Resume Game")
+                                    .modifier(buttonCapsule())
+                            }
+                        }
                         
-                    }
-                        .modifier(buttonCapsule())
-                    
-                    Button("Leaderboard") {
+                        NavigationLink(destination: GameView(isGameDataAvailable: $isGameDataAvailable, resumeGame: false)) {
+                            Text("New Game")
+                                .modifier(buttonCapsule())
+                        }
                         
+                        NavigationLink(destination: Leaderboard()) {
+                            Text("Leaderboard")
+                                .modifier(buttonCapsule())
+                        }
+
                     }
-                        .modifier(buttonCapsule())
-                    
-                    Button("How To Play") {
-                        
-                    }
-                        .modifier(buttonCapsule())
-                    
-                    
-                    Button("Settings") {
-                        
-                    }
-                        .modifier(buttonCapsule())
-                    
                 }
+                
+            }
+            .onAppear {
+                isGameDataAvailable = UserDefaults.standard.data(forKey: "gameData") != nil
             }
         }
     }

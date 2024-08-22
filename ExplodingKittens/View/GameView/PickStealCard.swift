@@ -119,5 +119,7 @@ struct PickStealCard: View {
 
 #Preview {
 //    PickStealCard(cards: .constant(cards), chosenCard: .constant(cards[0]))
-    GameView(numberOfPlayers: 4)
+    MenuView()
+
+//    GameView(numberOfPlayers: 4)
 }

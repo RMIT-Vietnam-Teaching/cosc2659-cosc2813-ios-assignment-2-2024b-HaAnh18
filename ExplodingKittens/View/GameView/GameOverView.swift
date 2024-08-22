@@ -44,5 +44,6 @@ struct GameOverView: View {
 
 #Preview {
 //    GameOverView()
-    GameView(numberOfPlayers: 2)
+    MenuView()
+//    GameView(numberOfPlayers: 2)
 }

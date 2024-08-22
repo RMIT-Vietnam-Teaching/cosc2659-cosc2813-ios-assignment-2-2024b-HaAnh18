@@ -74,6 +74,7 @@ struct TestDrag: View {
 
 #Preview {
 //    DragCardList(playerCards: .constant(cards), draggedCard: .constant(cards[0]))
-    GameView(numberOfPlayers: 4)
+    MenuView()
+//    GameView(numberOfPlayers: 4)
 }
 
