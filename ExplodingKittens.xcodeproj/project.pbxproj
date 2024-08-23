@@ -33,6 +33,8 @@
 		396B062C2C78A64D00490C0D /* Quicksand-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 396B062B2C78A64D00490C0D /* Quicksand-VariableFont_wght.ttf */; };
 		396B062E2C78D98E00490C0D /* exploding.gif in Resources */ = {isa = PBXBuildFile; fileRef = 396B062D2C78D98E00490C0D /* exploding.gif */; };
 		396B06302C78E1B300490C0D /* winning.gif in Resources */ = {isa = PBXBuildFile; fileRef = 396B062F2C78E1B300490C0D /* winning.gif */; };
+		396B06332C78E8CB00490C0D /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396B06322C78E8CB00490C0D /* Settings.swift */; };
+		396B06352C78EADC00490C0D /* DropDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396B06342C78EADC00490C0D /* DropDownView.swift */; };
 		397E18C82C738B4E00D66D51 /* GameOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397E18C72C738B4E00D66D51 /* GameOverView.swift */; };
 		397E18CA2C738D7900D66D51 /* GifImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397E18C92C738D7900D66D51 /* GifImage.swift */; };
 		397E18CF2C738FBF00D66D51 /* bomb.gif in Resources */ = {isa = PBXBuildFile; fileRef = 397E18CE2C738FBF00D66D51 /* bomb.gif */; };
@@ -90,6 +92,8 @@
 		396B062B2C78A64D00490C0D /* Quicksand-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Quicksand-VariableFont_wght.ttf"; path = "../../../../../../../../Downloads/Quicksand/Quicksand-VariableFont_wght.ttf"; sourceTree = "<group>"; };
 		396B062D2C78D98E00490C0D /* exploding.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = exploding.gif; sourceTree = "<group>"; };
 		396B062F2C78E1B300490C0D /* winning.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = winning.gif; sourceTree = "<group>"; };
+		396B06322C78E8CB00490C0D /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		396B06342C78EADC00490C0D /* DropDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownView.swift; sourceTree = "<group>"; };
 		397E18C72C738B4E00D66D51 /* GameOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverView.swift; sourceTree = "<group>"; };
 		397E18C92C738D7900D66D51 /* GifImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifImage.swift; sourceTree = "<group>"; };
 		397E18CE2C738FBF00D66D51 /* bomb.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = bomb.gif; sourceTree = "<group>"; };
@@ -181,6 +185,15 @@
 			path = Font;
 			sourceTree = "<group>";
 		};
+		396B06312C78E78D00490C0D /* SettingView */ = {
+			isa = PBXGroup;
+			children = (
+				396B06322C78E8CB00490C0D /* Settings.swift */,
+				396B06342C78EADC00490C0D /* DropDownView.swift */,
+			);
+			path = SettingView;
+			sourceTree = "<group>";
+		};
 		397E18CB2C738EED00D66D51 /* GIF */ = {
 			isa = PBXGroup;
 			children = (
@@ -248,6 +261,7 @@
 		39A148E12C68D3C600D35D71 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				396B06312C78E78D00490C0D /* SettingView */,
 				393FD4152C77196A00787514 /* LeaderboardView */,
 				393FD3F22C75849900787514 /* HowToPlayView */,
 				393FD3EF2C74F72C00787514 /* MenuView */,
@@ -390,10 +404,12 @@
 				397E18E82C74534C00D66D51 /* ScreenSize.swift in Sources */,
 				397E18D12C7394FD00D66D51 /* WinView.swift in Sources */,
 				39A148F92C6B5A0800D35D71 /* Player.swift in Sources */,
+				396B06352C78EADC00490C0D /* DropDownView.swift in Sources */,
 				39A148EB2C68D5BC00D35D71 /* AppDelegate.swift in Sources */,
 				39A148EC2C68D5BC00D35D71 /* DragDropDelegate.swift in Sources */,
 				393FD4122C7623BA00787514 /* DropZoneView.swift in Sources */,
 				393FD4002C75A00700787514 /* PlayCardTutorial.swift in Sources */,
+				396B06332C78E8CB00490C0D /* Settings.swift in Sources */,
 				393FD4312C77673100787514 /* PlayerRow.swift in Sources */,
 				393FD4102C76235300787514 /* DragCard.swift in Sources */,
 				396B06152C782E5C00490C0D /* CardInfo.swift in Sources */,
