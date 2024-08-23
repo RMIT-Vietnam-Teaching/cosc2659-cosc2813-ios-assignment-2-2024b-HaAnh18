@@ -4,7 +4,15 @@
 <dict>
 	<key>UIAppFonts</key>
 	<array>
-		<string></string>
+		<string>Alata-Regular.ttf</string>
+		<string>Quicksand-Regular.ttf</string>
+		<string>GreatVibes-Regular.ttf</string>
+		<string>Quicksand-Medium.ttf</string>
+		<string>Quicksand-Bold.ttf</string>
+		<string>Quicksand-VariableFont_wght.ttf</string>
+		<string>Allura-Regular.ttf</string>
+		<string>PatrickHand-Regular.ttf</string>
+		<string>Mitr-Bold.ttf</string>
 	</array>
 </dict>
 </plist>

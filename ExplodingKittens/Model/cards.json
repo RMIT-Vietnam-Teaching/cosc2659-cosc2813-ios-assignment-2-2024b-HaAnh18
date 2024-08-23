@@ -3,49 +3,49 @@
         "name": "Bomb",
         "frontImageName": "bomb-1",
         "backImageName" : "back-card",
-        "description": "Defuses an exploding kittens",
+        "description": "You must show this card immediately. Unless you have a Defuse Card, you’re dead. Discard all of your cards, including the Exploding Kitten.",
         "score": 1
     },
     {
         "name": "Defuse",
         "frontImageName": "defuse-1",
         "backImageName" : "back-card",
-        "description": "Defuses an exploding kittens",
+        "description": "If you drew an Exploding Kitten, you can play this card instead of dying. Place your Defuse Card in the Discard Pile.\nThen take the Exploding Kitten, and without reordering or viewing the other cards, secretly put it back in the Draw Pile",
         "score": 1
     },
     {
         "name": "Shuffle",
         "frontImageName": "shuffle-1",
         "backImageName" : "back-card",
-        "description": "Defuses an exploding kittens",
+        "description": "Shuffle the Draw Pile without viewing the cards until told to stop.",
         "score": 1
     },
     {
         "name": "See The Future",
         "frontImageName": "see-future-1",
         "backImageName" : "back-card",
-        "description": "Defuses an exploding kittens",
+        "description": "Privately view the top 3 cards from the Draw Pile and put them back in the same order. Don’t show the cards to the other players.",
         "score": 1
     },
     {
         "name": "Skip",
         "frontImageName": "skip-1",
         "backImageName" : "back-card",
-        "description": "Defuses an exploding kittens",
+        "description": "If you play a Skip Card as a defense to an Attack Card, it only ends 1 of the 2 turns. 2 Skip Cards would end both turns.",
         "score": 1
     },
     {
         "name": "Attack",
         "frontImageName": "attack-1",
         "backImageName" : "back-card",
-        "description": "Defuses an exploding kittens",
+        "description": "Do not draw any cards. Instead, immediately force the next player to take 2 turns in a row. Play then continues from that player. The victim of this card takes a turn as normal (pass-or-play then draw). Then, when their first turn is over, it's their turn again.",
         "score": 1
     },
     {
         "name": "Steal A Card",
         "frontImageName": "steal-card-1",
         "backImageName" : "back-card",
-        "description": "Defuses an exploding kittens",
+        "description": "Force any other player to give you 1 card from their hand. They choose which card to give you.",
         "score": 1
     }
 ]

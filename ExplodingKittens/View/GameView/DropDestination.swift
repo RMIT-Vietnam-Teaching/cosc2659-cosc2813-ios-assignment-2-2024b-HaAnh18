@@ -33,8 +33,8 @@ struct DropDestination: View {
             
             if droppedCards.count == 0 {
                 Text("Drop Your Card Here")
-                    .frame(width: 120)
-                    .font(.title)
+                    .font(Font.custom("Quicksand-Medium", size: 24))
+                    .frame(width: dropSize)
                     .multilineTextAlignment(.center)
             }
             

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Player: Equatable, Codable {
+struct Player: Equatable, Codable, Hashable {
     var name: String
     var cards: [Card] = []
     var numberOfTurn: Int = 1
@@ -65,4 +65,14 @@ func updatePlayerResult(name: String, didWin: Bool) {
     }
     
     savePlayers(players)
+}
+
+func sortPlayers(_ players: [Player]) -> [Player] {
+    return players.sorted(by: {
+        if $0.level == $1.level {
+            return $0.winRate > $1.winRate
+        } else {
+            return $0.level > $1.level
+        }
+    })
 }

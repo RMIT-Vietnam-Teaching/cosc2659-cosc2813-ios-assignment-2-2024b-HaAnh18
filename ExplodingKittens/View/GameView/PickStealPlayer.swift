@@ -25,22 +25,15 @@ struct PickStealPlayer: View {
             
             ZStack {
                 RoundedRectangle(cornerRadius: 25.0)
-//                    .frame(width: size.width / 2 + 300, height: size.height - 50)
                     .frame(width: widthRecSize, height: heightRecSize)
-                    .alignmentGuide(.leading) { d in
-                        (size.width - d.width) / 2
-                    }
-                    .alignmentGuide(.top) { d in
-                        (size.height - d.height) / 2
-                    }
                     .foregroundColor(.white)
                 
-                VStack {
+                VStack(spacing: -10) {
                     Button(action: {
                         chosenPlayer = 2
                     }, label: {
                         CardList(cards: playerList[2].cards, position: "top", screenSize: screenSize)
-                            .shadow(color: .blue, radius: playerList[chosenPlayer] == playerList[2] ? 10 : 0)
+                            .shadow(color: Color("red"), radius: playerList[chosenPlayer] == playerList[2] ? 10 : 0)
                     })
                     
                     HStack {
@@ -50,13 +43,15 @@ struct PickStealPlayer: View {
                                 chosenPlayer = 3
                             }, label: {
                                 CardList(cards: playerList[3].cards, position: "left", screenSize: screenSize)
-                                    .shadow(color: .blue, radius: playerList[chosenPlayer] == playerList[3] ? 10 : 0)
+                                    .shadow(color: Color("red"), radius: playerList[chosenPlayer] == playerList[3] ? 10 : 0)
                             })
                         }
                         
                         Spacer()
                         
                         Text("Please choose a player to steal")
+                            .font(Font.custom("Quicksand-Bold", size: 24))
+
                         
                         Spacer()
                         if playerList.count > 2 {
@@ -64,14 +59,12 @@ struct PickStealPlayer: View {
                                 chosenPlayer = 1
                             }, label: {
                                 CardList(cards: playerList[1].cards, position: "left", screenSize: screenSize)
-                                    .shadow(color: .blue, radius: playerList[chosenPlayer] == playerList[1] ? 10 : 0)
+                                    .shadow(color: Color("red"), radius: playerList[chosenPlayer] == playerList[1] ? 10 : 0)
                             })
                         }
                         Spacer()
-
-                        
                     }
-                    .offset(y: -50)
+                    .offset(y: -20)
                     
                     if chosenPlayer != 0 {
                         Button("Confirm") {
@@ -80,6 +73,7 @@ struct PickStealPlayer: View {
                                 stealOther = false
                             }
                         }
+                        .modifier(confirmButton())
                     }
                 }
             }
@@ -99,8 +93,8 @@ struct PickStealPlayer: View {
     func setComponentSize() {
         switch screenSize {
         case .small:
-            widthRecSize = 600
-            heightRecSize = 300
+            widthRecSize = 700
+            heightRecSize = 350
         case .medium:
             widthRecSize = 700
             heightRecSize = 350
@@ -114,9 +108,26 @@ struct PickStealPlayer: View {
     }
 }
 
-#Preview {
+//#Preview {
 //    PickStealPlayer()
-    MenuView()
+//    MenuView()
+//    PickStealCard(playerCards: .constant(cards), playerList: <#T##[Player]#>, currentTurn: <#T##Int#>, stealCard: <#T##Bool#>, screenSize: <#T##ScreenSizeCategory#>)
 
-//    GameView(numberOfPlayers: 4)
+//    GameView(isGameDataAvailable: .constant(false), resumeGame: false)
+//}
+
+var players: [Player] = [
+    Player(name: "John", cards: cards, numberOfTurn: 1, index: 0, countinuePlay: true, win: 0, lose: 0, level: 10), // Level 10, Win rate 70%
+    Player(name: "Alice", cards: cards, numberOfTurn: 1, index: 1, countinuePlay: true, win: 9, lose: 1, level: 1),
+    Player(name: "Bob", cards: cards, numberOfTurn: 1, index: 2, countinuePlay: true, win: 5, lose: 5, level: 5),
+    Player(name: "A", cards: cards, numberOfTurn: 1, index: 2, countinuePlay: true, win: 5, lose: 5, level: 5)
+   ]
+
+struct PickStealCard_Previews: PreviewProvider {
+//    @StateObject static var viewModel = ViewModel()
+    
+    
+    static var previews: some View {
+        PickStealPlayer(playerCard: .constant(cards), playerList: .constant(players), currentTurn: .constant(0), stealOther: .constant(true), screenSize: .small)
+    }
 }

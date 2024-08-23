@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct DragCard: View {
-    let cardSize: CGSize
+//    let cardSize: CGSize
     let dropZoneSize: CGSize
     let card: Card
     @Binding var isDragging: Bool
@@ -18,14 +18,16 @@ struct DragCard: View {
     let cardIndex: Int // Index of the card
     let dropZoneFrame: CGRect // Drop zone frame
     @Binding var cardVisible: Bool // Track visibility of the card
-    
+    @State private var cardSize: CGFloat = 10
+    var screenSize: ScreenSizeCategory
+
     var body: some View {
         ZStack {
             card.frontImage
 //                .foregroundColor(.blue)
                 .resizable()
                 .scaledToFit()
-                .frame(width: cardSize.width, height: cardSize.height)
+                .frame(width: cardSize, height: cardSize)
                 .offset(cardOffset)
                 .gesture(
                     DragGesture()
@@ -37,13 +39,12 @@ struct DragCard: View {
                             self.isDragging = false
                             
                             // Calculate the card's center position in global coordinates
-                            let cardCenterX = self.cardOffset.width + cardSize.width / 2
-                            let cardCenterY = self.cardOffset.height + cardSize.height / 2
+                            let cardCenterX = self.cardOffset.width + cardSize / 2
+                            let cardCenterY = self.cardOffset.height + cardSize / 2
+                            
                             
                             // Check if the card is fully within the drop zone bounds using global coordinates
                             let isInsideDropZone =
-//                            (cardCenterX + dropZoneFrame.minX + dropZoneSize.width > dropZoneFrame.minX)
-//                            &&
                                 (cardCenterX  < dropZoneFrame.maxY)
                             &&
                                 (cardCenterY + dropZoneFrame.minY < dropZoneFrame.minY)
@@ -68,7 +69,25 @@ struct DragCard: View {
                 )
         }
         .animation(.easeInOut(duration: 0.3), value: isDragging)
+        .onAppear {
+            setComponentSize()
+        }
     }
+        
+    
+    func setComponentSize() {
+        switch screenSize {
+        case .small:
+            cardSize = 140
+        case .medium:
+            cardSize = 150
+        case .large:
+            cardSize = 200
+        case .extraLarge:
+            cardSize = 120
+        }
+    }
+
 }
 
 #Preview {

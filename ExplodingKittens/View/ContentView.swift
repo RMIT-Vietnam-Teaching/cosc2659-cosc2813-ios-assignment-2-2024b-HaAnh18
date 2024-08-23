@@ -12,7 +12,10 @@ struct ContentView: View {
 //        LandscapeViewControllerRepresentable()
 //        GameView(numberOfPlayers: 2)
 //        Test(numberOfPlayers: 2)
-        MenuView()
+//        MenuView()
+//        Text("Testing")
+        PlayCardTutorial()
+//            .font(Font.custom("GreatVibes-Regular", size: 20))
 //        Text("\(AppDelegate.orientationLock)")
     }
 }

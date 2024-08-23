@@ -60,7 +60,7 @@ struct SeeFutureDialog: View {
                     }
                   
                     Text("Got it")
-                        .modifier(buttonCapsule())
+                        .modifier(confirmButton())
                         .onTapGesture {
                             withAnimation {
                                 isVisible = false
@@ -90,7 +90,9 @@ struct SeeFutureDialog: View {
 
 #Preview {
 //    SeeFutureDialog(seeFuture: .constant(true), cards: cards)
-    MenuView()
+//    MenuView()
+    SeeFutureDialog(seeFuture: .constant(true), cards: cards)
 
 //    GameView(numberOfPlayers: 2)
 }
+

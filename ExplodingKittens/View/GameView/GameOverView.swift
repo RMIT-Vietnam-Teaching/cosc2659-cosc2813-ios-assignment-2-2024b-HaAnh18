@@ -8,27 +8,34 @@
 import SwiftUI
 
 struct GameOverView: View {
+    @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
+    
     @State private var isVisible = false
-
+    @State private var isZoom = false
+    @State private var showReturn = false
+    
     var body: some View {
         GeometryReader {
             let size = $0.size
             
             ZStack {
                 
-                GifImage(name: "bomb")
+                GifImage(name: "exploding")
                     .ignoresSafeArea()
-    //                .frame(height: 300)
                     .frame(width: size.width, height: size.height)
                     .aspectRatio(contentMode: .fill)
                     .overlay(Color("game-view-bg").opacity(0.5))
                
                 VStack(spacing: 30) {
   
-                        Text("Gameover")
- 
-                    Text("Return")
-                        .modifier(buttonCapsule())
+                    Text("Gameover")
+                        .font(Font.custom("Quicksand-Bold", size: 62))
+                        .scaleEffect(isZoom ? 3 : 1)
+                    
+                    if showReturn {
+                        Text("Return")
+                            .modifier(confirmButton())
+                    }
                 }
             }
         }
@@ -38,12 +45,24 @@ struct GameOverView: View {
             withAnimation(.easeInOut(duration: 1.0)) {
                 isVisible = true
             }
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                withAnimation(.easeInOut(duration: 1.0)) {
+                    isZoom = true
+                }
+            }
+
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                withAnimation(.easeInOut(duration: 1.0)){     isZoom = false
+                    showReturn = true
+                }
+            }
         }
     }
 }
 
 #Preview {
-//    GameOverView()
-    MenuView()
+    GameOverView()
+//    MenuView()
 //    GameView(numberOfPlayers: 2)
 }

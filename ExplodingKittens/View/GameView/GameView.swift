@@ -19,7 +19,7 @@ struct GameView: View {
     @State private var currentTurn: Int = 0
     @State private var stealCard: Bool = false
     @State private var seeFuture: Bool = false
-    @State private var stealOther: Bool = false
+    @State private var stealOther: Bool = true
     @State private var showTurn: Bool = true
     @State private var showInput: Bool = true
     @State private var numberOfPlayers: Int = 2
@@ -39,20 +39,23 @@ struct GameView: View {
                 Color("game-view-bg")
                     .ignoresSafeArea()
                 
-//                if !playerList.isEmpty {
-//                    HStack {
-//                        Button(action: {
-//                        }, label: {
-//                            Text("Leave Game")
-//                                .modifier(buttonCapsule())
-//                                .padding(.vertical, 20)
-//                                .padding(.horizontal, 20)
-//                            
-//                        })
-//                        Spacer()
-////                        Text("\(playerList[currentTurn].name)")
-//                    }
-//                }
+                HStack {
+                    Button(action: {
+                        presentationMode.wrappedValue.dismiss()
+
+                    }, label: {
+                        Image(systemName: "arrow.left")
+                            .foregroundColor(.black)
+
+                        Text("Menu")
+                            .font(Font.custom("Quicksand-Regular", size: 24))
+                            .foregroundColor(.black)
+                    })
+                    
+                    Spacer()
+                }
+                .frame(height: 30)
+                .padding(.top, 10)
                 
                 let height = size.height / 3
                 
@@ -78,10 +81,6 @@ struct GameView: View {
                         }
                         
                         Spacer()
-//                        VStack {
-//                            Text("\(currentTurn)")
-//                            Text("\(playTurn)")
-//                        }
                         
                         HStack {
                             if !playerList.isEmpty {
@@ -162,34 +161,15 @@ struct GameView: View {
                 }
             }
             .navigationBarBackButtonHidden(true)
-            .toolbar(content: {
-                ToolbarItem (placement: .topBarLeading)  {
-                    VStack {
-                        Spacer().frame(height: 20) // Add a Spacer with a specific height
-                        Button(action: {
-                            presentationMode.wrappedValue.dismiss()
-//                            removeGameDataFromUserDefaults()
-                        }, label: {
-                            Text("Leave Game")
-                                .modifier(buttonCapsule())
-                                .padding(.vertical, 20)
-                        })
-                        .padding(.vertical, 20)
-                        .frame(height: 100)
-                    }
-                }
-                })
 
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .onAppear {
                 if resumeGame {
                     loadGameDataFromUserDefaults()
-//                } else {
-//                    removeGameDataFromUserDefaults()
+                } else {
+                    isGameDataAvailable = false
+                    removeGameDataFromUserDefaults()
                 }
-//                setOrientation(.landscape)
-//                getCardsForGame(to: &cardGame, numberOfPlayers: numberOfPlayers, level: "Easy")
-//                setUpPlayers()
             }
             .onChange(of: showInput, initial: true) {
                 oldValue, newValue in
@@ -354,8 +334,8 @@ struct GameView: View {
 
 #Preview {
 //    GameView(numberOfPlayers: 2)
-    MenuView()
-//    GameView()
+//    MenuView()
+    GameView(isGameDataAvailable: .constant(false), resumeGame: false)
 }
 
 

@@ -19,7 +19,7 @@ struct InputInfo: View {
             
             ZStack {
                 RoundedRectangle(cornerRadius: 25.0)
-                    .frame(width: 400, height: 250)
+                    .frame(width: 400, height: 300)
 //                    .frame(width: widthRecSize, height: heightRecSize)
                     .alignmentGuide(.leading) { d in
                         (size.width - d.width) / 2
@@ -30,35 +30,39 @@ struct InputInfo: View {
                     .foregroundColor(.white)
 //                    .foregroundColor(.blue.opacity(0.3))
                 
-                VStack {
+                VStack(spacing: 20) {
                     Text("New Game")
+                        .font(Font.custom("Quicksand-Bold", size: 32))
                     
-                    VStack {
+                    VStack(spacing: 10) {
                         HStack {
                             Text("Player Name: ")
+                                .font(Font.custom("Quicksand-Medium", size: 20))
                             
                             
                             TextField("Search", text: $playerName)
                                 .frame(width: 200)
                                 .padding(10)
                                 .background(
-                                    Capsule()
-                                        .strokeBorder(.clear, lineWidth: 0.8)
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .strokeBorder(Color("game-view-bg"), lineWidth: 1)
                                     )
                         }
                         
                         HStack {
                             Text("Number of Player: ")
+                                .font(Font.custom("Quicksand-Medium", size: 20))
                             Spacer()
                         }
                         
                         HStack {
                             Text("2 players")
+                                .font(Font.custom("Quicksand-Regular", size: 18))
                                 .padding(10)
                                 .overlay {
                                     if numberOfPlayers == 2 {
                                         RoundedRectangle(cornerRadius: 10)
-                                            .stroke(.black, lineWidth: 1)
+                                            .stroke(Color("game-view-bg"), lineWidth: 3)
                                     }
                                 }
                                 .onTapGesture {
@@ -66,11 +70,12 @@ struct InputInfo: View {
                                 }
                             
                             Text("3 players")
+                                .font(Font.custom("Quicksand-Regular", size: 18))
                                 .padding(10)
                                 .overlay {
                                     if numberOfPlayers == 3 {
                                         RoundedRectangle(cornerRadius: 10)
-                                            .stroke(.black, lineWidth: 1)
+                                            .stroke(Color("game-view-bg"), lineWidth: 3)
                                     }
                                 }
                                 .onTapGesture {
@@ -78,34 +83,32 @@ struct InputInfo: View {
                                 }
                             
                             Text("4 players")
+                                .font(Font.custom("Quicksand-Regular", size: 18))
                                 .padding(10)
                                 .overlay {
                                     if numberOfPlayers == 4 {
                                         RoundedRectangle(cornerRadius: 10)
-                                            .stroke(.black, lineWidth: 1)
+                                            .stroke(Color("game-view-bg"), lineWidth: 3)
                                     }
                                 }
                                 .onTapGesture {
                                     numberOfPlayers = 4
                                 }
                         }
-                        
-                       
-                                                
-                        Button("Confirm") {
-                            withAnimation{
-                                isVisible = false
-                                
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                                    showInput = false
-                                }
-                            }
-                        }
-                        .modifier(buttonCapsule())
-                        .disabled(playerName.isEmpty) // Disable button if name is empty
-
                     }
                     .frame(width: 380)
+                    
+                    Button("Confirm") {
+                        withAnimation{
+                            isVisible = false
+                            
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                showInput = false
+                            }
+                        }
+                    }
+                    .modifier(buttonCapsule())
+                    .disabled(playerName.isEmpty) // Disable button if name is empty
                 }
             }
             .frame(width: size.width, height: size.height)
@@ -123,6 +126,6 @@ struct InputInfo: View {
 
 #Preview {
 //    InputInfo()
-    MenuView()
-//    GameView()
+//    MenuView()
+    GameView(isGameDataAvailable: .constant(false), resumeGame: false)
 }

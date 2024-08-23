@@ -37,6 +37,9 @@ struct PickStealCard: View {
 //                    .foregroundColor(.yellow)
                 
                 VStack(spacing: 20) {
+                    Text("Pick a card to give")
+                        .font(Font.custom("Quicksand-Bold", size: 32))
+
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 10) {
                             ForEach(playerCards, id: \.self) {
@@ -49,22 +52,17 @@ struct PickStealCard: View {
                                         .overlay {
                                             if chosenCard == card {
                                                 RoundedRectangle(cornerRadius: 5.0)
-                                                    .stroke(.black, lineWidth: 1)
+                                                    .stroke(Color("red"), lineWidth: 2)
                                                     .frame(width: 150, height: 150)
                                             }
                                         }
-                                
-                                    Button(action: {
-                                        chosenCard = card
-                                    }, label: {
-                                        Text("Choose")
-                                            .modifier(buttonCapsule())
-                                    })
+                                        .onTapGesture {
+                                            chosenCard = card
+                                        }
                                 }
                             }
                         }
                     }
-//                    .padding(.ho)
                     .frame(width: widthRecSize - 10)
                     
                     if chosenCard != nil {
@@ -79,7 +77,7 @@ struct PickStealCard: View {
                                 }
                             }, label: {
                                 Text("Confirm")
-                                    .modifier(buttonCapsule())
+                                    .modifier(confirmButton())
                             })
                         }
                     }
@@ -103,13 +101,13 @@ struct PickStealCard: View {
         switch screenSize {
         case .small:
             widthRecSize = 600
-            heightRecSize = 300
+            heightRecSize = 350
         case .medium:
             widthRecSize = 600
-            heightRecSize = 300
+            heightRecSize = 350
         case .large:
             widthRecSize = 700
-            heightRecSize = 300
+            heightRecSize = 350
         case .extraLarge:
             widthRecSize = 120
             heightRecSize = 200
@@ -119,7 +117,10 @@ struct PickStealCard: View {
 
 #Preview {
 //    PickStealCard(cards: .constant(cards), chosenCard: .constant(cards[0]))
-    MenuView()
+//    MenuView()
 
+    PickStealCard(playerCards: .constant(cards), playerList: .constant([]), currentTurn: .constant(0), stealCard: .constant(true), screenSize: .small)
 //    GameView(numberOfPlayers: 4)
 }
+
+

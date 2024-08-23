@@ -11,12 +11,26 @@ import SwiftUI
 struct buttonCapsule: ViewModifier {
     func body(content: Content) -> some View {
         content
-            .foregroundColor(.white)
-            .fontWeight(.bold)
+            .foregroundColor(.black)
+            .frame(width: 200)
+            .font(Font.custom("Quicksand-Medium", size: 24))
             .padding(10)
             .background {
                 RoundedRectangle(cornerRadius: 10)
-                    .foregroundColor(.blue.opacity(0.4))
+                    .foregroundColor(Color("lightblue"))
+            }
+    }
+}
+
+struct confirmButton: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .foregroundColor(.black)
+            .font(Font.custom("Quicksand-Medium", size: 24))
+            .padding(10)
+            .background {
+                RoundedRectangle(cornerRadius: 10)
+                    .foregroundColor(Color("red"))
             }
     }
 }
