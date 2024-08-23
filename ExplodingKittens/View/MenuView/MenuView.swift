@@ -9,6 +9,11 @@ import SwiftUI
 
 struct MenuView: View {
     @State private var isGameDataAvailable: Bool = false
+    @State private var mode: String = "Easy"
+    @State private var language: String = "English"
+    @State private var appearanceMode: AppearanceMode = .light
+    @State private var colorScheme: ColorScheme?
+    @State private var appearance: String = "Light"
 
     var body: some View {
         NavigationStack {
@@ -19,11 +24,11 @@ struct MenuView: View {
                     Color("game-view-bg")
                         .ignoresSafeArea()
                     
-                    VStack(spacing: 10) {
+                    VStack(spacing: 20) {
                         Text("Exploding Kittens")
                             .font(Font.custom("Quicksand-Bold", size: 40))
                         
-                        HStack(spacing: -50) {
+                        HStack(spacing: 0) {
                             Image("exploding-kitten")
                                 .resizable()
                                 .frame(width: 250, height: 250)
@@ -49,6 +54,11 @@ struct MenuView: View {
                                     
                                     NavigationLink(destination: PlayCardTutorial()) {
                                         Text("Tutorial")
+                                            .modifier(buttonCapsule())
+                                    }
+                                    
+                                    NavigationLink(destination: Settings(mode: $mode, language: $language, appearanceMode: $appearanceMode, colorScheme: $colorScheme, appearance: $appearance)) {
+                                        Text("Settings")
                                             .modifier(buttonCapsule())
                                     }
                                     
