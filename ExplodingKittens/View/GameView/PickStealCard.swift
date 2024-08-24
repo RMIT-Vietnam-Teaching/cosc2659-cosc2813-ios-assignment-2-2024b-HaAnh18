@@ -25,16 +25,8 @@ struct PickStealCard: View {
             
             ZStack {
                 RoundedRectangle(cornerRadius: 25.0)
-//                    .frame(width: size.width / 2 + 300, height: size.height - 100)
                     .frame(width: widthRecSize, height: heightRecSize)
-                    .alignmentGuide(.leading) { d in
-                        (size.width - d.width) / 2
-                    }
-                    .alignmentGuide(.top) { d in
-                        (size.height - d.height) / 2
-                    }
                     .foregroundColor(.white)
-//                    .foregroundColor(.yellow)
                 
                 VStack(spacing: 20) {
                     Text("Pick a card to give")
@@ -57,7 +49,9 @@ struct PickStealCard: View {
                                             }
                                         }
                                         .onTapGesture {
-                                            chosenCard = card
+                                            withAnimation {
+                                                chosenCard = card
+                                            }
                                         }
                                 }
                             }
@@ -101,10 +95,10 @@ struct PickStealCard: View {
         switch screenSize {
         case .small:
             widthRecSize = 600
-            heightRecSize = 350
+            heightRecSize = 300
         case .medium:
             widthRecSize = 600
-            heightRecSize = 350
+            heightRecSize = 300
         case .large:
             widthRecSize = 700
             heightRecSize = 350

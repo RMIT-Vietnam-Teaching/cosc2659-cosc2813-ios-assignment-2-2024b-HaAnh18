@@ -34,7 +34,7 @@ struct MenuView: View {
                                 .frame(width: 250, height: 250)
                             
                             VStack(alignment: .leading) {
-                                VStack(spacing: 20) {
+                                VStack(spacing: 10) {
                                     if isGameDataAvailable {
                                         NavigationLink(destination: GameView(isGameDataAvailable: $isGameDataAvailable, resumeGame: true)) {
                                             Text("Resume Game")
@@ -65,7 +65,6 @@ struct MenuView: View {
                                 }
                             }
                             .frame(width: size.width / 2)
-//                            .background(.yellow)
                         }
                     }
                 }
