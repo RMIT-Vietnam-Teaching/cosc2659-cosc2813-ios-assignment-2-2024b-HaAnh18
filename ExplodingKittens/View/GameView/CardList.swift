@@ -16,7 +16,6 @@ struct CardList: View {
     var body: some View {
         
         if position == "top" {
-//            Text("\(screenSize)")
             HStack(spacing: -60) {
                 ForEach(cards, id: \.self) { card in
                     card.backImage

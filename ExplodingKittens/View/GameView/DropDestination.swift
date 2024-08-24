@@ -21,9 +21,6 @@ struct DropDestination: View {
     @Binding var stealOther: Bool
     @Binding var cardGame: [Card]
     var screenSize: ScreenSizeCategory
-
-//    let checkPlayerCard: (Card) -> Void
-
     
     var body: some View {
         ZStack {
@@ -47,26 +44,30 @@ struct DropDestination: View {
                     .scaledToFit()
             }
             .frame(width: 160, height: 160)
-            
-        }
-        .onDrop(of: ["public.text"], isTargeted: nil) { providers in
-            guard playTurn else {
-                return false // Prevent drop if playTurn is false
+            .onChange(of: droppedCards, initial: true) {
+                oldValue, newValue in
+//                checkPlayerCard(card: droppedCards[droppedCards.count - 1])
             }
             
-            if let draggedCard = draggedCard {
-                withAnimation {
-                    playerCards.removeAll { $0 == draggedCard }
-                    currentCard = draggedCard
-                    checkPlayerCard(card: currentCard!)
-                    droppedCards.append(draggedCard)
-                    
-                }
-            }
-            draggedCard = nil
-            currentCard = nil
-            return true
         }
+//        .onDrop(of: ["public.text"], isTargeted: nil) { providers in
+//            guard playTurn else {
+//                return false // Prevent drop if playTurn is false
+//            }
+//            
+//            if let draggedCard = draggedCard {
+//                withAnimation {
+//                    playerCards.removeAll { $0 == draggedCard }
+//                    currentCard = draggedCard
+//                    checkPlayerCard(card: currentCard!)
+//                    droppedCards.append(draggedCard)
+//                    
+//                }
+//            }
+//            draggedCard = nil
+//            currentCard = nil
+//            return true
+//        }
         .onAppear {
             setComponentSize()
         }

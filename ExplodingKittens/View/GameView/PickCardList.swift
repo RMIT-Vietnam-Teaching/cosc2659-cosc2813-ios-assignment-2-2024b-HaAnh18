@@ -54,9 +54,11 @@ struct PickCardList: View {
                                         } else {
                                             updatePlayerResult(name: playerList[0].name, didWin: false)
                                             removeGameDataFromUserDefaults()
-                                            winGame = false
-                                            stealCard = false
-                                            isGameDataAvailable = false
+                                            withAnimation {
+                                                winGame = false
+                                                stealCard = false
+                                                isGameDataAvailable = false
+                                            }
                                         }
                                     }
                                 }
@@ -67,6 +69,7 @@ struct PickCardList: View {
             }
             
             Text("\(cardGame.count) cards left")
+                .font(Font.custom("Quicksand-Regular", size: 20))
             
         }
         .onAppear {
@@ -78,7 +81,6 @@ struct PickCardList: View {
                 if currentPlayer == 0 {
                     playTurn = true
                     showYourTurn()
-//                    playerList[currentTurn].numberOfTurn = 1
                 } else {
                     playTurn = false
                     aiTurn()

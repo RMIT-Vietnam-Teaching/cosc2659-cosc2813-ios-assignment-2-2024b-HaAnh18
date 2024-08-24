@@ -62,7 +62,7 @@ struct SeeFutureDialog: View {
                     Text("Got it")
                         .modifier(confirmButton())
                         .onTapGesture {
-                            withAnimation {
+                            withAnimation(.easeInOut(duration: 0.5)) {
                                 isVisible = false
                                 seeFuture = false
                             }
@@ -83,7 +83,6 @@ struct SeeFutureDialog: View {
             
 
         }
-//        .scaleEffect(isVisible ? 1 : 0.5) // Adjust the scale effect for animation
         .opacity(isVisible ? 1 : 0)
     }
 }
