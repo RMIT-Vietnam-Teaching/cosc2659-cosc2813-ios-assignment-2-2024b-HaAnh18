@@ -21,10 +21,10 @@ struct GameView: View {
     @State private var seeFuture: Bool = false
     @State private var stealOther: Bool = false
     @State private var showTurn: Bool = true
-    @State private var showInput: Bool = false
+    @State private var showInput: Bool = true
     @State private var numberOfPlayers: Int = 4
     @State private var winGame: Bool?
-    @State private var playerName: String = "Nana"
+    @State private var playerName: String = ""
     
     @State private var cardOffsets: [CGSize] = []
     @Binding var isGameDataAvailable: Bool
@@ -190,15 +190,12 @@ struct GameView: View {
 
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .onAppear {
-//                if resumeGame {
-//                    loadGameDataFromUserDefaults()
-//                } else {
-//                    isGameDataAvailable = false
-//                    removeGameDataFromUserDefaults()
-//                }
-                getCardsForGame(to: &cardGame, numberOfPlayers: numberOfPlayers, level: "Easy")
-                setUpPlayers()
-                cardOffsets = Array(repeating: .zero, count: cardGame.count)
+                if resumeGame {
+                    loadGameDataFromUserDefaults()
+                } else {
+                    isGameDataAvailable = false
+                    removeGameDataFromUserDefaults()
+                }
           
             }
             .onChange(of: showInput, initial: true) {
@@ -208,6 +205,7 @@ struct GameView: View {
 //                        loadGameDataFromUserDefaults()
                         getCardsForGame(to: &cardGame, numberOfPlayers: numberOfPlayers, level: "Easy")
                         setUpPlayers()
+                        cardOffsets = Array(repeating: .zero, count: cardGame.count)
                     }
                     
                 }
