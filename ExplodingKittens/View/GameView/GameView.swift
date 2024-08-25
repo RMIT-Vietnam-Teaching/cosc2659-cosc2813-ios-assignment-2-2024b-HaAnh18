@@ -28,6 +28,7 @@ struct GameView: View {
     
     @State private var cardOffsets: [CGSize] = []
     @Binding var isGameDataAvailable: Bool
+    @Binding var modeGame: String
     
     var resumeGame: Bool
     
@@ -96,6 +97,7 @@ struct GameView: View {
                     }
                     .frame(height: geometry.size.height/3 - 50)
 
+                    Text(modeGame)
                     
                     HStack {
                         if numberOfPlayers > 3 && !playerList.isEmpty && playerList[3].countinuePlay {
@@ -203,7 +205,7 @@ struct GameView: View {
                 if oldValue != newValue {
                     if UserDefaults.standard.data(forKey: "gameData") == nil {
 //                        loadGameDataFromUserDefaults()
-                        getCardsForGame(to: &cardGame, numberOfPlayers: numberOfPlayers, level: "Easy")
+                        getCardsForGame(to: &cardGame, numberOfPlayers: numberOfPlayers, level: modeGame)
                         setUpPlayers()
                         cardOffsets = Array(repeating: .zero, count: cardGame.count)
                     }
@@ -324,7 +326,8 @@ struct GameView: View {
             showTurn: self.showTurn,
             showInput: self.showInput,
             numberOfPlayers: self.numberOfPlayers,
-            cardOffsets: self.cardOffsets
+            cardOffsets: self.cardOffsets,
+            modeGame: self.modeGame
         )
         
         if let encodedData = try? JSONEncoder().encode(gameData) {
@@ -353,6 +356,7 @@ struct GameView: View {
             self.showInput = decodedData.showInput
             self.numberOfPlayers = decodedData.numberOfPlayers
             self.cardOffsets = decodedData.cardOffsets
+            self.modeGame = decodedData.modeGame
             print("Game data loaded from UserDefaults.")
         } else {
             print("No saved game data found in UserDefaults.")
@@ -364,7 +368,7 @@ struct GameView: View {
 #Preview {
 //    GameView(numberOfPlayers: 2)
 //    MenuView()
-    GameView(isGameDataAvailable: .constant(false), resumeGame: false)
+    GameView(isGameDataAvailable: .constant(false), modeGame: .constant("Hard"), resumeGame: false)
 }
 
 

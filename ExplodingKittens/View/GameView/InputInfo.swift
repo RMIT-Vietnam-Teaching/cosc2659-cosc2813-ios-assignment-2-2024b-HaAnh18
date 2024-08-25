@@ -126,6 +126,6 @@ struct InputInfo: View {
 
 #Preview {
 //    InputInfo()
-//    MenuView()
-    GameView(isGameDataAvailable: .constant(false), resumeGame: false)
+    MenuView()
+//    GameView(isGameDataAvailable: .constant(false), resumeGame: false)
 }

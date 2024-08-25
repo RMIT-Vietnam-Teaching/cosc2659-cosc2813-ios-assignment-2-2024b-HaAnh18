@@ -16,32 +16,17 @@ func decodeJsonFromJsonFile<T: Decodable>(jsonFileName: String, model: T.Type) -
                 let decoded = try decoder.decode([T].self, from: data)
                 return decoded
             } catch let error {
+                print("Failed to decode JSON: \(error)")
                 fatalError("Failed to decode JSON: \(error)")
             }
         }
     } else  {
+        print("Couldn't load \(jsonFileName) file")
         fatalError("Couldn't load \(jsonFileName) file")
     }
     return [ ] as [T]
 }
 
-//import Foundation
 
-//func decodeJsonFromJsonFile<T: Decodable>(jsonFileName: String, withExtension fileExtension: String = "json", model: T.Type) -> [T] {
-//    guard let file = Bundle.main.url(forResource: jsonFileName, withExtension: fileExtension) else {
-//        fatalError("Couldn't load \(jsonFileName).\(fileExtension) file")
-//    }
-//    
-//    do {
-//        let data = try Data(contentsOf: file)
-//        let decoder = JSONDecoder()
-//        let decoded = try decoder.decode([T].self, from: data)
-//        return decoded
-//    } catch {
-//        fatalError("Failed to decode JSON: \(error)")
-//    }
-//}
-
-
-//var personalColors: [PersonalColor] = decodeJsonFromJsonFile(jsonFileName: "personalColor.json", model: PersonalColor.self)
 var cards: [Card] = decodeJsonFromJsonFile(jsonFileName: "cards.json", model: Card.self)
+var modeGame: [ModeGame] = decodeJsonFromJsonFile(jsonFileName: "modeGame.json", model: ModeGame.self)

@@ -47,14 +47,35 @@ func getRandomCard(card: Card, to destination: inout [Card], from removeList: in
 }
 
 func getCardsForGame(to destination: inout [Card], numberOfPlayers: Int, level: String) {
+    var cardGame:  [Int: [String: Int]]
     let cardsForEasyGame: [Int: [String: Int]] = [
+        2: ["Bomb": 1, "Defuse": 3, "See The Future": 4, "Shuffle": 4, "Skip": 4],
+        3: ["Bomb": 2, "Defuse": 4, "See The Future": 4, "Shuffle": 5, "Skip": 5],
+        4: ["Bomb": 3, "Defuse": 5, "See The Future": 5, "Shuffle": 6, "Skip": 6]
+    ]
+    
+    let cardsForMediumGame: [Int: [String: Int]] = [
+        2: ["Bomb": 1, "Defuse": 3, "See The Future": 4, "Shuffle": 4, "Skip": 4, "Steal A Card": 4],
+        3: ["Bomb": 2, "Defuse": 4, "See The Future": 4, "Shuffle": 5, "Skip": 5, "Steal A Card": 5],
+        4: ["Bomb": 3, "Defuse": 5, "See The Future": 5, "Shuffle": 6, "Skip": 6, "Steal A Card": 6]
+    ]
+    
+    let cardsForHardGame: [Int: [String: Int]] = [
         2: ["Bomb": 1, "Defuse": 3, "Attack": 3, "See The Future": 4, "Shuffle": 4, "Skip": 4, "Steal A Card": 4],
         3: ["Bomb": 2, "Defuse": 4, "Attack": 4, "See The Future": 4, "Shuffle": 5, "Skip": 5, "Steal A Card": 5],
         4: ["Bomb": 3, "Defuse": 5, "Attack": 5, "See The Future": 5, "Shuffle": 6, "Skip": 6, "Steal A Card": 6]
     ]
     
+    if level == "Easy" {
+        cardGame = cardsForEasyGame
+    } else if level == "Medium" {
+        cardGame = cardsForMediumGame
+    } else {
+        cardGame = cardsForHardGame
+    }
+    
     var emptyCardList: [Card] = []
-    if let counts = cardsForEasyGame[numberOfPlayers] {
+    if let counts = cardGame[numberOfPlayers] {
         for (cardName, count) in counts {
             addCardFromList(cards: cards.filter { $0.name == cardName }, count: count, to: &destination, remove: false, from: &emptyCardList)
         }
