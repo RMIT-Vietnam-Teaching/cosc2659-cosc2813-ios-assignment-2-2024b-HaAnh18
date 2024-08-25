@@ -28,6 +28,11 @@
 		396B06332C78E8CB00490C0D /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396B06322C78E8CB00490C0D /* Settings.swift */; };
 		396B06352C78EADC00490C0D /* DropDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396B06342C78EADC00490C0D /* DropDownView.swift */; };
 		396B06392C790BB400490C0D /* DraggableCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396B06382C790BB400490C0D /* DraggableCard.swift */; };
+		396B063B2C7B1F6200490C0D /* ModeGameDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396B063A2C7B1F6200490C0D /* ModeGameDescription.swift */; };
+		396B063D2C7B210300490C0D /* ModeGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396B063C2C7B210300490C0D /* ModeGame.swift */; };
+		396B06412C7B224B00490C0D /* modeGame.json in Resources */ = {isa = PBXBuildFile; fileRef = 396B06402C7B224B00490C0D /* modeGame.json */; };
+		396B06472C7B378200490C0D /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396B06462C7B378200490C0D /* TableView.swift */; };
+		396B06492C7B3A5D00490C0D /* TabViewModeGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396B06482C7B3A5D00490C0D /* TabViewModeGame.swift */; };
 		397E18C82C738B4E00D66D51 /* GameOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397E18C72C738B4E00D66D51 /* GameOverView.swift */; };
 		397E18CA2C738D7900D66D51 /* GifImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397E18C92C738D7900D66D51 /* GifImage.swift */; };
 		397E18CF2C738FBF00D66D51 /* bomb.gif in Resources */ = {isa = PBXBuildFile; fileRef = 397E18CE2C738FBF00D66D51 /* bomb.gif */; };
@@ -78,6 +83,11 @@
 		396B06322C78E8CB00490C0D /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		396B06342C78EADC00490C0D /* DropDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownView.swift; sourceTree = "<group>"; };
 		396B06382C790BB400490C0D /* DraggableCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraggableCard.swift; sourceTree = "<group>"; };
+		396B063A2C7B1F6200490C0D /* ModeGameDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeGameDescription.swift; sourceTree = "<group>"; };
+		396B063C2C7B210300490C0D /* ModeGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeGame.swift; sourceTree = "<group>"; };
+		396B06402C7B224B00490C0D /* modeGame.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = modeGame.json; sourceTree = "<group>"; };
+		396B06462C7B378200490C0D /* TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
+		396B06482C7B3A5D00490C0D /* TabViewModeGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewModeGame.swift; sourceTree = "<group>"; };
 		397E18C72C738B4E00D66D51 /* GameOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverView.swift; sourceTree = "<group>"; };
 		397E18C92C738D7900D66D51 /* GifImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifImage.swift; sourceTree = "<group>"; };
 		397E18CE2C738FBF00D66D51 /* bomb.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = bomb.gif; sourceTree = "<group>"; };
@@ -166,6 +176,9 @@
 			children = (
 				396B06322C78E8CB00490C0D /* Settings.swift */,
 				396B06342C78EADC00490C0D /* DropDownView.swift */,
+				396B063A2C7B1F6200490C0D /* ModeGameDescription.swift */,
+				396B06462C7B378200490C0D /* TableView.swift */,
+				396B06482C7B3A5D00490C0D /* TabViewModeGame.swift */,
 			);
 			path = SettingView;
 			sourceTree = "<group>";
@@ -230,6 +243,8 @@
 				39A148DB2C68CE4300D35D71 /* ModelData.swift */,
 				39A148F82C6B5A0800D35D71 /* Player.swift */,
 				393FD4182C77204B00787514 /* GameData.swift */,
+				396B063C2C7B210300490C0D /* ModeGame.swift */,
+				396B06402C7B224B00490C0D /* modeGame.json */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -340,6 +355,7 @@
 				397E18EC2C74D77300D66D51 /* turn.gif in Resources */,
 				39A148D42C68CE2700D35D71 /* Preview Assets.xcassets in Resources */,
 				397E18D72C73960100D66D51 /* win.gif in Resources */,
+				396B06412C7B224B00490C0D /* modeGame.json in Resources */,
 				39A148DF2C68CE4300D35D71 /* cards.json in Resources */,
 				39A148D12C68CE2700D35D71 /* Assets.xcassets in Resources */,
 				396B06282C78A4BA00490C0D /* Quicksand-Regular.ttf in Resources */,
@@ -360,8 +376,10 @@
 				393FD3F12C74F74500787514 /* MenuView.swift in Sources */,
 				39A148ED2C68D5BC00D35D71 /* Modifier.swift in Sources */,
 				39A148F52C690F2B00D35D71 /* PlayFunction.swift in Sources */,
+				396B063B2C7B1F6200490C0D /* ModeGameDescription.swift in Sources */,
 				396B06172C7831D700490C0D /* TabViewCardDescription.swift in Sources */,
 				393FD4372C77864300787514 /* LineChart.swift in Sources */,
+				396B063D2C7B210300490C0D /* ModeGame.swift in Sources */,
 				39A148F32C690E3900D35D71 /* DragCardList.swift in Sources */,
 				397E18CA2C738D7900D66D51 /* GifImage.swift in Sources */,
 				39A148F12C68FAEC00D35D71 /* DropDestination.swift in Sources */,
@@ -382,11 +400,13 @@
 				393FD4352C777E5E00787514 /* BarChart.swift in Sources */,
 				39A148F72C691C1A00D35D71 /* PickCardList.swift in Sources */,
 				393FD4172C77197B00787514 /* Leaderboard.swift in Sources */,
+				396B06472C7B378200490C0D /* TableView.swift in Sources */,
 				393FD4142C76360600787514 /* InputInfo.swift in Sources */,
 				393FD4192C77204B00787514 /* GameData.swift in Sources */,
 				39BBB7232C731BA400AA77E6 /* PickStealPlayer.swift in Sources */,
 				39A148CD2C68CE2500D35D71 /* ExplodingKittensApp.swift in Sources */,
 				396B06392C790BB400490C0D /* DraggableCard.swift in Sources */,
+				396B06492C7B3A5D00490C0D /* TabViewModeGame.swift in Sources */,
 				39A148DE2C68CE4300D35D71 /* ModelData.swift in Sources */,
 				39BBB71F2C6FA37700AA77E6 /* PickStealCard.swift in Sources */,
 				3993DE472C6E300C009D31CE /* SeeFutureDialog.swift in Sources */,

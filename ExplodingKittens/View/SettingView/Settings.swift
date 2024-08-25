@@ -9,8 +9,9 @@ import SwiftUI
 
 struct Settings: View {
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
+    @State private var showingSheet: Bool = false
 
-    @Binding var mode: String
+    @Binding var modeGame: String
     @Binding var language: String
     @Binding var appearanceMode: AppearanceMode
     @Binding var colorScheme: ColorScheme?
@@ -29,7 +30,6 @@ struct Settings: View {
                 HStack {
                     Button(action: {
                         presentationMode.wrappedValue.dismiss()
-
                     }, label: {
                         Image(systemName: "arrow.left")
                             .foregroundColor(.black)
@@ -60,7 +60,12 @@ struct Settings: View {
 
                                 
 
-                            DropDownView(selection: $mode, options: modeOptions)
+                            DropDownView(selection: $modeGame, options: modeOptions)
+                                .onChange(of: modeGame, initial: true) {
+                                    oldValue, newValue in
+                                    UserDefaults.standard.set(modeGame, forKey: "modeGame")
+
+                                }
                             
                             
                         }
@@ -110,15 +115,35 @@ struct Settings: View {
             .scrollIndicators(.hidden)
             .navigationBarBackButtonHidden(true)
             .onDisappear {
-                UserDefaults.standard.set(mode, forKey: "difficultyMode")
+                UserDefaults.standard.set(modeGame, forKey: "difficultyMode")
                 UserDefaults.standard.set(language, forKey: "language")
+            }
+            
+            HStack {
+                Spacer()
+                
+                VStack {
+                    Spacer()
+                    
+                    Button(action: {
+                        showingSheet.toggle()
+                    }, label: {
+                        Image(systemName: "info.circle")
+                            .padding(20)
+                            .foregroundColor(.black)
+                    })
+                    .sheet(isPresented: $showingSheet) {
+                        TabViewModeGame(showingSheet: $showingSheet)
+//                                .presentationDetents([.medium, .medium, .fraction(0.1)])
+                    }
+                }
             }
         }
     }
 }
 
 #Preview {
-    Settings(mode: .constant("Easy"), language: .constant("English"), appearanceMode: .constant(.light), colorScheme: .constant(.light), appearance: .constant("Light"))
+    Settings(modeGame: .constant("Easy"), language: .constant("English"), appearanceMode: .constant(.light), colorScheme: .constant(.light), appearance: .constant("Light"))
 }
 
 enum AppearanceMode {

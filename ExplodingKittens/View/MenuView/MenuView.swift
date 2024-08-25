@@ -9,11 +9,11 @@ import SwiftUI
 
 struct MenuView: View {
     @State private var isGameDataAvailable: Bool = false
-    @State private var mode: String = "Easy"
     @State private var language: String = "English"
     @State private var appearanceMode: AppearanceMode = .light
     @State private var colorScheme: ColorScheme?
     @State private var appearance: String = "Light"
+    @State private var modeGame: String = "Medium"
 
     var body: some View {
         NavigationStack {
@@ -36,13 +36,13 @@ struct MenuView: View {
                             VStack(alignment: .leading) {
                                 VStack(spacing: 10) {
                                     if isGameDataAvailable {
-                                        NavigationLink(destination: GameView(isGameDataAvailable: $isGameDataAvailable, resumeGame: true)) {
+                                        NavigationLink(destination: GameView(isGameDataAvailable: $isGameDataAvailable, modeGame: $modeGame, resumeGame: true)) {
                                             Text("Resume Game")
                                                 .modifier(buttonCapsule())
                                         }
                                     }
                                     
-                                    NavigationLink(destination: GameView(isGameDataAvailable: $isGameDataAvailable, resumeGame: false)) {
+                                    NavigationLink(destination: GameView(isGameDataAvailable: $isGameDataAvailable, modeGame: $modeGame, resumeGame: false)) {
                                         Text("New Game")
                                             .modifier(buttonCapsule())
                                     }
@@ -57,7 +57,7 @@ struct MenuView: View {
                                             .modifier(buttonCapsule())
                                     }
                                     
-                                    NavigationLink(destination: Settings(mode: $mode, language: $language, appearanceMode: $appearanceMode, colorScheme: $colorScheme, appearance: $appearance)) {
+                                    NavigationLink(destination: Settings(modeGame: $modeGame, language: $language, appearanceMode: $appearanceMode, colorScheme: $colorScheme, appearance: $appearance)) {
                                         Text("Settings")
                                             .modifier(buttonCapsule())
                                     }
@@ -72,6 +72,11 @@ struct MenuView: View {
             }
             .onAppear {
                 isGameDataAvailable = UserDefaults.standard.data(forKey: "gameData") != nil
+                if let mode = UserDefaults.standard.string(forKey: "modeGame") {
+                    modeGame = mode
+                } else {
+                    print("No modeGame data found in UserDefaults.")
+                }
             }
         }
     }

@@ -1,0 +1,36 @@
+
+[
+    {
+        "name": "Easy",
+        "bomb": [1, 2, 3],
+        "defuse": [3, 4, 5],
+        "attack": [0, 0, 0],
+        "seeFuture": [4, 4, 5],
+        "shuffle": [4, 5, 6],
+        "skip": [4, 5, 6],
+        "stealCard": [0, 0, 0],
+        "description": "Easy Mode is designed for beginners or players who prefer a simpler game experience, providing a gentle introduction to the core mechanics without overwhelming complexity. The deck is structured to be forgiving, especially in 2-player games, with only 1 Bomb and ample Defuse cards to minimize the risk of losing. As the player count increases to 3 or 4, the game introduces more Bombs and additional strategic cards like See The Future, Shuffle, and Skip, which offer more options for play while still maintaining a manageable level of challenge. This mode ensures that all players can engage in basic strategic decisions, making it an ideal starting point for new players."
+    },
+    {
+        "name": "Medium",
+        "bomb": [1, 2, 3],
+        "defuse": [3, 4, 5],
+        "attack": [0, 0, 0],
+        "seeFuture": [4, 4, 5],
+        "shuffle": [4, 5, 6],
+        "skip": [4, 5, 6],
+        "stealCard": [4, 5, 6],
+        "description": "Medium Mode is designed for players who are familiar with the game and ready for a more engaging experience that introduces additional strategic depth. The deck includes a wider variety of cards, such as Steal A Card, which increases player interaction and requires more thoughtful decision-making. In 2-player games, the balance between Bombs and Defuse cards remains similar to Easy Mode, but the added strategic cards elevate the gameplay. As the player count rises to 3 or 4, the game becomes more complex with additional Bombs and more opportunities for strategic maneuvers, making each turn more critical. Overall, Medium Mode offers a balanced challenge that requires players to think more strategically and interact more directly with their opponents, making it suitable for those who are comfortable with the basics and looking for a deeper, more dynamic game."
+    },
+    {
+        "name": "Hard",
+        "bomb": [1, 2, 3],
+        "defuse": [3, 4, 5],
+        "attack": [3, 4, 5],
+        "seeFuture": [4, 4, 5],
+        "shuffle": [4, 5, 6],
+        "skip": [4, 5, 6],
+        "stealCard": [4, 5, 6],
+        "description": "Hard Mode is designed for experienced players who crave a challenging and strategic gameplay experience. This mode introduces more complexity by adding cards like “Attack” and “Steal A Card,” which increase both the intensity and the strategic depth of the game. The deck is structured to create a high-stakes environment where players must carefully balance offense and defense. In 2-player games, the presence of 1 Bomb and a combination of offensive cards like “Attack” and “Steal A Card” forces players to be highly tactical. As the player count increases to 3 or 4, the number of Bombs and strategic cards grows, making each decision critical and every move potentially game-changing. Hard Mode is ideal for players who enjoy intense, high-risk gameplay that demands careful planning, anticipation of opponents’ actions, and a deep understanding of the game’s mechanics."
+    }
+]

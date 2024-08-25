@@ -15,25 +15,27 @@ struct DropDownView: View {
     
     var body: some View {
         VStack {
-            HStack {
-                Text(selection)
-                    .font(Font.custom("Quicksand-Regular", size: 20))
-                
-                Spacer()
-                
-                Image(systemName: "chevron.down")
-                    .font(.subheadline)
-                    .foregroundColor(.gray)
-                    .rotationEffect(.degrees(isExpanded ? -180 : 0))
-                    .onTapGesture {
-                        withAnimation(.easeInOut) {
-                            isExpanded.toggle()
-                        }
-                    }
+            if !isExpanded {
+                HStack {
+                    Text(selection)
+                        .font(Font.custom("Quicksand-Regular", size: 20))
                     
+                    Spacer()
+                    
+                    Image(systemName: "chevron.down")
+                        .font(.subheadline)
+                        .foregroundColor(.gray)
+                        .rotationEffect(.degrees(isExpanded ? -180 : 0))
+                        .onTapGesture {
+                            withAnimation(.easeInOut) {
+                                isExpanded.toggle()
+                            }
+                        }
+                        
+                }
+                .frame(height: 40)
+                .padding(.horizontal, 10)
             }
-            .frame(height: 40)
-            .padding(.horizontal, 10)
             
             
             if isExpanded {
@@ -41,7 +43,7 @@ struct DropDownView: View {
                     ForEach(options, id: \.self) { option in
                         HStack {
                             Text(option)
-                                .foregroundStyle(selection == option ? Color("red") : .gray)
+                                .foregroundStyle(selection == option ? .black : .gray)
                                 .font(Font.custom("Quicksand-Regular", size: 20))
                             
                             Spacer()

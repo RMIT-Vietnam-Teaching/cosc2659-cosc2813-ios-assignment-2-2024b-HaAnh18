@@ -23,6 +23,7 @@ struct GameData: Codable {
     var showInput: Bool = true
     var numberOfPlayers: Int = 2
     var cardOffsets: [CGSize] = []
+    var modeGame: String = "Easy"
 }
 
 func loadGameData() -> GameData? {
