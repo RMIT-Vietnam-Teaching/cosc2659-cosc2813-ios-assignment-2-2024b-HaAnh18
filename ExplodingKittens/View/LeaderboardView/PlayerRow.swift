@@ -50,15 +50,12 @@ struct PlayerRow: View {
                                 .font(Font.custom("Quicksand-Regular", size: 16))
                                 .fontWeight(.light)
                         }
-//                    }
                 }
-//                .background(.pink)
                 
                 Spacer()
                 
                 Loader(percent: player.winRate)
                     .padding(.horizontal, 10)
-//                    .background(.pink)
                 
             }
 //            .background(.pink)
@@ -66,7 +63,6 @@ struct PlayerRow: View {
             
         }
         .frame(height: 120)
-//        .frame(width: 350, height: 120)
     }
 }
 
