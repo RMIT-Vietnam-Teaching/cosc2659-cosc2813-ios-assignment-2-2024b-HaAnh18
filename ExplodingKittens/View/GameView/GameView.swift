@@ -96,8 +96,6 @@ struct GameView: View {
                         }
                     }
                     .frame(height: geometry.size.height/3 - 50)
-
-                    Text(modeGame)
                     
                     HStack {
                         if numberOfPlayers > 3 && !playerList.isEmpty && playerList[3].countinuePlay {
