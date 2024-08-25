@@ -67,10 +67,14 @@ struct Leaderboard: View {
                                     Text("Statistics")
                                         .font(Font.custom("Quicksand-Bold", size: 32))
                                     
-                                    BarChart(players: $players)
+                                    if !players.isEmpty {
+                                        BarChart(players: $players)
+                                    }
                                     Spacer()
                                     
-                                    LineChart(players: $players)
+                                    if !players.isEmpty {
+                                        LineChart(players: $players)
+                                    }
                                     Spacer()
                                 }
                             }
