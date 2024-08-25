@@ -19,6 +19,7 @@ struct MenuView: View {
         NavigationStack {
             GeometryReader {
                 let size = $0.size
+                let sizeCategory = getScreenSizeCategory(for: size)
                 
                 ZStack {
                     Color("game-view-bg")
@@ -28,43 +29,47 @@ struct MenuView: View {
                         Text("Exploding Kittens")
                             .font(Font.custom("Quicksand-Bold", size: 40))
                         
-                        HStack(spacing: 0) {
-                            Image("exploding-kitten")
-                                .resizable()
-                                .frame(width: 250, height: 250)
-                            
-                            VStack(alignment: .leading) {
-                                VStack(spacing: 10) {
-                                    if isGameDataAvailable {
-                                        NavigationLink(destination: GameView(isGameDataAvailable: $isGameDataAvailable, modeGame: $modeGame, resumeGame: true)) {
-                                            Text("Resume Game")
+                        if sizeCategory == .medium || sizeCategory == .small {
+                            HStack(spacing: 0) {
+                                Image("exploding-kitten")
+                                    .resizable()
+                                    .frame(width: 250, height: 250)
+                                
+                                VStack(alignment: .leading) {
+                                    VStack(spacing: 10) {
+                                        if isGameDataAvailable {
+                                            NavigationLink(destination: GameView(isGameDataAvailable: $isGameDataAvailable, modeGame: $modeGame, resumeGame: true)) {
+                                                Text("Resume Game")
+                                                    .modifier(buttonCapsule())
+                                            }
+                                        }
+                                        
+                                        NavigationLink(destination: GameView(isGameDataAvailable: $isGameDataAvailable, modeGame: $modeGame, resumeGame: false)) {
+                                            Text("New Game")
                                                 .modifier(buttonCapsule())
                                         }
+                                        
+                                        NavigationLink(destination: Leaderboard()) {
+                                            Text("Leaderboard")
+                                                .modifier(buttonCapsule())
+                                        }
+                                        
+                                        NavigationLink(destination: PlayCardTutorial()) {
+                                            Text("Tutorial")
+                                                .modifier(buttonCapsule())
+                                        }
+                                        
+                                        NavigationLink(destination: Settings(modeGame: $modeGame, language: $language, appearanceMode: $appearanceMode, colorScheme: $colorScheme, appearance: $appearance)) {
+                                            Text("Settings")
+                                                .modifier(buttonCapsule())
+                                        }
+                                        
                                     }
-                                    
-                                    NavigationLink(destination: GameView(isGameDataAvailable: $isGameDataAvailable, modeGame: $modeGame, resumeGame: false)) {
-                                        Text("New Game")
-                                            .modifier(buttonCapsule())
-                                    }
-                                    
-                                    NavigationLink(destination: Leaderboard()) {
-                                        Text("Leaderboard")
-                                            .modifier(buttonCapsule())
-                                    }
-                                    
-                                    NavigationLink(destination: PlayCardTutorial()) {
-                                        Text("Tutorial")
-                                            .modifier(buttonCapsule())
-                                    }
-                                    
-                                    NavigationLink(destination: Settings(modeGame: $modeGame, language: $language, appearanceMode: $appearanceMode, colorScheme: $colorScheme, appearance: $appearance)) {
-                                        Text("Settings")
-                                            .modifier(buttonCapsule())
-                                    }
-                                    
                                 }
+                                .frame(width: size.width / 2)
                             }
-                            .frame(width: size.width / 2)
+                        } else {
+                            MenuViewIpad(isGameDataAvailable: $isGameDataAvailable, language: $language, appearanceMode: $appearanceMode, colorScheme: $colorScheme, appearance: $appearance, modeGame: $modeGame)
                         }
                     }
                 }
