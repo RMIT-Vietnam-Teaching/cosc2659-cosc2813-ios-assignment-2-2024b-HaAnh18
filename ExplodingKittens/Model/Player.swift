@@ -23,6 +23,19 @@ struct Player: Equatable, Codable, Hashable {
         return totalGames > 0 ? (Double(win) / Double(totalGames)) * 100 : 0.0
     }
     
+    var archivement: [String: String] {
+        var arr: [String: String] = [:]
+        if win >= 5 {
+            arr["Win 5 Games"] = "lightblue"
+        }
+        
+        if winRate == 100 {
+            arr["Perfect Wins"] = "game-view-bg"
+        }
+        
+        return arr
+    }
+    
     mutating func updateLevel() {
         // Level up for every 3 wins
         level = 1 + (win / 3)
