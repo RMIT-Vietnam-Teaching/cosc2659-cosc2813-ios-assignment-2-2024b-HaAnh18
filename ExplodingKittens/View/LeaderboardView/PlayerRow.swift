@@ -24,7 +24,7 @@ struct PlayerRow: View {
             HStack {
 //                HStack(spacing: 10) {
                 if index < 3 {
-                    Image(index == 0 ?"first" : index == 1 ? "second" : "third")
+                    Image(index == 0 ?"top1" : index == 1 ? "top2" : "top3")
                             .resizable()
                             .frame(width: 80, height: 80)
         //                    .background(.pink)
@@ -39,16 +39,12 @@ struct PlayerRow: View {
 //                    Spacer()
                     VStack(alignment: .leading, spacing: 10) {
                         Text(player.name)
-                            .font(Font.custom("Quicksand-Medium", size: 36))
+                            .font(Font.custom("Quicksand-Medium", size: 30))
                         
                         HStack {
-                            Text("Win: \(player.win)")
-                                .font(Font.custom("Quicksand-Regular", size: 16))
-                                .fontWeight(.light)
-                            
-                            Text("Lose: \(player.lose)")
-                                .font(Font.custom("Quicksand-Regular", size: 16))
-                                .fontWeight(.light)
+                            ForEach(Array(player.archivement.keys), id: \.self) { key in
+                                Badge(color: player.archivement[key]!, content: key)
+                            }
                         }
                 }
                 

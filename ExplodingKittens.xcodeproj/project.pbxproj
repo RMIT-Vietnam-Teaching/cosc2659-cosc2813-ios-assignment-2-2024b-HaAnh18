@@ -33,6 +33,7 @@
 		396B06412C7B224B00490C0D /* modeGame.json in Resources */ = {isa = PBXBuildFile; fileRef = 396B06402C7B224B00490C0D /* modeGame.json */; };
 		396B06472C7B378200490C0D /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396B06462C7B378200490C0D /* TableView.swift */; };
 		396B06492C7B3A5D00490C0D /* TabViewModeGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396B06482C7B3A5D00490C0D /* TabViewModeGame.swift */; };
+		396B064B2C7B635600490C0D /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396B064A2C7B635500490C0D /* Badge.swift */; };
 		397E18C82C738B4E00D66D51 /* GameOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397E18C72C738B4E00D66D51 /* GameOverView.swift */; };
 		397E18CA2C738D7900D66D51 /* GifImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397E18C92C738D7900D66D51 /* GifImage.swift */; };
 		397E18CF2C738FBF00D66D51 /* bomb.gif in Resources */ = {isa = PBXBuildFile; fileRef = 397E18CE2C738FBF00D66D51 /* bomb.gif */; };
@@ -88,6 +89,7 @@
 		396B06402C7B224B00490C0D /* modeGame.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = modeGame.json; sourceTree = "<group>"; };
 		396B06462C7B378200490C0D /* TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
 		396B06482C7B3A5D00490C0D /* TabViewModeGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewModeGame.swift; sourceTree = "<group>"; };
+		396B064A2C7B635500490C0D /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
 		397E18C72C738B4E00D66D51 /* GameOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverView.swift; sourceTree = "<group>"; };
 		397E18C92C738D7900D66D51 /* GifImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifImage.swift; sourceTree = "<group>"; };
 		397E18CE2C738FBF00D66D51 /* bomb.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = bomb.gif; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 				393FD4322C7769C200787514 /* Loader.swift */,
 				393FD4342C777E5E00787514 /* BarChart.swift */,
 				393FD4362C77864300787514 /* LineChart.swift */,
+				396B064A2C7B635500490C0D /* Badge.swift */,
 			);
 			path = LeaderboardView;
 			sourceTree = "<group>";
@@ -395,6 +398,7 @@
 				393FD4312C77673100787514 /* PlayerRow.swift in Sources */,
 				393FD4102C76235300787514 /* DragCard.swift in Sources */,
 				396B06152C782E5C00490C0D /* CardInfo.swift in Sources */,
+				396B064B2C7B635600490C0D /* Badge.swift in Sources */,
 				39A148CF2C68CE2500D35D71 /* ContentView.swift in Sources */,
 				39A148EF2C68D5D300D35D71 /* CardList.swift in Sources */,
 				393FD4352C777E5E00787514 /* BarChart.swift in Sources */,
