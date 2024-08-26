@@ -180,7 +180,7 @@ struct PlayCardTutorial: View {
                     
                     HStack(spacing: -70) {  // Spacing between the cards and drop zone
                         // Draggable Cards
-                        ForEach(Array(playerCards.prefix(5)).indices, id: \.self) { index in
+                        ForEach(playerCards.indices, id: \.self) { index in
                             let card = playerCards[index]
                             if cardVisible[index] {
                                 DragCard(

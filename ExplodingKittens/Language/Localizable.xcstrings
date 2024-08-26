@@ -117,7 +117,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Giải cứu"
+            "value" : "Giải nổ"
           }
         }
       }
@@ -129,6 +129,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mô tả"
+          }
+        }
+      }
+    },
+    "Do not draw any cards. Instead, immediately force the next player to take 2 turns in a row. Play then continues from that player. The victim of this card takes a turn as normal (pass-or-play then draw). Then, when their first turn is over, it's their turn again." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Không rút lá bài nào. Thay vào đó, ngay lập tức buộc người chơi kế tiếp phải chơi 2 lượt liên tiếp. Sau đó, trò chơi tiếp tục từ người chơi đó. Người bị ảnh hưởng bởi lá bài này sẽ chơi lượt của mình như bình thường (chơi hoặc bỏ lượt, sau đó rút bài). Khi lượt đầu tiên của họ kết thúc, họ lại tiếp tục chơi lượt thứ hai."
           }
         }
       }
@@ -172,6 +183,17 @@
         }
       }
     },
+    "Easy Mode is designed for beginners or players who prefer a simpler game experience, providing a gentle introduction to the core mechanics without overwhelming complexity. The deck is structured to be forgiving, especially in 2-player games, with only 1 Bomb and ample Defuse cards to minimize the risk of losing. As the player count increases to 3 or 4, the game introduces more Bombs and additional strategic cards like See The Future, Shuffle, and Skip, which offer more options for play while still maintaining a manageable level of challenge. This mode ensures that all players can engage in basic strategic decisions, making it an ideal starting point for new players." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chế độ Dễ được thiết kế dành cho người mới bắt đầu hoặc những người chơi thích trải nghiệm game đơn giản hơn, mang đến một sự giới thiệu nhẹ nhàng về các cơ chế cốt lõi mà không quá phức tạp. Bộ bài được cấu trúc để dễ chịu hơn, đặc biệt trong các trò chơi 2 người, với chỉ 1 quả Bom và nhiều lá bài Giải Nổ để giảm thiểu rủi ro bị thua. Khi số lượng người chơi tăng lên 3 hoặc 4, trò chơi sẽ bổ sung thêm nhiều Bom và các lá bài chiến lược khác như Xem Trước Tương Lai, Xáo Trộn và Bỏ Lượt, cung cấp nhiều lựa chọn hơn cho việc chơi mà vẫn giữ mức độ thử thách ở mức vừa phải. Chế độ này đảm bảo rằng tất cả người chơi đều có thể tham gia vào các quyết định chiến lược cơ bản, làm cho nó trở thành điểm khởi đầu lý tưởng cho những người chơi mới."
+          }
+        }
+      }
+    },
     "English" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -185,6 +207,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tiếng Anh"
+          }
+        }
+      }
+    },
+    "Force any other player to give you 1 card from their hand. They choose which card to give you." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buộc bất kỳ người chơi nào khác đưa cho bạn 1 lá bài từ tay của họ. Họ sẽ chọn lá bài để đưa cho bạn."
           }
         }
       }
@@ -228,6 +261,17 @@
         }
       }
     },
+    "Hard Mode is designed for experienced players who crave a challenging and strategic gameplay experience. This mode introduces more complexity by adding cards like Attack and Steal A Card, which increase both the intensity and the strategic depth of the game. The deck is structured to create a high-stakes environment where players must carefully balance offense and defense. In 2-player games, the presence of 1 Bomb and a combination of offensive cards like Attack and Steal A Card”forces players to be highly tactical. As the player count increases to 3 or 4, the number of Bombs and strategic cards grows, making each decision critical and every move potentially game-changing. Hard Mode is ideal for players who enjoy intense, high-risk gameplay that demands careful planning, anticipation of opponents’ actions, and a deep understanding of the game’s mechanics." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chế độ Khó được thiết kế dành cho những người chơi có kinh nghiệm, những người mong muốn một trải nghiệm chơi đầy thách thức và chiến lược. Chế độ này giới thiệu thêm nhiều sự phức tạp bằng cách thêm các lá bài như “Tấn Công” và “Cướp Một Lá”, làm tăng cường cả cường độ lẫn độ sâu chiến lược của trò chơi. Bộ bài được cấu trúc để tạo ra một môi trường đầy rủi ro, nơi người chơi phải cẩn thận cân bằng giữa tấn công và phòng thủ. Trong các trò chơi 2 người, sự hiện diện của 1 quả Bom cùng với sự kết hợp của các lá bài tấn công như “Tấn Công” và “Cướp Một Lá” buộc người chơi phải trở nên rất chiến thuật. Khi số lượng người chơi tăng lên 3 hoặc 4, số lượng Bom và các lá bài chiến lược cũng tăng, làm cho mỗi quyết định trở nên quan trọng và mỗi nước đi có thể thay đổi cục diện trò chơi. Chế độ Khó là lý tưởng cho những người chơi thích gameplay căng thẳng, nhiều rủi ro, đòi hỏi sự lập kế hoạch cẩn thận, dự đoán hành động của đối thủ và hiểu biết sâu sắc về các cơ chế của trò chơi."
+          }
+        }
+      }
+    },
     "Hello" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -241,6 +285,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Xin chào"
+          }
+        }
+      }
+    },
+    "If you drew an Exploding Kitten, you can play this card instead of dying. Place your Defuse Card in the Discard Pile. Then take the Exploding Kitten, and without reordering or viewing the other cards, secretly put it back in the Draw Pile" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nếu bạn rút được lá bài Mèo Nổ, bạn có thể chơi lá bài này thay vì chết. Hãy đặt lá bài Giải Nổ của bạn vào Chồng Bài Bỏ. Sau đó, lấy lá bài Mèo Nổ và bí mật đặt nó trở lại Chồng Bài Rút mà không sắp xếp lại hoặc xem các lá bài khác."
+          }
+        }
+      }
+    },
+    "If you play a Skip Card as a defense to an Attack Card, it only ends 1 of the 2 turns. 2 Skip Cards would end both turns." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nếu bạn chơi một lá bài Bỏ Lượt như một cách phòng thủ trước một lá bài Tấn Công, nó chỉ kết thúc 1 trong 2 lượt. Hai lá bài Bỏ Lượt sẽ kết thúc cả hai lượt."
           }
         }
       }
@@ -324,6 +390,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Trung bình"
+          }
+        }
+      }
+    },
+    "Medium Mode is designed for players who are familiar with the game and ready for a more engaging experience that introduces additional strategic depth. The deck includes a wider variety of cards, such as Steal A Card, which increases player interaction and requires more thoughtful decision-making. In 2-player games, the balance between Bombs and Defuse cards remains similar to Easy Mode, but the added strategic cards elevate the gameplay. As the player count rises to 3 or 4, the game becomes more complex with additional Bombs and more opportunities for strategic maneuvers, making each turn more critical. Overall, Medium Mode offers a balanced challenge that requires players to think more strategically and interact more directly with their opponents, making it suitable for those who are comfortable with the basics and looking for a deeper, more dynamic game." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chế độ Trung Bình được thiết kế cho những người chơi đã quen thuộc với trò chơi và sẵn sàng trải nghiệm một mức độ thú vị hơn, với sự gia tăng độ sâu chiến lược. Bộ bài bao gồm một loạt các lá bài đa dạng hơn, chẳng hạn như lá bài Cướp Một Lá, tăng cường sự tương tác giữa các người chơi và đòi hỏi phải có quyết định suy nghĩ kỹ lưỡng hơn. Trong các trò chơi 2 người, sự cân bằng giữa Bom và các lá bài Giải Nổ vẫn tương tự như Chế độ Dễ, nhưng các lá bài chiến lược được bổ sung sẽ nâng cao trải nghiệm chơi. Khi số lượng người chơi tăng lên 3 hoặc 4, trò chơi trở nên phức tạp hơn với nhiều Bom hơn và nhiều cơ hội cho các động thái chiến lược, khiến mỗi lượt chơi trở nên quan trọng hơn. Nhìn chung, Chế độ Trung Bình mang lại một thử thách cân bằng, đòi hỏi người chơi phải suy nghĩ chiến lược hơn và tương tác trực tiếp hơn với đối thủ của mình, làm cho nó phù hợp với những ai đã thoải mái với những điều cơ bản và muốn có một trò chơi sâu sắc và năng động hơn."
           }
         }
       }
@@ -477,6 +554,17 @@
         }
       }
     },
+    "Privately view the top 3 cards from the Draw Pile and put them back in the same order. Don’t show the cards to the other players." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Xem riêng 3 lá bài đầu tiên từ Chồng Bài Rút và đặt chúng trở lại theo cùng thứ tự. Đừng để các người chơi khác thấy các lá bài."
+          }
+        }
+      }
+    },
     "Resume Game" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -521,6 +609,17 @@
         }
       }
     },
+    "Shuffle the Draw Pile without viewing the cards until told to stop." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Xáo trộn Chồng Bài Rút mà không xem các lá bài cho đến khi được yêu cầu dừng lại."
+          }
+        }
+      }
+    },
     "Skip" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -550,39 +649,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cướp bài"
-          }
-        }
-      }
-    },
-    "System" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hệ thống"
-          }
-        }
-      }
-    },
-    "Top 5 highest players" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Top 5 cao nhất"
-          }
-        }
-      }
-    },
-    "Top Card" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Thẻ bài đầu"
           }
         }
       }
@@ -688,6 +754,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Thắng:"
+          }
+        }
+      }
+    },
+    "You must show this card immediately. Unless you have a Defuse Card, you’re dead. Discard all of your cards, including the Exploding Kitten." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bạn phải cho xem lá bài này ngay lập tức. Trừ khi bạn có lá bài Giải Nổ, nếu không bạn đã chết. Hãy bỏ tất cả các lá bài của bạn, bao gồm cả lá bài Mèo Nổ."
           }
         }
       }
