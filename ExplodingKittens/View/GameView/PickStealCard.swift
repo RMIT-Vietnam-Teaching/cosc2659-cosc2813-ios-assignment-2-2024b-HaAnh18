@@ -28,11 +28,12 @@ struct PickStealCard: View {
             ZStack {
                 RoundedRectangle(cornerRadius: 25.0)
                     .frame(width: widthRecSize, height: heightRecSize)
-                    .foregroundColor(.white)
+                    .foregroundColor(Color("custom-white"))
                 
                 VStack(spacing: 20) {
                     Text("Pick a card to give", manager: localizationManager)
                         .font(Font.custom("Quicksand-Bold", size: 32))
+                        .foregroundColor(Color("custom-black"))
 
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 10) {

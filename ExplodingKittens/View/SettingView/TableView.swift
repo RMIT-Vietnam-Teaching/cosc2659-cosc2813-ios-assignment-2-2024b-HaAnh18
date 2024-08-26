@@ -63,7 +63,7 @@ struct TableHeader: View {
         .overlay(
             Rectangle()
                 .frame(height: 1) // Thickness of the border
-                .foregroundColor(.black),
+                .foregroundColor(Color("custom-black")),
             alignment: .bottom
         )
     }

@@ -27,7 +27,8 @@ struct GameView: View {
     @State private var numberOfPlayers: Int = 2
     @State private var winGame: Bool?
     @State private var playerName: String = ""
-    
+    @State private var showingSheet: Bool = false
+
     @State private var cardOffsets: [CGSize] = []
     @Binding var isGameDataAvailable: Bool
     @Binding var modeGame: String
@@ -48,11 +49,11 @@ struct GameView: View {
 
                     }, label: {
                         Image(systemName: "arrow.left")
-                            .foregroundColor(.black)
+                            .foregroundColor(Color("custom-black"))
 
                         Text("Menu", manager: localizationManager)
                             .font(Font.custom("Quicksand-Regular", size: 24))
-                            .foregroundColor(.black)
+                            .foregroundColor(Color("custom-black"))
                     })
                     
                     Spacer()
@@ -83,7 +84,6 @@ struct GameView: View {
                 .padding(.top, 10)
                 .padding(.horizontal, 20)
                 
-                let height = geometry.size.height / 3
                 
                 VStack(spacing: sizeCategory == .small ? 20 : 30) {
                     HStack {
@@ -157,6 +157,31 @@ struct GameView: View {
 
                     }
                 }
+                
+                if !showInput {
+                    HStack {
+                        Spacer()
+                        VStack(spacing: 0) {
+                            Spacer()
+                            
+                            
+                            Button(action: {
+                                showingSheet.toggle()
+                            }, label: {
+                                Image(systemName: "info.circle")
+                                    .padding(20)
+                                    .foregroundColor(Color("custom-black"))
+                            })
+                            .sheet(isPresented: $showingSheet) {
+                                TabViewCardDescription( showingSheet: $showingSheet)
+                                    .presentationDetents([.medium, .medium, .fraction(0.1)])
+                            }
+                        }
+                        
+                    }
+                    .padding(.vertical, sizeCategory == .small ? 30 : 0)
+                }
+                
                                 
                 if seeFuture && !cardGame.isEmpty {
                     SeeFutureDialog(seeFuture: $seeFuture, cards: cardGame)

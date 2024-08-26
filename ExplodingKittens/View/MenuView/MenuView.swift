@@ -92,6 +92,7 @@ struct MenuView: View {
                 }
             }
         }
+        .preferredColorScheme(colorScheme) // Set the preferred color scheme
         .environmentObject(localizationManager)
 
     }

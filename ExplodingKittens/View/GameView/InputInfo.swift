@@ -29,7 +29,7 @@ struct InputInfo: View {
                     .alignmentGuide(.top) { d in
                         (size.height - d.height) / 2
                     }
-                    .foregroundColor(.white)
+                    .foregroundColor(Color("custom-white"))
 //                    .foregroundColor(.blue.opacity(0.3))
                 
                 VStack(spacing: 20) {

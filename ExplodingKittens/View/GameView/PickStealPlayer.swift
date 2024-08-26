@@ -28,7 +28,7 @@ struct PickStealPlayer: View {
             ZStack {
                 RoundedRectangle(cornerRadius: 25.0)
                     .frame(width: widthRecSize, height: heightRecSize)
-                    .foregroundColor(.white)
+                    .foregroundColor(Color("custom-white"))
                 
                 VStack(spacing: -10) {
                     Button(action: {

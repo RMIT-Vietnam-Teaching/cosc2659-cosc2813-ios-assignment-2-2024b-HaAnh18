@@ -27,12 +27,13 @@ struct DropDownView: View {
                         .font(.subheadline)
                         .foregroundColor(.gray)
                         .rotationEffect(.degrees(isExpanded ? -180 : 0))
-                        .onTapGesture {
-                            withAnimation(.easeInOut) {
-                                isExpanded.toggle()
-                            }
-                        }
+                        
                     
+                }
+                .onTapGesture {
+                    withAnimation(.easeInOut) {
+                        isExpanded.toggle()
+                    }
                 }
                 .frame(height: 40)
                 .padding(.horizontal, 10)
@@ -44,7 +45,7 @@ struct DropDownView: View {
                     ForEach(options, id: \.self) { option in
                         HStack {
                             Text(localizationManager.localizedString(for: option))
-                                .foregroundStyle(selection == option ? .black : .gray)
+                                .foregroundStyle(selection == option ? Color("custom-black") : .gray)
                                 .font(Font.custom("Quicksand-Regular", size: 20))
                             
                             Spacer()
@@ -67,10 +68,10 @@ struct DropDownView: View {
         //            .background(.white)
         .overlay(
             RoundedRectangle(cornerRadius: 10)
-                .stroke(Color.black, lineWidth: 1)
+                .stroke(Color("custom-black"), lineWidth: 1)
         )
         .frame(width: 200)
-        .onChange(of: localizationManager.currentLanguage) { _ in
+        .onChange(of: localizationManager.currentLanguage, initial: true) { _, _ in
             // Re-render view when language changes
             selection = selection // Re-trigger the binding
         }

@@ -31,7 +31,7 @@ struct TabViewModeGame: View {
                     Image(systemName: "x.circle")
                         .resizable()
                         .frame(width: 25, height: 25)
-                        .foregroundColor(.black)
+                        .foregroundColor(Color("custom-black"))
                 })
             }
             .padding(10)
@@ -73,10 +73,10 @@ struct TabBarItems: View {
 //                Text(tabBarItemName)
 
                     .font(Font.custom(currentTab == tab ? "Quicksand-Bold" : "Quicksand-Regular", size: 24))
-                    .foregroundColor(currentTab == tab ? Color("red") : .black)
+                    .foregroundColor(currentTab == tab ? Color("red") : Color("custom-black"))
 
                 if currentTab == tab { // If this is the current tab
-                    Color(currentTab == tab ? Color("red") : .black)
+                    Color(currentTab == tab ? Color("red") : Color("custom-black"))
                         .frame(height: 1)
                         .matchedGeometryEffect(id: "underline", in: namespace, properties: .frame)
                 } else {

@@ -44,11 +44,11 @@ struct PlayCardTutorial: View {
 
                     }, label: {
                         Image(systemName: "arrow.left")
-                            .foregroundColor(.black)
+                            .foregroundColor(Color("custom-black"))
 
                         Text("Menu", manager: localizationManager)
                             .font(Font.custom("Quicksand-Regular", size: 24))
-                            .foregroundColor(.black)
+                            .foregroundColor(Color("custom-black"))
                     })
                     
                     Spacer()
@@ -65,10 +65,12 @@ struct PlayCardTutorial: View {
                             VStack(spacing: -20) {
                                 Text("Click For Card Description", manager: localizationManager)
                                     .font(Font.custom("Quicksand-Regular", size: 20))
+                                    .foregroundColor(Color("custom-black"))
                                     .frame(width: 130)
                                 Image("step3")
                                     .resizable()
                                     .frame(width: 100, height: 100)
+                                    .foregroundColor(Color("custom-black"))
                             }
                         }
 
@@ -78,7 +80,7 @@ struct PlayCardTutorial: View {
                         }, label: {
                             Image(systemName: "info.circle")
                                 .padding(20)
-                                .foregroundColor(.black)
+                                .foregroundColor(Color("custom-black"))
                         })
                         .sheet(isPresented: $showingSheet) {
                             TabViewCardDescription( showingSheet: $showingSheet)
@@ -122,11 +124,13 @@ struct PlayCardTutorial: View {
                                     Text("Pick Your Card Here", manager: localizationManager)
                                         .font(Font.custom("Quicksand-Regular", size: 20))
                                         .frame(width: 100)
+                                        .foregroundColor(Color("custom-black"))
                                     
                                     Image("step2")
                                         .resizable()
                                         .frame(width: 100, height: 100)
                                         .rotationEffect(.degrees(20))
+                                        .foregroundColor((Color("custom-black")))
                                 }
                                 .offset(x: -160)
                             }
@@ -155,10 +159,12 @@ struct PlayCardTutorial: View {
                                         .resizable()
                                         .frame(width: 100, height: 100)
                                         .rotationEffect(.degrees(20))
+                    
                                     
                                     Text("Drop Your Card Here", manager: localizationManager)
                                         .font(Font.custom("Quicksand-Regular", size: 20))
                                         .frame(width: 100)
+                                        .foregroundColor(Color("custom-black"))
                                 }
                                 .offset(x: 160)
                             }

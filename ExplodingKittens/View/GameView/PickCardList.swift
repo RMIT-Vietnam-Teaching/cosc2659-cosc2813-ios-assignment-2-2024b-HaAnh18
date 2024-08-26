@@ -129,6 +129,8 @@ struct PickCardList: View {
 
 #Preview {
 //    PickCardList(cardGame: .constant(cards), playTurn: .constant(true), playerCards: .constant(cards))
+//        .environmentObject(LocalizationManager()) // Inject the LocalizationManager for the preview
+//    PickCardList(cardGame: cards, playTurn: true, playerCards: cards, currentTurn: .constant(), playerList: <#T##[Player]#>, droppedCards: <#T##[Card]#>, stealCard: <#T##Bool#>, showTurn: <#T##Bool#>, isGameDataAvailable: <#T##Bool#>, numberOfPlayers: <#T##Int#>, aiTurn: <#T##() -> Void#>, screenSize: <#T##ScreenSizeCategory#>)
 //    GameView(numberOfPlayers: 3)
 //    Test(numberOfPlayers: 2)
     MenuView()

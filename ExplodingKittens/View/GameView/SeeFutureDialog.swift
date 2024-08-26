@@ -23,7 +23,7 @@ struct SeeFutureDialog: View {
             ZStack {
                 RoundedRectangle(cornerRadius: 25.0)
                     .frame(width: 300, height: 300)
-                    .foregroundColor(.white)
+                    .foregroundColor(Color("custom-white"))
                 
                 VStack {
                     ZStack {
@@ -49,8 +49,9 @@ struct SeeFutureDialog: View {
                         
                         ZStack(alignment: .top) {
                             Text("Top Card", manager: localizationManager)
-                                .font(Font.custom("Quicksand-Regular", size: 20))
+                                .font(Font.custom("Quicksand-Bold", size: 20))
                                 .offset(y: -10)
+                                .foregroundColor(Color("red"))
                             
                             cards[cards.count - 1].frontImage
                                 .resizable()

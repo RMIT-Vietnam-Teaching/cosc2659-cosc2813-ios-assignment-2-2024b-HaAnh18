@@ -22,7 +22,7 @@ struct TabViewCardDescription: View {
                         Image(systemName: "x.circle")
                             .resizable()
                             .frame(width: 25, height: 25)
-                            .foregroundColor(.black)
+                            .foregroundColor(Color("custom-black"))
                     })
                 }
                 TabView(selection: self.$currentTab) {
@@ -36,7 +36,7 @@ struct TabViewCardDescription: View {
                 HStack(spacing: 10) {
                     ForEach(cards.indices, id: \.self) { index in
                         Circle()
-                            .fill(currentTab == index ? Color.blue : Color.gray)
+                            .fill(currentTab == index ? Color("lightblue") : Color.gray)
                             .frame(width: 10, height: 10)
                     }
                 }

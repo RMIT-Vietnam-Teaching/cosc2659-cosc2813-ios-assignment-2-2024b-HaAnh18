@@ -21,7 +21,7 @@ struct DropZoneView: View {
             .overlay(
                 Text("Drop Here", manager: localizationManager)
                     .font(Font.custom("Quicksand-Medium", size: 24))
-                    .foregroundColor(.black)
+                    .foregroundColor(Color("custom-black"))
             )
             .onAppear {
                 setComponentSize()

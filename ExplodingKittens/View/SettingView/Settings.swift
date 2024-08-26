@@ -34,11 +34,11 @@ struct Settings: View {
                         presentationMode.wrappedValue.dismiss()
                     }, label: {
                         Image(systemName: "arrow.left")
-                            .foregroundColor(.black)
+                            .foregroundColor(Color("custom-black"))
 
                         Text("Menu", manager: localizationManager)
                             .font(Font.custom("Quicksand-Regular", size: 24))
-                            .foregroundColor(.black)
+                            .foregroundColor(Color("custom-black"))
                     })
                     
                     Spacer()
@@ -138,7 +138,7 @@ struct Settings: View {
                     }, label: {
                         Image(systemName: "info.circle")
                             .padding(20)
-                            .foregroundColor(.black)
+                            .foregroundColor(Color("custom-black"))
                     })
                     .sheet(isPresented: $showingSheet) {
                         TabViewModeGame(showingSheet: $showingSheet)
