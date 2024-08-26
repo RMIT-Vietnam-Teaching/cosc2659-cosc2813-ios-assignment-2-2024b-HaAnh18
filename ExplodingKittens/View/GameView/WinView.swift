@@ -10,6 +10,8 @@ import SwiftUI
 struct WinView: View {
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
     
+    @EnvironmentObject var localizationManager: LocalizationManager
+
     @State private var isVisible = false
     @State private var isZoom = false
     @State private var showReturn = false
@@ -26,18 +28,18 @@ struct WinView: View {
                     .overlay(Color("game-view-bg").opacity(0.5))
                 
                 VStack(spacing: 30) {
-                    Text("Winning")
+                    Text("Winning", manager: localizationManager)
                         .font(Font.custom("Quicksand-Bold", size: 62))
                         .scaleEffect(isZoom ? 4 : 1)
                     
-                    if showReturn {
-                        Button(action: {
-                            presentationMode.wrappedValue.dismiss()
-                        }, label: {
-                            Text("Return")
-                                .modifier(confirmButton())
-                        })
-                    }
+//                    if showReturn {
+//                        Button(action: {
+//                            presentationMode.wrappedValue.dismiss()
+//                        }, label: {
+//                            Text("Return")
+//                                .modifier(confirmButton())
+//                        })
+//                    }
                 }
             }
         }
@@ -67,6 +69,8 @@ struct WinView: View {
 
 #Preview {
     WinView()
+        .environmentObject(LocalizationManager()) // Inject the LocalizationManager for the preview
+
 //    MenuView()
 //    GameView(numberOfPlayers: 2)
 }

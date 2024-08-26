@@ -10,6 +10,7 @@ import SwiftUI
 
 struct PlayCardTutorial: View {
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
+    @EnvironmentObject var localizationManager: LocalizationManager
 
     @State private var cardOffsets: [CGSize] = Array(repeating: .zero, count: cards.count) // For two cards
     @State private var isDragging = Array(repeating: false, count: cards.count)
@@ -45,7 +46,7 @@ struct PlayCardTutorial: View {
                         Image(systemName: "arrow.left")
                             .foregroundColor(.black)
 
-                        Text("Menu")
+                        Text("Menu", manager: localizationManager)
                             .font(Font.custom("Quicksand-Regular", size: 24))
                             .foregroundColor(.black)
                     })
@@ -62,7 +63,7 @@ struct PlayCardTutorial: View {
                         Spacer()
                         if step3 {
                             VStack(spacing: -20) {
-                                Text("Click for card description")
+                                Text("Click For Card Description", manager: localizationManager)
                                     .font(Font.custom("Quicksand-Regular", size: 20))
                                     .frame(width: 130)
                                 Image("step3")
@@ -90,7 +91,7 @@ struct PlayCardTutorial: View {
 
                 
                 VStack(spacing: 0) {
-                    CardList(cards: cards, position: "top", screenSize: sizeCategory)
+                    CardList(cards: Array(cards.prefix(5)), position: "top", screenSize: sizeCategory)
                         .frame(height: geometry.size.height / 3 - 50)
                     HStack {
                         ZStack {
@@ -118,7 +119,7 @@ struct PlayCardTutorial: View {
                             
                             if step2 {
                                 HStack(spacing: -10) {
-                                    Text("Pick Your Card Here")
+                                    Text("Pick Your Card Here", manager: localizationManager)
                                         .font(Font.custom("Quicksand-Regular", size: 20))
                                         .frame(width: 100)
                                     
@@ -155,7 +156,7 @@ struct PlayCardTutorial: View {
                                         .frame(width: 100, height: 100)
                                         .rotationEffect(.degrees(20))
                                     
-                                    Text("Drop Your Card Here")
+                                    Text("Drop Your Card Here", manager: localizationManager)
                                         .font(Font.custom("Quicksand-Regular", size: 20))
                                         .frame(width: 100)
                                 }
@@ -179,7 +180,7 @@ struct PlayCardTutorial: View {
                     
                     HStack(spacing: -70) {  // Spacing between the cards and drop zone
                         // Draggable Cards
-                        ForEach(playerCards.indices, id: \.self) { index in
+                        ForEach(Array(playerCards.prefix(5)).indices, id: \.self) { index in
                             let card = playerCards[index]
                             if cardVisible[index] {
                                 DragCard(
@@ -218,4 +219,5 @@ struct PlayCardTutorial: View {
 
 #Preview {
     PlayCardTutorial()
+        .environmentObject(LocalizationManager()) // Inject the LocalizationManager for the preview
 }

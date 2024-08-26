@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct InputInfo: View {
+    @EnvironmentObject var localizationManager: LocalizationManager
+
     @Binding var playerName: String
     @Binding var numberOfPlayers: Int
     @Binding var showInput: Bool
@@ -31,16 +33,16 @@ struct InputInfo: View {
 //                    .foregroundColor(.blue.opacity(0.3))
                 
                 VStack(spacing: 20) {
-                    Text("New Game")
+                    Text("New Game", manager: localizationManager)
                         .font(Font.custom("Quicksand-Bold", size: 32))
                     
                     VStack(spacing: 10) {
                         HStack {
-                            Text("Player Name: ")
+                            Text("Player Name:", manager: localizationManager)
                                 .font(Font.custom("Quicksand-Medium", size: 20))
                             
                             
-                            TextField("Search", text: $playerName)
+                            TextField(localizationManager.localizedString(for:"Type your name"), text: $playerName)
                                 .frame(width: 200)
                                 .padding(10)
                                 .background(
@@ -50,13 +52,13 @@ struct InputInfo: View {
                         }
                         
                         HStack {
-                            Text("Number of Player: ")
+                            Text("Number of Player: ", manager: localizationManager)
                                 .font(Font.custom("Quicksand-Medium", size: 20))
                             Spacer()
                         }
                         
                         HStack {
-                            Text("2 players")
+                            Text("2 players", manager: localizationManager)
                                 .font(Font.custom("Quicksand-Regular", size: 18))
                                 .padding(10)
                                 .overlay {
@@ -69,7 +71,7 @@ struct InputInfo: View {
                                     numberOfPlayers = 2
                                 }
                             
-                            Text("3 players")
+                            Text("3 players", manager: localizationManager)
                                 .font(Font.custom("Quicksand-Regular", size: 18))
                                 .padding(10)
                                 .overlay {
@@ -82,7 +84,7 @@ struct InputInfo: View {
                                     numberOfPlayers = 3
                                 }
                             
-                            Text("4 players")
+                            Text("4 players", manager: localizationManager)
                                 .font(Font.custom("Quicksand-Regular", size: 18))
                                 .padding(10)
                                 .overlay {
@@ -98,7 +100,7 @@ struct InputInfo: View {
                     }
                     .frame(width: 380)
                     
-                    Button("Confirm") {
+                    Button(localizationManager.localizedString(for:"Confirm")) {
                         withAnimation{
                             isVisible = false
                             

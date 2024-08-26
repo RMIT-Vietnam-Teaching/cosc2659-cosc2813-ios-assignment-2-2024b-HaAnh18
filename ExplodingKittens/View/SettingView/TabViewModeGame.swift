@@ -57,6 +57,8 @@ struct TabBarView: View {
 }
 
 struct TabBarItems: View {
+    @EnvironmentObject var localizationManager: LocalizationManager
+
     @Binding var currentTab: Int
     let namespace: Namespace.ID // Namespace for matched geometry effect
     var tabBarItemName: String
@@ -67,7 +69,8 @@ struct TabBarItems: View {
             self.currentTab = tab
         }, label: {
             VStack {
-                Text(tabBarItemName)
+                Text(localizationManager.localizedString(for: tabBarItemName))
+//                Text(tabBarItemName)
 
                     .font(Font.custom(currentTab == tab ? "Quicksand-Bold" : "Quicksand-Regular", size: 24))
                     .foregroundColor(currentTab == tab ? Color("red") : .black)
@@ -87,5 +90,6 @@ struct TabBarItems: View {
 }
 
 #Preview {
-    TabViewModeGame(showingSheet: .constant(true))
+//    TabViewModeGame(showingSheet: .constant(true))
+    MenuView()
 }

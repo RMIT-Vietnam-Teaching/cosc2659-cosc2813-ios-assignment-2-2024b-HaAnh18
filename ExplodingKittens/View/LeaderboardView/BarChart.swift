@@ -16,7 +16,8 @@ struct BarChart: View {
 //        Player(name: "A", cards: cards, numberOfTurn: 1, index: 2, countinuePlay: true, win: 5, lose: 5, level: 5),
 //        Player(name: "B", cards: cards, numberOfTurn: 1, index: 2, countinuePlay: true, win: 5, lose: 5, level: 5)
 //       ]
-    
+    @EnvironmentObject var localizationManager: LocalizationManager
+
     @Binding var players: [Player]
     @State private var selectedPlayer: Player? = nil
     @State private var dragLocation: CGPoint = .zero
@@ -27,15 +28,15 @@ struct BarChart: View {
                 .foregroundColor(.white)
             
             VStack(spacing: 10) {
-                Text("Top 5 highest players")
+                Text("Top 5 highest players", manager: localizationManager)
                     .font(Font.custom("Quicksand-Medium", size: 20))
                 
                 VStack {
                     GeometryReader { geometry in
                         Chart {
                             ForEach(players.prefix(5), id: \.self) { player in
-                                BarMark(x: .value("Player", player.name),
-                                        y: .value("Win Rate", player.winRate))
+                                BarMark(x: .value(localizationManager.localizedString(for: "Player"), player.name),
+                                        y: .value(localizationManager.localizedString(for:"Win Rate"), player.winRate))
                             }
                         }
                         .foregroundColor(Color("lightblue"))
@@ -61,7 +62,7 @@ struct BarChart: View {
                             
                             VStack {
                                 HStack {
-                                    Text("Player:")
+                                    Text("Player:", manager: localizationManager)
                                         .font(Font.custom("Quicksand-Bold", size: 16))
 
                                     
@@ -72,7 +73,7 @@ struct BarChart: View {
                                 .padding(.horizontal, 10)
                                 
                                 HStack {
-                                    Text("Level:")
+                                    Text("Level:", manager: localizationManager)
                                         .font(Font.custom("Quicksand-Bold", size: 16))
 
                                     
@@ -83,7 +84,7 @@ struct BarChart: View {
                                 .padding(.horizontal, 10)
                                 
                                 HStack {
-                                    Text("Win:")
+                                    Text("Wins:", manager: localizationManager)
                                         .font(Font.custom("Quicksand-Bold", size: 16))
 
                                     
@@ -94,7 +95,7 @@ struct BarChart: View {
                                 .padding(.horizontal, 10)
                                 
                                 HStack {
-                                    Text("Losses:")
+                                    Text("Losses:", manager: localizationManager)
                                         .font(Font.custom("Quicksand-Bold", size: 16))
 
                                     
@@ -105,7 +106,7 @@ struct BarChart: View {
                                 .padding(.horizontal, 10)
                                 
                                 HStack {
-                                    Text("Win Rate:")
+                                    Text("Win Rate:", manager: localizationManager)
                                         .font(Font.custom("Quicksand-Bold", size: 16))
 
                                     
@@ -148,4 +149,5 @@ struct BarChart: View {
 #Preview {
 //    BarChart()
     Leaderboard()
+        .environmentObject(LocalizationManager())
 }

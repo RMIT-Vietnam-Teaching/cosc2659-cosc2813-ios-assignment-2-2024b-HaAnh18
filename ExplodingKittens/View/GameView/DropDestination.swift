@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct DropDestination: View {
+    @EnvironmentObject var localizationManager: LocalizationManager
+    
     @State private var dropSize: CGFloat? = nil
     @State private var cardSize: CGFloat? = nil
     @Binding var droppedCards: [Card]
@@ -29,7 +31,7 @@ struct DropDestination: View {
                 .frame(width: dropSize, height: dropSize)
             
             if droppedCards.count == 0 {
-                Text("Drop Your Card Here")
+                Text("Drop Your Card Here", manager: localizationManager)
                     .font(Font.custom("Quicksand-Medium", size: 24))
                     .frame(width: dropSize)
                     .multilineTextAlignment(.center)
@@ -136,6 +138,7 @@ struct DropDestination: View {
 #Preview {
 //    DropDestination()
     MenuView()
+        .environmentObject(LocalizationManager()) // Inject the LocalizationManager for the preview
 
 //    GameView(numberOfPlayers: 4)
 }

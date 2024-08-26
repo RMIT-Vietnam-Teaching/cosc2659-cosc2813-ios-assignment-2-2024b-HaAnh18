@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct DropZoneView: View {
+    @EnvironmentObject var localizationManager: LocalizationManager
+
     @State private var size: CGFloat = 10
     
     var screenSize: ScreenSizeCategory
@@ -17,7 +19,7 @@ struct DropZoneView: View {
             .strokeBorder(style: StrokeStyle(lineWidth: 2, dash: [10, 5]))
             .frame(width: size, height: size)
             .overlay(
-                Text("Drop Here")
+                Text("Drop Here", manager: localizationManager)
                     .font(Font.custom("Quicksand-Medium", size: 24))
                     .foregroundColor(.black)
             )
@@ -42,4 +44,6 @@ struct DropZoneView: View {
 
 #Preview {
     PlayCardTutorial()
+        .environmentObject(LocalizationManager()) // Inject the LocalizationManager for the preview
+
 }

@@ -9,6 +9,8 @@ import SwiftUI
 
 struct Settings: View {
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
+    @EnvironmentObject var localizationManager: LocalizationManager
+
     @State private var showingSheet: Bool = false
 
     @Binding var modeGame: String
@@ -34,7 +36,7 @@ struct Settings: View {
                         Image(systemName: "arrow.left")
                             .foregroundColor(.black)
 
-                        Text("Menu")
+                        Text("Menu", manager: localizationManager)
                             .font(Font.custom("Quicksand-Regular", size: 24))
                             .foregroundColor(.black)
                     })
@@ -46,14 +48,14 @@ struct Settings: View {
                 .padding(.horizontal, 20)
                 
                 VStack(spacing: 40) {
-                    Text("Settings")
+                    Text("Settings", manager: localizationManager)
                         .font(Font.custom("Quicksand-Bold", size: 40))
                                             
                     VStack{
                         HStack(spacing: 20) {
                             HStack {
                                 Spacer()
-                                Text("Difficulty mode: ")
+                                Text("Level:", manager: localizationManager)
                                     .font(Font.custom("Quicksand-Medium", size: 24))
                             }
                             .frame(width: 250)
@@ -73,7 +75,7 @@ struct Settings: View {
                         HStack(spacing: 20) {
                             HStack {
                                 Spacer()
-                                Text("Language: ")
+                                Text("Language:", manager: localizationManager)
                                     .font(Font.custom("Quicksand-Medium", size: 24))
 
                             }
@@ -81,12 +83,18 @@ struct Settings: View {
 
                             
                             DropDownView(selection: $language, options: languageOptions)
+                                .onChange(of: language, initial: true) {
+                                    oldValue, newValue in
+                                    changeLanguage()
+                                    UserDefaults.standard.set(language, forKey: "language")
+
+                                }
                         }
                         
                         HStack(spacing: 20) {
                             HStack {
                                 Spacer()
-                                Text("Appearance mode: ")
+                                Text("Appearance:", manager: localizationManager)
                                     .font(Font.custom("Quicksand-Medium", size: 24))
                             }
                             .frame(width: 250)
@@ -134,16 +142,23 @@ struct Settings: View {
                     })
                     .sheet(isPresented: $showingSheet) {
                         TabViewModeGame(showingSheet: $showingSheet)
-//                                .presentationDetents([.medium, .medium, .fraction(0.1)])
                     }
                 }
             }
         }
     }
+    private func changeLanguage() {
+            if language == "Vietnamese" {
+                localizationManager.changeLanguage(to: "vi")
+            } else {
+                localizationManager.changeLanguage(to: "en")
+            }
+        }
 }
 
 #Preview {
-    Settings(modeGame: .constant("Easy"), language: .constant("English"), appearanceMode: .constant(.light), colorScheme: .constant(.light), appearance: .constant("Light"))
+//    Settings(modeGame: .constant("Easy"), language: .constant("English"), appearanceMode: .constant(.light), colorScheme: .constant(.light), appearance: .constant("Light"))
+    MenuView()
 }
 
 enum AppearanceMode {

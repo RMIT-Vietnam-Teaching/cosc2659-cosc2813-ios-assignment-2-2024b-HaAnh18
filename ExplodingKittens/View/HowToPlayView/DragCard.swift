@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct DragCard: View {
-//    let cardSize: CGSize
     let dropZoneSize: CGSize
     let card: Card
     @Binding var isDragging: Bool
@@ -92,4 +91,5 @@ struct DragCard: View {
 
 #Preview {
     PlayCardTutorial()
+        .environmentObject(LocalizationManager()) // Inject the LocalizationManager for the preview
 }

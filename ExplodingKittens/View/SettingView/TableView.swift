@@ -36,22 +36,24 @@ struct TableView: View {
 }
 
 struct TableHeader: View {
+    @EnvironmentObject var localizationManager: LocalizationManager
+
     var size: CGFloat
     var body: some View {
         HStack {
             Spacer()
             
-            Text("2 players")
+            Text("2 players", manager: localizationManager)
                 .font(Font.custom("Quicksand-Medium", size: 20))
                 .fontWeight(.semibold)
                 .frame(width: size)
             
-            Text("3 players")
+            Text("3 players", manager: localizationManager)
                 .font(Font.custom("Quicksand-Medium", size: 20))
                 .fontWeight(.semibold)
                 .frame(width: size)
             
-            Text("4 players")
+            Text("4 players", manager: localizationManager)
                 .font(Font.custom("Quicksand-Medium", size: 20))
                 .fontWeight(.semibold)
                 .frame(width: size)
@@ -68,18 +70,20 @@ struct TableHeader: View {
 }
 
 struct TableRow: View {
+    @EnvironmentObject var localizationManager: LocalizationManager
+
     var name: String
     var size: CGFloat
     var cardGame: [String: [Int]]?
     
     var body: some View {
         HStack {
-            Text(name)
+            Text(localizationManager.localizedString(for: name))
                 .font(Font.custom("Quicksand-Regular", size: 20))
                 .fontWeight(.semibold)
                 .frame(width: size)
 
-            Text("\(String(describing: cardGame![name]![0]))")
+            Text(localizationManager.localizedString(for: "\(String(describing: cardGame![name]![0]))"))
                 .font(Font.custom("Quicksand-Regular", size: 20))
                 .frame(width: size)
             
@@ -97,5 +101,6 @@ struct TableRow: View {
 
 #Preview {
 //    TableView()
-    ModeGameDescription(modeGame: modeGame[0])
+    MenuView()
+//    ModeGameDescription(modeGame: modeGame[0])
 }

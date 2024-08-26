@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TabViewCardDescription: View {
+struct TabViewCardDescription: View {    
     @State var currentTab: Int = 0 // State variable to track the current tab
     @Binding var showingSheet: Bool
 
@@ -52,4 +52,5 @@ struct TabViewCardDescription: View {
 #Preview {
 //    TabViewCardDescription(showingSheet: .constant(true))
     PlayCardTutorial()
+        .environmentObject(LocalizationManager()) // Inject the LocalizationManager for the preview
 }

@@ -10,6 +10,8 @@ import SwiftUI
 struct Leaderboard: View {
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
     
+    @EnvironmentObject var localizationManager: LocalizationManager
+    
 //    @State private var players: [Player] = []
     @State private var players: [Player] = [
         Player(name: "John", cards: cards, numberOfTurn: 1, index: 0, countinuePlay: true, win: 7, lose: 3, level: 10), // Level 10, Win rate 70%
@@ -37,7 +39,7 @@ struct Leaderboard: View {
                                 Image(systemName: "arrow.left")
                                     .foregroundColor(.black)
 
-                                Text("Menu")
+                                Text("Menu", manager: localizationManager)
                                     .font(Font.custom("Quicksand-Regular", size: 24))
                                     .foregroundColor(.black)
                             })
@@ -49,7 +51,7 @@ struct Leaderboard: View {
                         
                         HStack(spacing: 20) {
                             VStack(spacing: 10) {
-                                Text("Leaderboard")
+                                Text("Leaderboard", manager: localizationManager)
                                     .font(Font.custom("Quicksand-Bold", size: 32))
                
                                 ForEach(players.indices, id: \.self) {
@@ -64,7 +66,7 @@ struct Leaderboard: View {
                             
                             ZStack(alignment: .top) {
                                 VStack(spacing: 10) {
-                                    Text("Statistics")
+                                    Text("Statistics", manager: localizationManager)
                                         .font(Font.custom("Quicksand-Bold", size: 32))
                                     
                                     if !players.isEmpty {
@@ -96,5 +98,6 @@ struct Leaderboard: View {
 
 #Preview {
     Leaderboard()
+        .environmentObject(LocalizationManager()) // Inject the LocalizationManager for the preview
 //    MenuView()
 }

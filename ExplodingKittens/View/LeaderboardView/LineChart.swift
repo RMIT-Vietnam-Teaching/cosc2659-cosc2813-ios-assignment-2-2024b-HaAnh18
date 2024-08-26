@@ -9,6 +9,8 @@ import SwiftUI
 import Charts
 
 struct LineChart: View {
+    @EnvironmentObject var localizationManager: LocalizationManager
+
     @Binding var players: [Player]
     @State private var selectedPlayer: Player? = nil
     @State private var dragLocation: CGPoint = .zero
@@ -19,7 +21,7 @@ struct LineChart: View {
                 .foregroundColor(.white)
             
             VStack(spacing: 10) {
-                Text("No. games each player")
+                Text("No. games each player", manager: localizationManager)
                     .font(Font.custom("Quicksand-Medium", size: 20))
                 
                 GeometryReader { geometry in
@@ -46,8 +48,8 @@ struct LineChart: View {
                             
                         }
                     }
-                    .chartXAxisLabel("Player")
-                    .chartYAxisLabel("Number of Games")
+                    .chartXAxisLabel(localizationManager.localizedString(for: "Player"))
+                    .chartYAxisLabel(localizationManager.localizedString(for: "Number of Games"))
                     .padding()
                     .overlay(
                         Color.clear
@@ -71,7 +73,7 @@ struct LineChart: View {
                         
                         VStack {
                             HStack {
-                                Text("Player:")
+                                Text("Player:", manager: localizationManager)
                                     .font(Font.custom("Quicksand-Bold", size: 16))
 
                                 
@@ -82,18 +84,19 @@ struct LineChart: View {
                             .padding(.horizontal, 10)
                             
                             HStack {
-                                Text("Level:")
+                                Text("Level:", manager: localizationManager)
                                     .font(Font.custom("Quicksand-Bold", size: 16))
 
                                 
                                 Text("\(selectedPlayer.level)")
+                                    .font(Font.custom("Quicksand-Regular", size: 16))
                                 
                                 Spacer()
                             }
                             .padding(.horizontal, 10)
                             
                             HStack {
-                                Text("Win:")
+                                Text("Wins:", manager: localizationManager)
                                     .font(Font.custom("Quicksand-Bold", size: 16))
 
                                 
@@ -104,7 +107,7 @@ struct LineChart: View {
                             .padding(.horizontal, 10)
                             
                             HStack {
-                                Text("Losses:")
+                                Text("Losses:", manager: localizationManager)
                                     .font(Font.custom("Quicksand-Bold", size: 16))
 
                                 
@@ -115,7 +118,7 @@ struct LineChart: View {
                             .padding(.horizontal, 10)
                             
                             HStack {
-                                Text("Win Rate:")
+                                Text("Win Rate:", manager: localizationManager)
                                     .font(Font.custom("Quicksand-Bold", size: 16))
 
                                 
@@ -140,7 +143,7 @@ struct LineChart: View {
                         Circle()
                             .fill(Color.green)
                             .frame(width: 10, height: 10)
-                        Text("Wins")
+                        Text("Wins", manager: localizationManager)
                             .foregroundColor(.green)
                     }
                     
@@ -148,7 +151,7 @@ struct LineChart: View {
                         Circle()
                             .fill(Color.red)
                             .frame(width: 10, height: 10)
-                        Text("Losses")
+                        Text("Losses", manager: localizationManager)
                             .foregroundColor(.red)
                     }
                 }
@@ -175,4 +178,6 @@ struct LineChart: View {
 #Preview {
 //    LineChart()
     Leaderboard()
+        .environmentObject(LocalizationManager())
+
 }

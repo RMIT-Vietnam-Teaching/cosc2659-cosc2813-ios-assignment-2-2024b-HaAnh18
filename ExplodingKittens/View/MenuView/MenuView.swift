@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct MenuView: View {
+    @StateObject private var localizationManager = LocalizationManager()
+
     @State private var isGameDataAvailable: Bool = false
     @State private var language: String = "English"
     @State private var appearanceMode: AppearanceMode = .light
@@ -26,7 +28,7 @@ struct MenuView: View {
                         .ignoresSafeArea()
                     
                     VStack(spacing: 20) {
-                        Text("Exploding Kittens")
+                        Text("Exploding Kittens", manager: localizationManager)
                             .font(Font.custom("Quicksand-Bold", size: 40))
                         
                         if sizeCategory == .medium || sizeCategory == .small {
@@ -39,28 +41,28 @@ struct MenuView: View {
                                     VStack(spacing: 10) {
                                         if isGameDataAvailable {
                                             NavigationLink(destination: GameView(isGameDataAvailable: $isGameDataAvailable, modeGame: $modeGame, resumeGame: true)) {
-                                                Text("Resume Game")
+                                                Text("Resume Game", manager: localizationManager)
                                                     .modifier(buttonCapsule())
                                             }
                                         }
                                         
                                         NavigationLink(destination: GameView(isGameDataAvailable: $isGameDataAvailable, modeGame: $modeGame, resumeGame: false)) {
-                                            Text("New Game")
+                                            Text("New Game", manager: localizationManager)
                                                 .modifier(buttonCapsule())
                                         }
                                         
                                         NavigationLink(destination: Leaderboard()) {
-                                            Text("Leaderboard")
+                                            Text("Leaderboard", manager: localizationManager)
                                                 .modifier(buttonCapsule())
                                         }
                                         
                                         NavigationLink(destination: PlayCardTutorial()) {
-                                            Text("Tutorial")
+                                            Text("Tutorial", manager: localizationManager)
                                                 .modifier(buttonCapsule())
                                         }
                                         
                                         NavigationLink(destination: Settings(modeGame: $modeGame, language: $language, appearanceMode: $appearanceMode, colorScheme: $colorScheme, appearance: $appearance)) {
-                                            Text("Settings")
+                                            Text("Settings", manager: localizationManager)
                                                 .modifier(buttonCapsule())
                                         }
                                         
@@ -82,13 +84,26 @@ struct MenuView: View {
                 } else {
                     print("No modeGame data found in UserDefaults.")
                 }
+                
+                if let language = UserDefaults.standard.string(forKey: "language") {
+                    self.language = language
+                } else {
+                    print("No modeGame data found in UserDefaults.")
+                }
             }
         }
+        .environmentObject(localizationManager)
+
     }
+    
+  
+    
 }
 
 #Preview {
     MenuView()
+//        .environment(\.locale, Locale(identifier: "VI"))
+
 }
 
 

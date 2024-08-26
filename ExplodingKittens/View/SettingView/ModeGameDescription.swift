@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ModeGameDescription: View {
     @State private var cardGame: [String: [Int]]?
+    @EnvironmentObject var localizationManager: LocalizationManager
+
     var modeGame: ModeGame
     let orderedKeys = ["Bomb", "Defuse", "Attack", "See The Future", "Shuffle", "Skip", "Steal A Card"]
 
@@ -16,16 +18,13 @@ struct ModeGameDescription: View {
         ScrollView {
             VStack(alignment: .leading) {
                 TableView(cardGame: cardGame, orderedKeys: orderedKeys)
-    //                .background(.pink)
                 
-                Text("Description")
+                Text("Description", manager: localizationManager)
                     .font(Font.custom("Quicksand-Bold", size: 24))
-//                    .fontWeight(.semibold)
 
                 
-                Text(modeGame.description)
+                Text(localizationManager.localizedString(for: modeGame.description))
                     .font(Font.custom("Quicksand-Regular", size: 20))
-
             }
         }
         .scrollIndicators(.hidden)
@@ -45,7 +44,8 @@ struct ModeGameDescription: View {
 }
 
 #Preview {
-    ModeGameDescription(modeGame: modeGame[0])
+//    ModeGameDescription(modeGame: modeGame[0])
+    MenuView()
 
 }
 

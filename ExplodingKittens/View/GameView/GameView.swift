@@ -10,6 +10,8 @@ import SwiftUI
 struct GameView: View {
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
     
+    @EnvironmentObject var localizationManager: LocalizationManager
+
     @State private var draggedCard: Card?
     @State private var cardGame: [Card] = []
     @State private var droppedCards: [Card] = []
@@ -22,7 +24,7 @@ struct GameView: View {
     @State private var stealOther: Bool = false
     @State private var showTurn: Bool = true
     @State private var showInput: Bool = true
-    @State private var numberOfPlayers: Int = 4
+    @State private var numberOfPlayers: Int = 2
     @State private var winGame: Bool?
     @State private var playerName: String = ""
     
@@ -48,7 +50,7 @@ struct GameView: View {
                         Image(systemName: "arrow.left")
                             .foregroundColor(.black)
 
-                        Text("Menu")
+                        Text("Menu", manager: localizationManager)
                             .font(Font.custom("Quicksand-Regular", size: 24))
                             .foregroundColor(.black)
                     })
@@ -58,7 +60,7 @@ struct GameView: View {
                     if !playerList.isEmpty {
                         VStack {
                             HStack {
-                                Text("Current Turn: ")
+                                Text("Current Turn:", manager: localizationManager)
                                     .font(Font.custom("Quicksand-Medium", size: 20))
                                     .frame(width: 130)
                                 
@@ -67,7 +69,7 @@ struct GameView: View {
                             }
                             
                             HStack {
-                                Text("No. Turn: ")
+                                Text("No. Turn:", manager: localizationManager)
                                     .font(Font.custom("Quicksand-Medium", size: 20))
                                     .frame(width: 130)
                                 
@@ -367,6 +369,7 @@ struct GameView: View {
 //    GameView(numberOfPlayers: 2)
 //    MenuView()
     GameView(isGameDataAvailable: .constant(false), modeGame: .constant("Hard"), resumeGame: false)
+        .environmentObject(LocalizationManager()) // Inject the LocalizationManager for the preview
 }
 
 

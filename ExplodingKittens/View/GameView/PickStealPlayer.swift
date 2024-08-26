@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct PickStealPlayer: View {
+    @EnvironmentObject var localizationManager: LocalizationManager
+
     @Binding var playerCard: [Card]
     @Binding var playerList: [Player]
     @Binding var currentTurn: Int
@@ -49,7 +51,7 @@ struct PickStealPlayer: View {
                         
                         Spacer()
                         
-                        Text("Please choose a player to steal")
+                        Text("Please choose a player to steal", manager: localizationManager)
                             .font(Font.custom("Quicksand-Bold", size: 24))
 
                         
@@ -67,13 +69,16 @@ struct PickStealPlayer: View {
                     .offset(y: -20)
                     
                     if chosenPlayer != 0 {
-                        Button("Confirm") {
+                        Button(action: {
                             withAnimation {
                                 aiGiveCard(to: &playerCard, from: &playerList[chosenPlayer].cards)
                                 stealOther = false
                             }
-                        }
-                        .modifier(confirmButton())
+                        }, label: {
+                            Text("Confirm", manager: localizationManager)
+                                .modifier(confirmButton())
+                        })
+                        
                     }
                 }
             }
@@ -94,16 +99,16 @@ struct PickStealPlayer: View {
         switch screenSize {
         case .small:
             widthRecSize = 700
-            heightRecSize = 350
+            heightRecSize = 320
         case .medium:
             widthRecSize = 700
-            heightRecSize = 350
+            heightRecSize = 320
         case .large:
             widthRecSize = 700
-            heightRecSize = 300
+            heightRecSize = 320
         case .extraLarge:
-            widthRecSize = 120
-            heightRecSize = 200
+            widthRecSize = 700
+            heightRecSize = 320
         }
     }
 }
@@ -124,10 +129,9 @@ var players: [Player] = [
    ]
 
 struct PickStealCard_Previews: PreviewProvider {
-//    @StateObject static var viewModel = ViewModel()
-    
     
     static var previews: some View {
         PickStealPlayer(playerCard: .constant(cards), playerList: .constant(players), currentTurn: .constant(0), stealOther: .constant(true), screenSize: .small)
+            .environmentObject(LocalizationManager()) // Inject the LocalizationManager for the preview
     }
 }

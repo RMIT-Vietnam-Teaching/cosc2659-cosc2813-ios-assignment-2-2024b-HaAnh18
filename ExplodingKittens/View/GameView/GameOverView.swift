@@ -10,6 +10,8 @@ import SwiftUI
 struct GameOverView: View {
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
     
+    @EnvironmentObject var localizationManager: LocalizationManager
+
     @State private var isVisible = false
     @State private var isZoom = false
     @State private var showReturn = false
@@ -28,14 +30,14 @@ struct GameOverView: View {
                
                 VStack(spacing: 30) {
   
-                    Text("Gameover")
+                    Text("Gameover", manager: localizationManager)
                         .font(Font.custom("Quicksand-Bold", size: 62))
                         .scaleEffect(isZoom ? 3 : 1)
                     
-                    if showReturn {
-                        Text("Return")
-                            .modifier(confirmButton())
-                    }
+//                    if showReturn {
+//                        Text("Return", manager: localizationManager)
+//                            .modifier(confirmButton())
+//                    }
                 }
             }
         }
@@ -63,6 +65,7 @@ struct GameOverView: View {
 
 #Preview {
     GameOverView()
+        .environmentObject(LocalizationManager()) // Inject the LocalizationManager for the preview
 //    MenuView()
 //    GameView(numberOfPlayers: 2)
 }
