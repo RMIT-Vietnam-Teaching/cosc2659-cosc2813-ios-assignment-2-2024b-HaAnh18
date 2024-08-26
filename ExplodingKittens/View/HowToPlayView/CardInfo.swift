@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct CardInfo: View {
+    @EnvironmentObject var localizationManager: LocalizationManager
+
     var card: Card
     var body: some View {
         HStack {
@@ -16,10 +18,10 @@ struct CardInfo: View {
                 .frame(width: 250, height: 250)
             
             VStack(spacing: 15) {
-                Text(card.name)
+                Text(localizationManager.localizedString(for: card.name))
                     .font(Font.custom("Quicksand-Bold", size: 32))
                                 
-                Text(card.description)
+                Text(localizationManager.localizedString(for: card.description))
                     .font(Font.custom("Quicksand-Regular", size: 20))
             }
         }
@@ -28,4 +30,6 @@ struct CardInfo: View {
 
 #Preview {
     CardInfo(card: cards[6])
+        .environmentObject(LocalizationManager()) // Inject the LocalizationManager for the preview
+
 }

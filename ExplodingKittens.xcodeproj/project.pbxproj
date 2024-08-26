@@ -35,6 +35,8 @@
 		396B06492C7B3A5D00490C0D /* TabViewModeGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396B06482C7B3A5D00490C0D /* TabViewModeGame.swift */; };
 		396B064B2C7B635600490C0D /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396B064A2C7B635500490C0D /* Badge.swift */; };
 		396B064D2C7B678500490C0D /* MenuViewIpad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396B064C2C7B678500490C0D /* MenuViewIpad.swift */; };
+		396B06532C7B878F00490C0D /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 396B06522C7B878F00490C0D /* Localizable.xcstrings */; };
+		396B06562C7B8F9F00490C0D /* LocalizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396B06552C7B8F9F00490C0D /* LocalizationManager.swift */; };
 		397E18C82C738B4E00D66D51 /* GameOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397E18C72C738B4E00D66D51 /* GameOverView.swift */; };
 		397E18CA2C738D7900D66D51 /* GifImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397E18C92C738D7900D66D51 /* GifImage.swift */; };
 		397E18CF2C738FBF00D66D51 /* bomb.gif in Resources */ = {isa = PBXBuildFile; fileRef = 397E18CE2C738FBF00D66D51 /* bomb.gif */; };
@@ -92,6 +94,8 @@
 		396B06482C7B3A5D00490C0D /* TabViewModeGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewModeGame.swift; sourceTree = "<group>"; };
 		396B064A2C7B635500490C0D /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
 		396B064C2C7B678500490C0D /* MenuViewIpad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewIpad.swift; sourceTree = "<group>"; };
+		396B06522C7B878F00490C0D /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		396B06552C7B8F9F00490C0D /* LocalizationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationManager.swift; sourceTree = "<group>"; };
 		397E18C72C738B4E00D66D51 /* GameOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverView.swift; sourceTree = "<group>"; };
 		397E18C92C738D7900D66D51 /* GifImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifImage.swift; sourceTree = "<group>"; };
 		397E18CE2C738FBF00D66D51 /* bomb.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = bomb.gif; sourceTree = "<group>"; };
@@ -189,6 +193,15 @@
 			path = SettingView;
 			sourceTree = "<group>";
 		};
+		396B06542C7B8F8100490C0D /* Language */ = {
+			isa = PBXGroup;
+			children = (
+				396B06522C7B878F00490C0D /* Localizable.xcstrings */,
+				396B06552C7B8F9F00490C0D /* LocalizationManager.swift */,
+			);
+			path = Language;
+			sourceTree = "<group>";
+		};
 		397E18CB2C738EED00D66D51 /* GIF */ = {
 			isa = PBXGroup;
 			children = (
@@ -220,6 +233,7 @@
 		39A148CB2C68CE2500D35D71 /* ExplodingKittens */ = {
 			isa = PBXGroup;
 			children = (
+				396B06542C7B8F8100490C0D /* Language */,
 				397E18DE2C739EE700D66D51 /* Info.plist */,
 				393FD41B2C77518A00787514 /* Font */,
 				397E18CB2C738EED00D66D51 /* GIF */,
@@ -341,6 +355,7 @@
 			knownRegions = (
 				en,
 				Base,
+				vi,
 			);
 			mainGroup = 39A148C02C68CE2500D35D71;
 			productRefGroup = 39A148CA2C68CE2500D35D71 /* Products */;
@@ -368,6 +383,7 @@
 				396B06262C78A43500490C0D /* Quicksand-Bold.ttf in Resources */,
 				396B06302C78E1B300490C0D /* winning.gif in Resources */,
 				396B062A2C78A5C100490C0D /* Quicksand-Medium.ttf in Resources */,
+				396B06532C7B878F00490C0D /* Localizable.xcstrings in Resources */,
 				396B062E2C78D98E00490C0D /* exploding.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -386,6 +402,7 @@
 				396B06172C7831D700490C0D /* TabViewCardDescription.swift in Sources */,
 				393FD4372C77864300787514 /* LineChart.swift in Sources */,
 				396B063D2C7B210300490C0D /* ModeGame.swift in Sources */,
+				396B06562C7B8F9F00490C0D /* LocalizationManager.swift in Sources */,
 				39A148F32C690E3900D35D71 /* DragCardList.swift in Sources */,
 				397E18CA2C738D7900D66D51 /* GifImage.swift in Sources */,
 				39A148F12C68FAEC00D35D71 /* DropDestination.swift in Sources */,

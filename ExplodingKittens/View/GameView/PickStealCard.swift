@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct PickStealCard: View {
+    @EnvironmentObject var localizationManager: LocalizationManager
+
     @Binding var playerCards: [Card]
     @Binding var playerList: [Player]
     @Binding var currentTurn: Int
@@ -29,7 +31,7 @@ struct PickStealCard: View {
                     .foregroundColor(.white)
                 
                 VStack(spacing: 20) {
-                    Text("Pick a card to give")
+                    Text("Pick a card to give", manager: localizationManager)
                         .font(Font.custom("Quicksand-Bold", size: 32))
 
                     ScrollView(.horizontal, showsIndicators: false) {
@@ -70,7 +72,7 @@ struct PickStealCard: View {
                                     stealCard = false
                                 }
                             }, label: {
-                                Text("Confirm")
+                                Text("Confirm", manager: localizationManager)
                                     .modifier(confirmButton())
                             })
                         }
@@ -114,6 +116,8 @@ struct PickStealCard: View {
 //    MenuView()
 
     PickStealCard(playerCards: .constant(cards), playerList: .constant([]), currentTurn: .constant(0), stealCard: .constant(true), screenSize: .small)
+        .environmentObject(LocalizationManager()) // Inject the LocalizationManager for the preview
+
 //    GameView(numberOfPlayers: 4)
 }
 

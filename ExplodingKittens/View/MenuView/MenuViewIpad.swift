@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct MenuViewIpad: View {
+    @EnvironmentObject var localizationManager: LocalizationManager
+
     @Binding var isGameDataAvailable: Bool
     @Binding var language: String
     @Binding var appearanceMode: AppearanceMode
@@ -25,28 +27,28 @@ struct MenuViewIpad: View {
                 VStack(spacing: 10) {
                     if isGameDataAvailable {
                         NavigationLink(destination: GameView(isGameDataAvailable: $isGameDataAvailable, modeGame: $modeGame, resumeGame: true)) {
-                            Text("Resume Game")
+                            Text("Resume Game", manager: localizationManager)
                                 .modifier(buttonCapsule())
                         }
                     }
                     
                     NavigationLink(destination: GameView(isGameDataAvailable: $isGameDataAvailable, modeGame: $modeGame, resumeGame: false)) {
-                        Text("New Game")
+                        Text("New Game", manager: localizationManager)
                             .modifier(buttonCapsule())
                     }
                     
                     NavigationLink(destination: Leaderboard()) {
-                        Text("Leaderboard")
+                        Text("Leaderboard", manager: localizationManager)
                             .modifier(buttonCapsule())
                     }
                     
                     NavigationLink(destination: PlayCardTutorial()) {
-                        Text("Tutorial")
+                        Text("Tutorial", manager: localizationManager)
                             .modifier(buttonCapsule())
                     }
                     
                     NavigationLink(destination: Settings(modeGame: $modeGame, language: $language, appearanceMode: $appearanceMode, colorScheme: $colorScheme, appearance: $appearance)) {
-                        Text("Settings")
+                        Text("Settings", manager: localizationManager)
                             .modifier(buttonCapsule())
                     }
                     
@@ -58,4 +60,5 @@ struct MenuViewIpad: View {
 
 #Preview {
     MenuView()
+        .environmentObject(LocalizationManager()) // Inject the LocalizationManager for the preview
 }

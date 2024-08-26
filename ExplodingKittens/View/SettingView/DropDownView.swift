@@ -9,6 +9,7 @@ import SwiftUI
 
 struct DropDownView: View {
     @State private var isExpanded = false
+    @EnvironmentObject var localizationManager: LocalizationManager
 
     @Binding var selection: String
     var options: [String]
@@ -17,7 +18,7 @@ struct DropDownView: View {
         VStack {
             if !isExpanded {
                 HStack {
-                    Text(selection)
+                    Text(localizationManager.localizedString(for: selection))
                         .font(Font.custom("Quicksand-Regular", size: 20))
                     
                     Spacer()
@@ -31,7 +32,7 @@ struct DropDownView: View {
                                 isExpanded.toggle()
                             }
                         }
-                        
+                    
                 }
                 .frame(height: 40)
                 .padding(.horizontal, 10)
@@ -42,7 +43,7 @@ struct DropDownView: View {
                 VStack {
                     ForEach(options, id: \.self) { option in
                         HStack {
-                            Text(option)
+                            Text(localizationManager.localizedString(for: option))
                                 .foregroundStyle(selection == option ? .black : .gray)
                                 .font(Font.custom("Quicksand-Regular", size: 20))
                             
@@ -58,20 +59,25 @@ struct DropDownView: View {
                         }
                     }
                 }
-//                    .transition(.move(edge: .bottom))
+                //                    .transition(.move(edge: .bottom))
             }
             
         }
         
-//            .background(.white)
+        //            .background(.white)
         .overlay(
             RoundedRectangle(cornerRadius: 10)
                 .stroke(Color.black, lineWidth: 1)
         )
         .frame(width: 200)
+        .onChange(of: localizationManager.currentLanguage) { _ in
+            // Re-render view when language changes
+            selection = selection // Re-trigger the binding
+        }
     }
 }
 
 #Preview {
-    DropDownView(selection: .constant("Option 1"), options: ["Option 1", "Option 2", "Option 3"])
+//    DropDownView(selection: .constant("Option 1"), options: ["Option 1", "Option 2", "Option 3"])
+    MenuView()
 }

@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct SeeFutureDialog: View {
+    @EnvironmentObject var localizationManager: LocalizationManager
+
     @State private var open: Bool = false
     @State private var isVisible = false
     @Binding var seeFuture: Bool
@@ -46,7 +48,8 @@ struct SeeFutureDialog: View {
                         
                         
                         ZStack(alignment: .top) {
-                            Text("Top Card")
+                            Text("Top Card", manager: localizationManager)
+                                .font(Font.custom("Quicksand-Regular", size: 20))
                                 .offset(y: -10)
                             
                             cards[cards.count - 1].frontImage
@@ -59,7 +62,7 @@ struct SeeFutureDialog: View {
                         .animation(.easeInOut, value: open)
                     }
                   
-                    Text("Got it")
+                    Text("Got it", manager: localizationManager)
                         .modifier(confirmButton())
                         .onTapGesture {
                             withAnimation(.easeInOut(duration: 0.5)) {
@@ -91,6 +94,7 @@ struct SeeFutureDialog: View {
 //    SeeFutureDialog(seeFuture: .constant(true), cards: cards)
 //    MenuView()
     SeeFutureDialog(seeFuture: .constant(true), cards: cards)
+        .environmentObject(LocalizationManager()) // Inject the LocalizationManager for the preview
 
 //    GameView(numberOfPlayers: 2)
 }
