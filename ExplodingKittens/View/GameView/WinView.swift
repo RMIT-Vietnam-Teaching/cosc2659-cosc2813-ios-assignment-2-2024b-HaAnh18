@@ -32,14 +32,14 @@ struct WinView: View {
                         .font(Font.custom("Quicksand-Bold", size: 62))
                         .scaleEffect(isZoom ? 4 : 1)
                     
-//                    if showReturn {
-//                        Button(action: {
-//                            presentationMode.wrappedValue.dismiss()
-//                        }, label: {
-//                            Text("Return")
-//                                .modifier(confirmButton())
-//                        })
-//                    }
+                    if showReturn {
+                        Button(action: {
+                            presentationMode.wrappedValue.dismiss()
+                        }, label: {
+                            Text("Return")
+                                .modifier(confirmButton())
+                        })
+                    }
                 }
             }
         }

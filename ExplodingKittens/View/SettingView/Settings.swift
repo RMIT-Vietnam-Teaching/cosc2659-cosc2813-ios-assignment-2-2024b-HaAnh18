@@ -10,6 +10,7 @@ import SwiftUI
 struct Settings: View {
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
     @EnvironmentObject var localizationManager: LocalizationManager
+    @EnvironmentObject var audioManager: AudioManager
 
     @State private var showingSheet: Bool = false
 

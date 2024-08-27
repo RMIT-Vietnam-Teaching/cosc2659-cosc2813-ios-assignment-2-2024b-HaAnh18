@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct PickCardList: View {
+    @EnvironmentObject var audioManager: AudioManager
+
     @State private var cardSize: CGFloat? = nil
     @Binding var cardGame: [Card]
     @Binding var playTurn: Bool
@@ -18,7 +20,7 @@ struct PickCardList: View {
     @Binding var winGame: Bool?
     @Binding var stealCard: Bool
     @Binding var showTurn: Bool
-    @Binding var isGameDataAvailable: Bool
+    @Binding var isGameDataAvailable: Bool?
     var numberOfPlayers: Int
     let aiTurn: () -> Void
     var screenSize: ScreenSizeCategory
@@ -35,7 +37,8 @@ struct PickCardList: View {
                             if playTurn {
                                 withAnimation(.spring()) {
                                     getRandomCard(card: card, to: &playerCards, from: &cardGame)
-                                    
+                                    audioManager.playSoundEffect(sound: "pick-card", type: "mp3")
+
                                     
                                     if card.name == "Bomb" {
                                         addCard(card: card, count: 1, to: &droppedCards, remove: true, from: &playerCards)
@@ -58,6 +61,7 @@ struct PickCardList: View {
                                                 winGame = false
                                                 stealCard = false
                                                 isGameDataAvailable = false
+                                                audioManager.playSoundEffect(sound: "gameover", type: "mp3")
                                             }
                                         }
                                     }

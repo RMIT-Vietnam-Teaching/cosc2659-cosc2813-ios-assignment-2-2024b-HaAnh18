@@ -9,8 +9,9 @@ import SwiftUI
 
 struct MenuView: View {
     @StateObject private var localizationManager = LocalizationManager()
+    @StateObject private var audioManager = AudioManager()
 
-    @State private var isGameDataAvailable: Bool = false
+    @State private var isGameDataAvailable: Bool?
     @State private var language: String = "English"
     @State private var appearanceMode: AppearanceMode = .light
     @State private var colorScheme: ColorScheme?
@@ -39,7 +40,7 @@ struct MenuView: View {
                                 
                                 VStack(alignment: .leading) {
                                     VStack(spacing: 10) {
-                                        if isGameDataAvailable {
+                                        if isGameDataAvailable != nil && isGameDataAvailable == true {
                                             NavigationLink(destination: GameView(isGameDataAvailable: $isGameDataAvailable, modeGame: $modeGame, resumeGame: true)) {
                                                 Text("Resume Game", manager: localizationManager)
                                                     .modifier(buttonCapsule())
@@ -54,6 +55,7 @@ struct MenuView: View {
                                         NavigationLink(destination: Leaderboard()) {
                                             Text("Leaderboard", manager: localizationManager)
                                                 .modifier(buttonCapsule())
+                                                 
                                         }
                                         
                                         NavigationLink(destination: PlayCardTutorial()) {
@@ -78,7 +80,9 @@ struct MenuView: View {
                 
             }
             .onAppear {
-                isGameDataAvailable = UserDefaults.standard.data(forKey: "gameData") != nil
+                if isGameDataAvailable == nil {
+                    isGameDataAvailable = UserDefaults.standard.data(forKey: "gameData") != nil
+                }
                 if let mode = UserDefaults.standard.string(forKey: "modeGame") {
                     modeGame = mode
                 } else {
@@ -90,10 +94,12 @@ struct MenuView: View {
                 } else {
                     print("No modeGame data found in UserDefaults.")
                 }
+//                audioManager.playBackgroundMusic(fileName: "background", fileType: "mp3")
             }
         }
         .preferredColorScheme(colorScheme) // Set the preferred color scheme
         .environmentObject(localizationManager)
+        .environmentObject(audioManager)
 
     }
     

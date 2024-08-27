@@ -11,6 +11,7 @@ struct GameView: View {
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
     
     @EnvironmentObject var localizationManager: LocalizationManager
+    @EnvironmentObject var audioManager: AudioManager
 
     @State private var draggedCard: Card?
     @State private var cardGame: [Card] = []
@@ -30,7 +31,7 @@ struct GameView: View {
     @State private var showingSheet: Bool = false
 
     @State private var cardOffsets: [CGSize] = []
-    @Binding var isGameDataAvailable: Bool
+    @Binding var isGameDataAvailable: Bool?
     @Binding var modeGame: String
     
     var resumeGame: Bool
@@ -142,6 +143,7 @@ struct GameView: View {
                                     .scaleEffect(showTurn ? 1 : 0.5) // Adjust the scale effect for animation
                                     .opacity(showTurn ? 1 : 0)
                             }
+                            
                             HStack(spacing: playerList[0].cards.count < 10 ? -80 : -100) {
                                 ForEach(playerList[0].cards.indices, id: \.self) { index in
                                     let card = playerList[0].cards[index]
@@ -238,9 +240,12 @@ struct GameView: View {
                 }
             }
             .onDisappear {
-               saveGameDataToUserDefaults()
-                
-
+                if playerName != "" && winGame != false && winGame != true {
+                    saveGameDataToUserDefaults()
+                    isGameDataAvailable = true
+//                } else {
+                    UserDefaults.standard.removeObject(forKey: "gameData")
+                }
             }
 
         }
@@ -275,7 +280,8 @@ struct GameView: View {
         if playerList[currentTurn].countinuePlay {
             withAnimation(.spring()) {
                 let playCard = playRandomCard(from: &playerList[currentTurn].cards, to: &droppedCards)
-                
+                audioManager.playSoundEffect(sound: "play-card", type: "mp3")
+
                 if let playCard = playCard {
                     checkCard(card: playCard, currentTurn: currentTurn, players: &playerList, cardGame: &cardGame, numberOfPlayers: numberOfPlayers) {
                         shouldSteal in
@@ -289,6 +295,7 @@ struct GameView: View {
                         let card = cardGame[cardGame.count - 1]
                         
                         getRandomCard(card: card, to: &playerList[currentTurn].cards, from: &cardGame)
+                        audioManager.playSoundEffect(sound: "pick-card", type: "mp3")
 
                         if card.name == "Bomb" {
                             addCard(card: card, count: 1, to: &droppedCards, remove: true, from: &playerList[currentTurn].cards)
@@ -327,9 +334,11 @@ struct GameView: View {
         
         if checking {
             winGame = true
+            audioManager.playSoundEffect(sound: "winning", type: "mp3")
             stealCard = false
             updatePlayerResult(name: playerName, didWin: true)
-            removeGameDataFromUserDefaults()
+//            removeGameDataFromUserDefaults()
+            UserDefaults.standard.removeObject(forKey: "gameData")
             isGameDataAvailable = false
         }
     }
@@ -392,9 +401,11 @@ struct GameView: View {
 
 #Preview {
 //    GameView(numberOfPlayers: 2)
-//    MenuView()
-    GameView(isGameDataAvailable: .constant(false), modeGame: .constant("Hard"), resumeGame: false)
-        .environmentObject(LocalizationManager()) // Inject the LocalizationManager for the preview
+    MenuView()
+//    GameView(isGameDataAvailable: .constant(false), modeGame: .constant("Hard"), resumeGame: false)
+//        .environmentObject(LocalizationManager()) // Inject the LocalizationManager for the preview
+//        .environmentObject(AudioManager()) // Inject the LocalizationManager for the preview
+
 }
 
 

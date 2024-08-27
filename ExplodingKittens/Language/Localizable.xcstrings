@@ -1,6 +1,21 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "" : {
+
+    },
+    "%@" : {
+
+    },
+    "%@ %%" : {
+
+    },
+    "%lld" : {
+
+    },
+    "%lld cards left" : {
+
+    },
     "2 players" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -210,6 +225,9 @@
           }
         }
       }
+    },
+    "Exploding Kittens" : {
+
     },
     "Force any other player to give you 1 card from their hand. They choose which card to give you." : {
       "extractionState" : "manual",
@@ -576,6 +594,9 @@
         }
       }
     },
+    "Return" : {
+
+    },
     "See The Future" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -652,6 +673,12 @@
           }
         }
       }
+    },
+    "Top 5 highest players" : {
+
+    },
+    "Top Card" : {
+
     },
     "Tutorial" : {
       "extractionState" : "manual",

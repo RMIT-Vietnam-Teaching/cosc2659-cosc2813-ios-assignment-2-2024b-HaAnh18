@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct DraggableCard: View {
+    @EnvironmentObject var audioManager: AudioManager
+
     let card: Card
     let dropZoneFrame: CGRect // Drop zone frame
     @Binding var currentTurn: Int
@@ -28,7 +30,7 @@ struct DraggableCard: View {
             card.frontImage
                 .resizable()
                 .scaledToFit()
-                .frame(width: cardSize, height: cardSize)
+                .frame(width: screenSize == .medium ? 150 : screenSize == .small ? 140 : 220, height: screenSize == .medium ? 150 : screenSize == .small ? 140 : 220)
                 .offset(cardOffset)
                 .gesture(
                     DragGesture()
@@ -58,6 +60,7 @@ struct DraggableCard: View {
                                     currentCard = card
                                     checkPlayerCard(card: card)
                                     addCard(card: card, count: 1, to: &droppedCards, remove: true, from: &playerCards)
+                                    audioManager.playSoundEffect(sound: "play-card", type: "mp3")
                                 }
                             } else {
                                 // Reset the card to its original position
@@ -123,7 +126,7 @@ struct DraggableCard: View {
         case .medium:
             cardSize = 150
         case .large:
-            cardSize = 200
+            cardSize = 220
         case .extraLarge:
             cardSize = 120
         }

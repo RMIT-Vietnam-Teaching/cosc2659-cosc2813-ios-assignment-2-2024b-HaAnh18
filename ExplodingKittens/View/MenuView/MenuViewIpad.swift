@@ -10,7 +10,7 @@ import SwiftUI
 struct MenuViewIpad: View {
     @EnvironmentObject var localizationManager: LocalizationManager
 
-    @Binding var isGameDataAvailable: Bool
+    @Binding var isGameDataAvailable: Bool?
     @Binding var language: String
     @Binding var appearanceMode: AppearanceMode
     @Binding var colorScheme: ColorScheme?
@@ -25,7 +25,7 @@ struct MenuViewIpad: View {
             
             VStack(alignment: .leading) {
                 VStack(spacing: 10) {
-                    if isGameDataAvailable {
+                    if isGameDataAvailable != nil && isGameDataAvailable == true {
                         NavigationLink(destination: GameView(isGameDataAvailable: $isGameDataAvailable, modeGame: $modeGame, resumeGame: true)) {
                             Text("Resume Game", manager: localizationManager)
                                 .modifier(buttonCapsule())
