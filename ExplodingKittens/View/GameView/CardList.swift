@@ -22,7 +22,7 @@ struct CardList: View {
                         .resizable()
                         .frame(width: screenSize == .medium ? 110 : screenSize == .small ? 90 : 180 , height: screenSize == .medium ? 110 : screenSize == .small ? 90 : 180)
                         .scaledToFit()
-                        .rotationEffect(.degrees(position == "top" ? 180 : position == "left" ? 90 : -90))
+                        .rotationEffect(.degrees(180))
                 }
                 .padding(.vertical, -7)
             }
@@ -34,7 +34,7 @@ struct CardList: View {
                         .resizable()
                         .frame(width: screenSize == .medium ? 110 : screenSize == .small ? 90 : 180, height: screenSize == .medium ? 110 : screenSize == .small ? 90 : 180)
                         .scaledToFit()
-                        .rotationEffect(.degrees(position == "top" ? 180 : position == "left" ? 90 : -90))
+                        .rotationEffect(.degrees(position == "left" ? 90 : -90))
                 }
             }
             .frame(width: position == "top" ? 300 : 80, height: position == "top" ? 80 : 200)
@@ -44,7 +44,7 @@ struct CardList: View {
 }
 
 #Preview {
-    MenuView()
-//    CardList(cards: cards, position: "right")
+//    MenuView()
+    CardList(cards: cards, position: "top", screenSize: .large)
 //    GameView(numberOfPlayers: 4)
 }

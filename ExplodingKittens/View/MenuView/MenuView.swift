@@ -67,7 +67,6 @@ struct MenuView: View {
                                             Text("Settings", manager: localizationManager)
                                                 .modifier(buttonCapsule())
                                         }
-                                        
                                     }
                                 }
                                 .frame(width: size.width / 2)
@@ -77,7 +76,6 @@ struct MenuView: View {
                         }
                     }
                 }
-                
             }
             .onAppear {
                 if isGameDataAvailable == nil {
@@ -102,15 +100,10 @@ struct MenuView: View {
         .environmentObject(audioManager)
 
     }
-    
-  
-    
 }
 
 #Preview {
     MenuView()
-//        .environment(\.locale, Locale(identifier: "VI"))
-
 }
 
 

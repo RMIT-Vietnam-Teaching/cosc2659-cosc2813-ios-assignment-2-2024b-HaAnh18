@@ -14,7 +14,26 @@
 
     },
     "%lld cards left" : {
-
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "needs_review",
+                  "value" : "%lld cards left"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "new",
+                  "value" : "%lld cards left"
+                }
+              }
+            }
+          }
+        }
+      }
     },
     "2 players" : {
       "extractionState" : "manual",
@@ -673,6 +692,9 @@
           }
         }
       }
+    },
+    "System" : {
+      "extractionState" : "manual"
     },
     "Top 5 highest players" : {
 

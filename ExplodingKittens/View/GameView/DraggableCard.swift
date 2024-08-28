@@ -19,7 +19,6 @@ struct DraggableCard: View {
     @Binding var stealOther: Bool
     @Binding var cardGame: [Card]
     @Binding var cardOffset: CGSize
-    @Binding var currentCard: Card?
     @Binding var droppedCards: [Card]
     @Binding var playerCards: [Card]
     @State private var cardSize: CGFloat = 10
@@ -57,7 +56,7 @@ struct DraggableCard: View {
                             if isInsideDropZone && currentTurn == 0 {
                                 // Card is in the drop zone, so make it disappear
                                 withAnimation {
-                                    currentCard = card
+//                                    currentCard = card
                                     checkPlayerCard(card: card)
                                     addCard(card: card, count: 1, to: &droppedCards, remove: true, from: &playerCards)
                                     audioManager.playSoundEffect(sound: "play-card", type: "mp3")

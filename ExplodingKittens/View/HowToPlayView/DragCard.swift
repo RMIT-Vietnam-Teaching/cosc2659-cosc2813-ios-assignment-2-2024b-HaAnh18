@@ -8,14 +8,12 @@
 import SwiftUI
 
 struct DragCard: View {
-    let dropZoneSize: CGSize
     let card: Card
-    @Binding var isDragging: Bool
-    @Binding var isCardInDropZone: Bool
+    let dropZoneFrame: CGRect // Drop zone frame
+//    @Binding var isDragging: Bool
+//    @Binding var isCardInDropZone: Bool
     @Binding var cardOffset: CGSize
     @Binding var currentCard: Card?
-    let cardIndex: Int // Index of the card
-    let dropZoneFrame: CGRect // Drop zone frame
     @Binding var cardVisible: Bool // Track visibility of the card
     @State private var cardSize: CGFloat = 10
     var screenSize: ScreenSizeCategory
@@ -32,10 +30,10 @@ struct DragCard: View {
                     DragGesture()
                         .onChanged { gesture in
                             self.cardOffset = gesture.translation
-                            self.isDragging = true
+//                            self.isDragging = true
                         }
                         .onEnded { _ in
-                            self.isDragging = false
+//                            self.isDragging = false
                             
                             // Calculate the card's center position in global coordinates
                             let cardCenterX = self.cardOffset.width + cardSize / 2
@@ -55,19 +53,18 @@ struct DragCard: View {
                                 withAnimation {
                                     currentCard = card
                                     self.cardVisible = false
-                                    self.isCardInDropZone = true
+//                                    self.isCardInDropZone = true
                                 }
                             } else {
                                 // Reset the card to its original position
                                 withAnimation {
                                     self.cardOffset = .zero
-                                    self.isCardInDropZone = false
+//                                    self.isCardInDropZone = false
                                 }
                             }
                         }
                 )
         }
-        .animation(.easeInOut(duration: 0.3), value: isDragging)
         .onAppear {
             setComponentSize()
         }

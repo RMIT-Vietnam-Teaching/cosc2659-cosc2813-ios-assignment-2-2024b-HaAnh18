@@ -12,10 +12,8 @@ struct PlayCardTutorial: View {
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
     @EnvironmentObject var localizationManager: LocalizationManager
 
-    @State private var cardOffsets: [CGSize] = Array(repeating: .zero, count: cards.count) // For two cards
-    @State private var isDragging = Array(repeating: false, count: cards.count)
-    @State private var isCardInDropZone = Array(repeating: false, count: cards.count) // Track if each card is in the drop zone
-    @State private var cardVisible = Array(repeating: true, count: cards.count) // Track visibility of each card
+    @State private var cardOffsets: [CGSize] = Array(repeating: .zero, count: cards.count)
+    @State private var cardVisible = Array(repeating: true, count: cards.count)
     @State private var currentCard: Card?
     @State private var showingSheet: Bool = false
     @State private var pickCards: [Card] = cards.filter {$0.name != "Bomb"}
@@ -23,14 +21,8 @@ struct PlayCardTutorial: View {
     @State private var step1: Bool = false
     @State private var step2: Bool = false
     @State private var step3: Bool = false
-    @State private var dragCardSize: CGFloat = 10
-    @State private var pickCardSize: CGFloat = 10
-    @State private var dropZone: CGFloat = 10
     @State private var yourTurn: Bool = true
-    
-    let dropZoneSize = CGSize(width: 150, height: 150)
-    let cardSize = CGSize(width: 140, height: 150)
-    
+        
     var body: some View {
         GeometryReader { geometry in
             let sizeCategory = getScreenSizeCategory(for: geometry.size)
@@ -138,8 +130,6 @@ struct PlayCardTutorial: View {
                         .onChange(of: playerCards.count, initial: false, { oldCount, newCount in
                             if newCount != oldCount {
                                 cardOffsets.append(.zero)
-                                isDragging.append(false)
-                                isCardInDropZone.append(false)
                                 cardVisible.append(true)
                             }
                         })
@@ -190,12 +180,8 @@ struct PlayCardTutorial: View {
                             let card = playerCards[index]
                             if cardVisible[index] {
                                 DragCard(
-                                    dropZoneSize: dropZoneSize, card: card,
-                                    isDragging: $isDragging[index],
-                                    isCardInDropZone: $isCardInDropZone[index],
+                                    card: card, dropZoneFrame: geometry.frame(in: .global),
                                     cardOffset: $cardOffsets[index], currentCard: $currentCard,
-                                    cardIndex: index,
-                                    dropZoneFrame: geometry.frame(in: .global),
                                     cardVisible: $cardVisible[index], screenSize: sizeCategory
                                 )
                             }
@@ -203,7 +189,6 @@ struct PlayCardTutorial: View {
                     }
                     
                     .frame(height: geometry.size.height / 3)
-//                    .padding(.bottom, 40)
                     
                     Spacer()
                 }

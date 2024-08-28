@@ -13,10 +13,8 @@ struct GameView: View {
     @EnvironmentObject var localizationManager: LocalizationManager
     @EnvironmentObject var audioManager: AudioManager
 
-    @State private var draggedCard: Card?
     @State private var cardGame: [Card] = []
     @State private var droppedCards: [Card] = []
-    @State private var currentCard: Card? = nil
     @State private var playTurn: Bool = true
     @State private var playerList: [Player] = []
     @State private var currentTurn: Int = 0
@@ -112,12 +110,13 @@ struct GameView: View {
                         HStack {
                             if !playerList.isEmpty {
                                 PickCardList(cardGame: $cardGame, playTurn: $playTurn, playerCards: $playerList[0].cards, currentTurn: $currentTurn, playerList: $playerList, droppedCards: $droppedCards, winGame: $winGame, stealCard: $stealCard, showTurn: $showTurn, isGameDataAvailable: $isGameDataAvailable, numberOfPlayers: numberOfPlayers, aiTurn: aiTurn, screenSize: sizeCategory)
-                                                                    .onChange(of: currentTurn, initial: true) {
-                                                                        checkWin()
-                                                                        saveGameDataToUserDefaults()
-                                                                    }
+                                    .onChange(of: currentTurn, initial: true) {
+                                        checkWin()
+                                        saveGameDataToUserDefaults()
+                                    }
+                                    
                                 
-                                DropDestination(droppedCards: $droppedCards, playTurn: $playTurn, draggedCard: $draggedCard, playerCards: $playerList[0].cards, currentCard: $currentCard, seeFuture: $seeFuture, currentTurn: $currentTurn, playerList: $playerList, stealOther: $stealOther, cardGame: $cardGame, screenSize: sizeCategory)
+                                DropDestination(droppedCards: $droppedCards, screenSize: sizeCategory)
                             }
                         }
                         
@@ -147,7 +146,7 @@ struct GameView: View {
                             HStack(spacing: playerList[0].cards.count < 10 ? -80 : -100) {
                                 ForEach(playerList[0].cards.indices, id: \.self) { index in
                                     let card = playerList[0].cards[index]
-                                    DraggableCard( card: card, dropZoneFrame: geometry.frame(in: .global), currentTurn: $currentTurn, playerList: $playerList, playTurn: $playTurn, seeFuture: $seeFuture, stealOther: $stealOther, cardGame: $cardGame,  cardOffset: $cardOffsets[index], currentCard: $currentCard,  droppedCards: $droppedCards, playerCards: $playerList[0].cards, screenSize: sizeCategory)
+                                    DraggableCard( card: card, dropZoneFrame: geometry.frame(in: .global), currentTurn: $currentTurn, playerList: $playerList, playTurn: $playTurn, seeFuture: $seeFuture, stealOther: $stealOther, cardGame: $cardGame,  cardOffset: $cardOffsets[index], droppedCards: $droppedCards, playerCards: $playerList[0].cards, screenSize: sizeCategory)
                                 }
                             }
                             .onChange(of: playerList[0].cards.count, initial: true) {
@@ -243,7 +242,7 @@ struct GameView: View {
                 if playerName != "" && winGame != false && winGame != true {
                     saveGameDataToUserDefaults()
                     isGameDataAvailable = true
-//                } else {
+                } else {
                     UserDefaults.standard.removeObject(forKey: "gameData")
                 }
             }
@@ -307,6 +306,7 @@ struct GameView: View {
                                 addCard(card: card, count: 1, to: &cardGame, remove: true, from: &droppedCards)
                             } else {
                                 playerList[currentTurn].countinuePlay = false
+                                stealCard = false
                             }
                         }
                     }
@@ -333,12 +333,11 @@ struct GameView: View {
         }
         
         if checking {
+            stealCard = false
             winGame = true
             audioManager.playSoundEffect(sound: "winning", type: "mp3")
-            stealCard = false
             updatePlayerResult(name: playerName, didWin: true)
-//            removeGameDataFromUserDefaults()
-            UserDefaults.standard.removeObject(forKey: "gameData")
+            removeGameDataFromUserDefaults()
             isGameDataAvailable = false
         }
     }
@@ -348,10 +347,8 @@ struct GameView: View {
     func saveGameDataToUserDefaults() {
         let gameData = GameData(
             playerList: self.playerList,
-            draggedCard: self.draggedCard,
             cardGame: self.cardGame,
             droppedCards: self.droppedCards,
-            currentCard: self.currentCard,
             playTurn: self.playTurn,
             currentTurn: self.currentTurn,
             stealCard: self.stealCard,
@@ -377,10 +374,8 @@ struct GameView: View {
            let decodedData = try? JSONDecoder().decode(GameData.self, from: savedData) {
             // Assign the decoded data to the state variables
             self.playerList = decodedData.playerList
-            self.draggedCard = decodedData.draggedCard
             self.cardGame = decodedData.cardGame
             self.droppedCards = decodedData.droppedCards
-            self.currentCard = decodedData.currentCard
             self.playTurn = decodedData.playTurn
             self.currentTurn = decodedData.currentTurn
             self.stealCard = decodedData.stealCard
@@ -402,9 +397,9 @@ struct GameView: View {
 #Preview {
 //    GameView(numberOfPlayers: 2)
     MenuView()
-//    GameView(isGameDataAvailable: .constant(false), modeGame: .constant("Hard"), resumeGame: false)
+//    GameView(isGameDataAvailable: .constant(true), modeGame: .constant("Hard"), resumeGame: false)
 //        .environmentObject(LocalizationManager()) // Inject the LocalizationManager for the preview
-//        .environmentObject(AudioManager()) // Inject the LocalizationManager for the preview
+//        .environmentObject(AudioManager())  Inject the LocalizationManager for the preview
 
 }
 

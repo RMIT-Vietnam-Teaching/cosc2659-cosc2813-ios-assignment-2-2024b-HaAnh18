@@ -10,10 +10,8 @@ import SwiftUI
 
 struct GameData: Codable {
     var playerList: [Player] = []
-    var draggedCard: Card?
     var cardGame: [Card] = []
     var droppedCards: [Card] = []
-    var currentCard: Card?
     var playTurn: Bool = true
     var currentTurn: Int = 0
     var stealCard: Bool = false
@@ -30,7 +28,6 @@ func loadGameData() -> GameData? {
     if let savedData = UserDefaults.standard.data(forKey: "gameData"),
        let decodedData = try? JSONDecoder().decode(GameData.self, from: savedData) {
         print("Game data loaded")
-//        gameData = decodedData
         return decodedData
     }
     return nil
