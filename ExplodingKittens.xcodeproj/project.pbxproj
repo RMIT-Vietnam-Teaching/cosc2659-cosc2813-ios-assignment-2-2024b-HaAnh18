@@ -47,8 +47,8 @@
 		397E18D12C7394FD00D66D51 /* WinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397E18D02C7394FD00D66D51 /* WinView.swift */; };
 		397E18E82C74534C00D66D51 /* ScreenSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397E18E72C74534C00D66D51 /* ScreenSize.swift */; };
 		397E18EC2C74D77300D66D51 /* turn.gif in Resources */ = {isa = PBXBuildFile; fileRef = 397E18EB2C74D77300D66D51 /* turn.gif */; };
-		39914AAF2C7F086D0027C4DB /* Quicksand-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 39914AAE2C7F086D0027C4DB /* Quicksand-Regular.ttf */; };
-		39914AB12C7F087A0027C4DB /* Quicksand-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 39914AB02C7F087A0027C4DB /* Quicksand-Bold.ttf */; };
+		39914AB32C7F0A230027C4DB /* Quicksand-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 39914AB22C7F0A230027C4DB /* Quicksand-Bold.ttf */; };
+		39914AB52C7F0A360027C4DB /* Quicksand-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 39914AB42C7F0A360027C4DB /* Quicksand-Regular.ttf */; };
 		3993DE472C6E300C009D31CE /* SeeFutureDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3993DE462C6E300C009D31CE /* SeeFutureDialog.swift */; };
 		39A148CD2C68CE2500D35D71 /* ExplodingKittensApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A148CC2C68CE2500D35D71 /* ExplodingKittensApp.swift */; };
 		39A148CF2C68CE2500D35D71 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A148CE2C68CE2500D35D71 /* ContentView.swift */; };
@@ -112,8 +112,8 @@
 		397E18DE2C739EE700D66D51 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		397E18E72C74534C00D66D51 /* ScreenSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSize.swift; sourceTree = "<group>"; };
 		397E18EB2C74D77300D66D51 /* turn.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = turn.gif; sourceTree = "<group>"; };
-		39914AAE2C7F086D0027C4DB /* Quicksand-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Quicksand-Regular.ttf"; path = "../../../../../../../../Downloads/Quicksand-2/static/Quicksand-Regular.ttf"; sourceTree = "<group>"; };
-		39914AB02C7F087A0027C4DB /* Quicksand-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Quicksand-Bold.ttf"; path = "../../../../../../../../Downloads/Quicksand-2/static/Quicksand-Bold.ttf"; sourceTree = "<group>"; };
+		39914AB22C7F0A230027C4DB /* Quicksand-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Quicksand-Bold.ttf"; path = "../../../../../../../../Downloads/Quicksand-3/static/Quicksand-Bold.ttf"; sourceTree = "<group>"; };
+		39914AB42C7F0A360027C4DB /* Quicksand-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Quicksand-Regular.ttf"; path = "../../../../../../../../Downloads/Quicksand-3/static/Quicksand-Regular.ttf"; sourceTree = "<group>"; };
 		3993DE462C6E300C009D31CE /* SeeFutureDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeFutureDialog.swift; sourceTree = "<group>"; };
 		39A148C92C68CE2500D35D71 /* ExplodingKittens.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExplodingKittens.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		39A148CC2C68CE2500D35D71 /* ExplodingKittensApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplodingKittensApp.swift; sourceTree = "<group>"; };
@@ -184,9 +184,9 @@
 		393FD41B2C77518A00787514 /* Font */ = {
 			isa = PBXGroup;
 			children = (
+				39914AB22C7F0A230027C4DB /* Quicksand-Bold.ttf */,
+				39914AB42C7F0A360027C4DB /* Quicksand-Regular.ttf */,
 				396B06292C78A5C000490C0D /* Quicksand-Medium.ttf */,
-				39914AAE2C7F086D0027C4DB /* Quicksand-Regular.ttf */,
-				39914AB02C7F087A0027C4DB /* Quicksand-Bold.ttf */,
 			);
 			path = Font;
 			sourceTree = "<group>";
@@ -398,20 +398,20 @@
 				397E18CF2C738FBF00D66D51 /* bomb.gif in Resources */,
 				3957A0232C7C85A800CDEAFD /* background.mp3 in Resources */,
 				3957A02D2C7DACD700CDEAFD /* pick-card.mp3 in Resources */,
-				39914AAF2C7F086D0027C4DB /* Quicksand-Regular.ttf in Resources */,
 				397E18EC2C74D77300D66D51 /* turn.gif in Resources */,
 				39A148D42C68CE2700D35D71 /* Preview Assets.xcassets in Resources */,
 				396B06412C7B224B00490C0D /* modeGame.json in Resources */,
 				39A148DF2C68CE4300D35D71 /* cards.json in Resources */,
 				39A148D12C68CE2700D35D71 /* Assets.xcassets in Resources */,
 				3957A02B2C7DABAF00CDEAFD /* play-card.mp3 in Resources */,
+				39914AB52C7F0A360027C4DB /* Quicksand-Regular.ttf in Resources */,
 				396B06302C78E1B300490C0D /* winning.gif in Resources */,
-				39914AB12C7F087A0027C4DB /* Quicksand-Bold.ttf in Resources */,
 				3957A0312C7DB45A00CDEAFD /* gameover.mp3 in Resources */,
 				3957A02F2C7DAF4900CDEAFD /* winning.mp3 in Resources */,
 				396B062A2C78A5C100490C0D /* Quicksand-Medium.ttf in Resources */,
 				396B06532C7B878F00490C0D /* Localizable.xcstrings in Resources */,
 				396B062E2C78D98E00490C0D /* exploding.gif in Resources */,
+				39914AB32C7F0A230027C4DB /* Quicksand-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
