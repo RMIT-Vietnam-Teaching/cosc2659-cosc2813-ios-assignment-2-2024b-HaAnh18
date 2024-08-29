@@ -16,6 +16,7 @@ struct Player: Equatable, Codable, Hashable {
     var win: Int = 0
     var lose: Int = 0
     var level: Int = 1
+    var score: Int = 0
     
     // Computed property to calculate the win rate
     var winRate: Double {
@@ -58,7 +59,7 @@ func savePlayers(_ players: [Player]) {
     }
 }
 
-func updatePlayerResult(name: String, didWin: Bool) {
+func updatePlayerResult(name: String, didWin: Bool, score: Int) {
     var players = getPlayers()
     
     if let index = players.firstIndex(where: { $0.name == name }) {

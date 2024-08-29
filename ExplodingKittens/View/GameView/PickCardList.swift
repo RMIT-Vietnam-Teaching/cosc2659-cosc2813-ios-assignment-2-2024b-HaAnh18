@@ -10,7 +10,6 @@ import SwiftUI
 struct PickCardList: View {
     @EnvironmentObject var audioManager: AudioManager
 
-    @State private var cardSize: CGFloat? = nil
     @Binding var cardGame: [Card]
     @Binding var playTurn: Bool
     @Binding var playerCards: [Card]
@@ -31,7 +30,7 @@ struct PickCardList: View {
                 ForEach(cardGame, id: \.self) { card in
                     card.backImage
                         .resizable()
-                        .frame(width: cardSize, height: cardSize)
+                        .frame(width: screenSize == .small ? 150 : screenSize == .medium ? 160 : 220, height: screenSize == .small ? 150 : screenSize == .medium ? 160 : 220)
                         .scaledToFit()
                         .onTapGesture {
                             if playTurn {
@@ -55,7 +54,7 @@ struct PickCardList: View {
                                             }
 
                                         } else {
-                                            updatePlayerResult(name: playerList[0].name, didWin: false)
+                                            updatePlayerResult(name: playerList[0].name, didWin: false, score: playerList[0].score)
                                             removeGameDataFromUserDefaults()
                                             withAnimation {
                                                 winGame = false
@@ -77,7 +76,6 @@ struct PickCardList: View {
             
         }
         .onAppear {
-            setComponentSize()
             showYourTurn()
         }
         .onChange(of: currentTurn, initial: true, { previousPlayer, currentPlayer in
@@ -116,19 +114,7 @@ struct PickCardList: View {
             }
         }
     }
-    
-    func setComponentSize() {
-        switch screenSize {
-        case .small:
-            cardSize = 150
-        case .medium:
-            cardSize = 180
-        case .large:
-            cardSize = 220
-        case .extraLarge:
-            cardSize = 120
-        }
-    }
+
 }
 
 #Preview {

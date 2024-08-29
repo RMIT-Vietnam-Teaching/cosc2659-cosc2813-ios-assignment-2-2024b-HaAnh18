@@ -652,6 +652,17 @@
         }
       }
     },
+    "Score:" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Điểm:"
+          }
+        }
+      }
+    },
     "See The Future" : {
       "extractionState" : "manual",
       "localizations" : {

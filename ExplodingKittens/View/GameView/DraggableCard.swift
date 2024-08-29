@@ -21,6 +21,7 @@ struct DraggableCard: View {
     @Binding var cardOffset: CGSize
     @Binding var droppedCards: [Card]
     @Binding var playerCards: [Card]
+    @Binding var currentScore: Int
     var screenSize: ScreenSizeCategory
 
     var body: some View {
@@ -36,8 +37,6 @@ struct DraggableCard: View {
                             self.cardOffset = gesture.translation
                         }
                         .onEnded { _ in
-//                            self.isDragging = false
-                            
                             let cardSize = screenSize == .medium ? 150 : screenSize == .small ? 140 : 220
                             // Calculate the card's center position in global coordinates
                             let cardCenterX = self.cardOffset.width + CGFloat(cardSize / 2)
@@ -73,6 +72,7 @@ struct DraggableCard: View {
         switch card.name {
         case "Skip":
             playerList[currentTurn].numberOfTurn -= 1
+            playerList[currentTurn].score += card.score
             
             if playerList[currentTurn].numberOfTurn == 0 {
                 playTurn = false
@@ -83,6 +83,7 @@ struct DraggableCard: View {
         case "Attack":
             playerList[currentTurn].numberOfTurn = 0
             playerList[(currentTurn + 1) % playerList.count].numberOfTurn += 1
+            playerList[currentTurn].score += card.score
             
             if playerList[currentTurn].numberOfTurn == 0 {
                 playTurn = false
@@ -91,6 +92,7 @@ struct DraggableCard: View {
             }
             break
         case "See The Future":
+            playerList[currentTurn].score += card.score
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 seeFuture = true
             }
@@ -101,9 +103,11 @@ struct DraggableCard: View {
             } else {
                 aiGiveCard(to: &playerCards, from: &playerList[1].cards)
             }
+            playerList[currentTurn].score += card.score
             break
         case "Shuffle":
             cardGame.shuffle()
+            playerList[currentTurn].score += card.score
             break
         default:
             break

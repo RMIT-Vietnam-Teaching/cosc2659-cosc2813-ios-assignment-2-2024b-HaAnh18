@@ -31,13 +31,13 @@ struct GameOverView: View {
                 VStack(spacing: 30) {
   
                     Text("Gameover", manager: localizationManager)
-                        .font(Font.custom("Quicksand-Bold", size: 62))
+                        .font(Font.custom("Quicksand-Bold", size: 51))
                         .scaleEffect(isZoom ? 3 : 1)
                     
-//                    if showReturn {
-//                        Text("Return", manager: localizationManager)
-//                            .modifier(confirmButton())
-//                    }
+                    if showReturn {
+                        Text("Return", manager: localizationManager)
+                            .modifier(confirmButton())
+                    }
                 }
             }
         }

@@ -29,7 +29,7 @@ struct WinView: View {
                 
                 VStack(spacing: 30) {
                     Text("Winning", manager: localizationManager)
-                        .font(Font.custom("Quicksand-Bold", size: 62))
+                        .font(Font.custom("Quicksand-Bold", size: 51))
                         .scaleEffect(isZoom ? 4 : 1)
                     
                     if showReturn {

@@ -27,6 +27,7 @@ struct GameView: View {
     @State private var winGame: Bool?
     @State private var playerName: String = ""
     @State private var showingSheet: Bool = false
+    @State private var currentScore: Int = 0
 
     @State private var cardOffsets: [CGSize] = []
     @Binding var isGameDataAvailable: Bool?
@@ -77,11 +78,22 @@ struct GameView: View {
                                 Text("\(playerList[currentTurn].numberOfTurn)")
                                     .font(Font.custom("Quicksand-Regular", size: 20))
                             }
+                            
+//                            if currentTurn == 0 {
+                                HStack {
+                                    Text("Score:", manager: localizationManager)
+                                        .font(Font.custom("Quicksand-Medium", size: 20))
+                                        .frame(width: 130)
+                                    
+                                    Text("\(playerList[currentTurn].score)")
+                                        .font(Font.custom("Quicksand-Regular", size: 20))
+                                }
+//                            }
                         }
                     }
                 }
-                .frame(height: 30)
-                .padding(.top, 10)
+//                .frame(height: 50)
+//                .padding(.top, 10)
                 .padding(.horizontal, 20)
                 
                 
@@ -147,7 +159,7 @@ struct GameView: View {
                             HStack(spacing: playerList[0].cards.count < 10 ? -80 : -100) {
                                 ForEach(playerList[0].cards.indices, id: \.self) { index in
                                     let card = playerList[0].cards[index]
-                                    DraggableCard( card: card, dropZoneFrame: geometry.frame(in: .global), currentTurn: $currentTurn, playerList: $playerList, playTurn: $playTurn, seeFuture: $seeFuture, stealOther: $stealOther, cardGame: $cardGame,  cardOffset: $cardOffsets[index], droppedCards: $droppedCards, playerCards: $playerList[0].cards, screenSize: sizeCategory)
+                                    DraggableCard( card: card, dropZoneFrame: geometry.frame(in: .global), currentTurn: $currentTurn, playerList: $playerList, playTurn: $playTurn, seeFuture: $seeFuture, stealOther: $stealOther, cardGame: $cardGame,  cardOffset: $cardOffsets[index], droppedCards: $droppedCards, playerCards: $playerList[0].cards, currentScore: $currentScore, screenSize: sizeCategory)
                                 }
                             }
                             .onChange(of: playerList[0].cards.count, initial: true) {
@@ -337,7 +349,7 @@ struct GameView: View {
             stealCard = false
             winGame = true
             audioManager.playSoundEffect(sound: "winning", type: "mp3")
-            updatePlayerResult(name: playerName, didWin: true)
+            updatePlayerResult(name: playerName, didWin: true, score: playerList[0].score)
             removeGameDataFromUserDefaults()
             isGameDataAvailable = false
         }

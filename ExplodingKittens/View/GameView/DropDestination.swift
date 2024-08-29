@@ -9,9 +9,7 @@ import SwiftUI
 
 struct DropDestination: View {
     @EnvironmentObject var localizationManager: LocalizationManager
-    
-    @State private var dropSize: CGFloat? = nil
-    @State private var cardSize: CGFloat? = nil
+ 
     @Binding var droppedCards: [Card]
     var screenSize: ScreenSizeCategory
     
@@ -19,12 +17,12 @@ struct DropDestination: View {
         ZStack {
             Rectangle()
                 .strokeBorder(style: StrokeStyle(lineWidth: 2, dash: [10, 5]))
-                .frame(width: dropSize, height: dropSize)
+                .frame(width: screenSize == .small ? 150 : screenSize == .medium ? 160 : 220, height: screenSize == .small ? 150 : screenSize == .medium ? 160 : 220)
             
             if droppedCards.count == 0 {
                 Text("Drop Your Card Here", manager: localizationManager)
                     .font(Font.custom("Quicksand-Medium", size: 24))
-                    .frame(width: dropSize)
+                    .frame(width: screenSize == .small ? 140 : screenSize == .medium ? 150 : 210)
                     .multilineTextAlignment(.center)
             }
             
@@ -33,33 +31,14 @@ struct DropDestination: View {
                 card.frontImage
                     .resizable()
                     .rotationEffect(.degrees(index % 2 == 0 ? Double(index) * 1 : Double(index) * -1))
-                    .frame(width: cardSize, height: cardSize)
+                    .frame(width: screenSize == .small ? 140 : screenSize == .medium ? 150 : 210, height: screenSize == .small ? 140 : screenSize == .medium ? 150 : 210)
                     .scaledToFit()
             }
-            .frame(width: 160, height: 160)
+//            .frame(width: 160, height: 160)
             
         }
-        .onAppear {
-            setComponentSize()
-        }
     }
-    
-    func setComponentSize() {
-        switch screenSize {
-        case .small:
-            dropSize = 150
-            cardSize = 140
-        case .medium:
-            dropSize = 160
-            cardSize = 150
-        case .large:
-            dropSize = 220
-            cardSize = 220
-        case .extraLarge:
-            dropSize = 120
-            cardSize = 100
-        }
-    }
+ 
 }
 
 #Preview {

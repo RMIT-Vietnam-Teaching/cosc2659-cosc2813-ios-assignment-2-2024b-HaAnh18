@@ -124,20 +124,24 @@ func checkCard(card: Card, currentTurn: Int, players: inout [Player], cardGame: 
     switch card.name {
     case "Skip":
         players[currentTurn].numberOfTurn = players[currentTurn].numberOfTurn - 1
+        players[currentTurn].score += card.score
         completion(false)
         break
         
     case "Attack":
         players[currentTurn].numberOfTurn -= 1
         players[(currentTurn + 1) % numberOfPlayers].numberOfTurn += 1
+        players[currentTurn].score += card.score
         completion(false)
         break
         
     case "See The Future":
+        players[currentTurn].score += card.score
         completion(false)
         break
         
     case "Steal A Card":
+        players[currentTurn].score += card.score
         let options = players.filter { $0.index != currentTurn }
         let stealPlayerIndex = options[Int.random(in: 0..<options.count)].index
 
@@ -156,6 +160,7 @@ func checkCard(card: Card, currentTurn: Int, players: inout [Player], cardGame: 
         break
         
     case "Shuffle":
+        players[currentTurn].score += card.score
         cardGame.shuffle()
         completion(false)
         break
