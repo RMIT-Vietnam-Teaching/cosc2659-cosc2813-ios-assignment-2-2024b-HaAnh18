@@ -12,12 +12,14 @@ struct PlayCardTutorial: View {
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
     @EnvironmentObject var localizationManager: LocalizationManager
 
+    @Binding var theme: String
+
     @State private var cardOffsets: [CGSize] = Array(repeating: .zero, count: cards.count)
     @State private var cardVisible = Array(repeating: true, count: cards.count)
     @State private var currentCard: Card?
     @State private var showingSheet: Bool = false
-    @State private var pickCards: [Card] = cards.filter {$0.name != "Bomb"}
-    @State private var playerCards: [Card] = cards.filter {$0.name != "Bomb"}
+    @State private var pickCards: [Card] = []
+    @State private var playerCards: [Card] = []
     @State private var step1: Bool = false
     @State private var step2: Bool = false
     @State private var step3: Bool = false
@@ -75,7 +77,7 @@ struct PlayCardTutorial: View {
                                 .foregroundColor(Color("custom-black"))
                         })
                         .sheet(isPresented: $showingSheet) {
-                            TabViewCardDescription( showingSheet: $showingSheet)
+                            TabViewCardDescription( showingSheet: $showingSheet, theme: $theme)
                                 .presentationDetents([.medium, .medium, .fraction(0.1)])
                         }
                     }
@@ -85,12 +87,12 @@ struct PlayCardTutorial: View {
 
                 
                 VStack(spacing: 0) {
-                    CardList(cards: Array(cards.prefix(5)), position: "top", screenSize: sizeCategory)
+                    CardList(cards: Array(pickCards.prefix(5)), position: "top", screenSize: sizeCategory)
                         .frame(height: geometry.size.height / 3 - 50)
                     HStack {
                         ZStack {
                             if !pickCards.isEmpty {
-                                ForEach(cards.filter { $0.name != "Bomb"}, id: \.self) { card in
+                                ForEach(pickCards.filter { $0.name != "Bomb"}, id: \.self) { card in
                                     card.backImage
                                         .resizable()
                                         .frame(width: sizeCategory == .medium ? 150 : 220, height: sizeCategory == .medium ? 150 : 220)
@@ -198,6 +200,9 @@ struct PlayCardTutorial: View {
         .ignoresSafeArea()
         .navigationBarBackButtonHidden(true)
         .onAppear {
+            pickCards = theme == "Rabbit" ? cardsV2.filter {$0.name != "Bomb"} : cards.filter {$0.name != "Bomb"}
+            
+            playerCards = theme == "Rabbit" ? cardsV2.filter {$0.name != "Bomb"} : cards.filter {$0.name != "Bomb"}
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                 withAnimation{
                     step1 = true
@@ -209,6 +214,6 @@ struct PlayCardTutorial: View {
 }
 
 #Preview {
-    PlayCardTutorial()
+    PlayCardTutorial(theme: .constant("Rabbit"))
         .environmentObject(LocalizationManager()) // Inject the LocalizationManager for the preview
 }

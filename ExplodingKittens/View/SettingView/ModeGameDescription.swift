@@ -29,6 +29,7 @@ struct ModeGameDescription: View {
         }
         .scrollIndicators(.hidden)
         .padding(.top, 70)
+        .padding(.horizontal, 30)
         .onAppear {
             cardGame = [
                 "Bomb": modeGame.bomb,

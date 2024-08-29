@@ -30,3 +30,4 @@ func decodeJsonFromJsonFile<T: Decodable>(jsonFileName: String, model: T.Type) -
 
 var cards: [Card] = decodeJsonFromJsonFile(jsonFileName: "cards.json", model: Card.self)
 var modeGame: [ModeGame] = decodeJsonFromJsonFile(jsonFileName: "modeGame.json", model: ModeGame.self)
+var cardsV2: [Card] = decodeJsonFromJsonFile(jsonFileName: "cards-v2.json", model: Card.self)

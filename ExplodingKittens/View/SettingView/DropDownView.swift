@@ -60,12 +60,9 @@ struct DropDownView: View {
                         }
                     }
                 }
-                //                    .transition(.move(edge: .bottom))
             }
             
         }
-        
-        //            .background(.white)
         .overlay(
             RoundedRectangle(cornerRadius: 10)
                 .stroke(Color("custom-black"), lineWidth: 1)

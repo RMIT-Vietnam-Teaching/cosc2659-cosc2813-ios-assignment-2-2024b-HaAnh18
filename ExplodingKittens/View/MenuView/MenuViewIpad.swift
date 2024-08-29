@@ -16,23 +16,24 @@ struct MenuViewIpad: View {
     @Binding var colorScheme: ColorScheme?
     @Binding var appearance: String
     @Binding var modeGame: String
+    @Binding var theme: String
     
     var body: some View {
         VStack(spacing: 0) {
-            Image("exploding-kitten")
+            Image(theme == "Rabbit" ? "exploding-kitten-2" : "exploding-kitten")
                 .resizable()
-                .frame(width: 250, height: 250)
+                .frame(width: 300, height: 300)
             
             VStack(alignment: .leading) {
                 VStack(spacing: 10) {
                     if isGameDataAvailable != nil && isGameDataAvailable == true {
-                        NavigationLink(destination: GameView(isGameDataAvailable: $isGameDataAvailable, modeGame: $modeGame, resumeGame: true)) {
+                        NavigationLink(destination: GameView(isGameDataAvailable: $isGameDataAvailable, modeGame: $modeGame, theme: $theme, resumeGame: true)) {
                             Text("Resume Game", manager: localizationManager)
                                 .modifier(buttonCapsule())
                         }
                     }
                     
-                    NavigationLink(destination: GameView(isGameDataAvailable: $isGameDataAvailable, modeGame: $modeGame, resumeGame: false)) {
+                    NavigationLink(destination: GameView(isGameDataAvailable: $isGameDataAvailable, modeGame: $modeGame, theme: $theme, resumeGame: false)) {
                         Text("New Game", manager: localizationManager)
                             .modifier(buttonCapsule())
                     }
@@ -42,12 +43,12 @@ struct MenuViewIpad: View {
                             .modifier(buttonCapsule())
                     }
                     
-                    NavigationLink(destination: PlayCardTutorial()) {
+                    NavigationLink(destination: PlayCardTutorial(theme: $theme)) {
                         Text("Tutorial", manager: localizationManager)
                             .modifier(buttonCapsule())
                     }
                     
-                    NavigationLink(destination: Settings(modeGame: $modeGame, language: $language, appearanceMode: $appearanceMode, colorScheme: $colorScheme, appearance: $appearance)) {
+                    NavigationLink(destination: Settings(modeGame: $modeGame, language: $language, appearanceMode: $appearanceMode, colorScheme: $colorScheme, appearance: $appearance, theme: $theme)) {
                         Text("Settings", manager: localizationManager)
                             .modifier(buttonCapsule())
                     }

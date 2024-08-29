@@ -21,7 +21,6 @@ struct DraggableCard: View {
     @Binding var cardOffset: CGSize
     @Binding var droppedCards: [Card]
     @Binding var playerCards: [Card]
-    @State private var cardSize: CGFloat = 10
     var screenSize: ScreenSizeCategory
 
     var body: some View {
@@ -35,14 +34,14 @@ struct DraggableCard: View {
                     DragGesture()
                         .onChanged { gesture in
                             self.cardOffset = gesture.translation
-//                            self.isDragging = true
                         }
                         .onEnded { _ in
 //                            self.isDragging = false
                             
+                            let cardSize = screenSize == .medium ? 150 : screenSize == .small ? 140 : 220
                             // Calculate the card's center position in global coordinates
-                            let cardCenterX = self.cardOffset.width + cardSize / 2
-                            let cardCenterY = self.cardOffset.height + cardSize / 2
+                            let cardCenterX = self.cardOffset.width + CGFloat(cardSize / 2)
+                            let cardCenterY = self.cardOffset.height + CGFloat(cardSize / 2)
                             
                             
                             // Check if the card is fully within the drop zone bounds using global coordinates
@@ -54,9 +53,7 @@ struct DraggableCard: View {
                                 (cardCenterY + dropZoneFrame.minY < dropZoneFrame.maxY)
                             
                             if isInsideDropZone && currentTurn == 0 {
-                                // Card is in the drop zone, so make it disappear
                                 withAnimation {
-//                                    currentCard = card
                                     checkPlayerCard(card: card)
                                     addCard(card: card, count: 1, to: &droppedCards, remove: true, from: &playerCards)
                                     audioManager.playSoundEffect(sound: "play-card", type: "mp3")
@@ -69,10 +66,6 @@ struct DraggableCard: View {
                             }
                         }
                 )
-        }
-//        .animation(.easeInOut(duration: 0.3), value: isDragging)
-        .onAppear {
-            setComponentSize()
         }
     }
     
@@ -114,20 +107,6 @@ struct DraggableCard: View {
             break
         default:
             break
-        }
-    }
-        
-    
-    func setComponentSize() {
-        switch screenSize {
-        case .small:
-            cardSize = 140
-        case .medium:
-            cardSize = 150
-        case .large:
-            cardSize = 220
-        case .extraLarge:
-            cardSize = 120
         }
     }
 

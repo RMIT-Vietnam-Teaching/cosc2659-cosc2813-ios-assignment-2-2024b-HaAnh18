@@ -31,6 +31,7 @@ struct GameView: View {
     @State private var cardOffsets: [CGSize] = []
     @Binding var isGameDataAvailable: Bool?
     @Binding var modeGame: String
+    @Binding var theme: String
     
     var resumeGame: Bool
     
@@ -174,7 +175,7 @@ struct GameView: View {
                                     .foregroundColor(Color("custom-black"))
                             })
                             .sheet(isPresented: $showingSheet) {
-                                TabViewCardDescription( showingSheet: $showingSheet)
+                                TabViewCardDescription( showingSheet: $showingSheet, theme: $theme)
                                     .presentationDetents([.medium, .medium, .fraction(0.1)])
                             }
                         }
@@ -230,8 +231,8 @@ struct GameView: View {
                 oldValue, newValue in
                 if oldValue != newValue {
                     if UserDefaults.standard.data(forKey: "gameData") == nil {
-//                        loadGameDataFromUserDefaults()
-                        getCardsForGame(to: &cardGame, numberOfPlayers: numberOfPlayers, level: modeGame)
+                        let cardList = theme == "Rabbit" ? cardsV2 : cards
+                        getCardsForGame(to: &cardGame, numberOfPlayers: numberOfPlayers, level: modeGame, cardList: cardList)
                         setUpPlayers()
                         cardOffsets = Array(repeating: .zero, count: cardGame.count)
                     }
