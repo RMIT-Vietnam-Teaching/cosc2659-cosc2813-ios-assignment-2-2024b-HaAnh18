@@ -4,6 +4,17 @@
 //
 //  Created by Nana on 22/8/24.
 //
+/*
+  RMIT University Vietnam
+  Course: COSC2659 iOS Development
+  Semester: 2024B
+  Assessment: Assignment 2
+  Author: Nguyen Tran Ha Anh
+  ID: s3938490
+  Created  date: 06/08/2024
+  Last modified: 03/09/2024
+  Acknowledgement:
+*/
 
 import SwiftUI
 
@@ -64,4 +75,5 @@ struct PlayerRow: View {
 
 #Preview {
     PlayerRow(player: Player(name: "John", cards: cards, numberOfTurn: 1, index: 0, countinuePlay: true, win: 7, lose: 3, level: 10), index: 5)
+        .environmentObject(LocalizationManager()) // Inject the LocalizationManager for the preview
 }

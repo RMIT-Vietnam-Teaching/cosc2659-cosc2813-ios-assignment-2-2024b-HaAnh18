@@ -4,6 +4,17 @@
 //
 //  Created by Nana on 11/8/24.
 //
+/*
+  RMIT University Vietnam
+  Course: COSC2659 iOS Development
+  Semester: 2024B
+  Assessment: Assignment 2
+  Author: Nguyen Tran Ha Anh
+  ID: s3938490
+  Created  date: 06/08/2024
+  Last modified: 03/09/2024
+  Acknowledgement:
+*/
 
 import SwiftUI
 
@@ -257,6 +268,7 @@ struct GameView: View {
                     isGameDataAvailable = true
                 } else {
                     UserDefaults.standard.removeObject(forKey: "gameData")
+                    isGameDataAvailable = false
                 }
             }
 
@@ -359,6 +371,7 @@ struct GameView: View {
     
     func saveGameDataToUserDefaults() {
         let gameData = GameData(
+            playerName: self.playerName,
             playerList: self.playerList,
             cardGame: self.cardGame,
             droppedCards: self.droppedCards,
@@ -386,6 +399,7 @@ struct GameView: View {
         if let savedData = UserDefaults.standard.data(forKey: "gameData"),
            let decodedData = try? JSONDecoder().decode(GameData.self, from: savedData) {
             // Assign the decoded data to the state variables
+            self.playerName = decodedData.playerName
             self.playerList = decodedData.playerList
             self.cardGame = decodedData.cardGame
             self.droppedCards = decodedData.droppedCards
