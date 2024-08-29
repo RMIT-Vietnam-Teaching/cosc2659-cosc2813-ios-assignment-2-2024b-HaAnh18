@@ -10,6 +10,7 @@ import SwiftUI
 struct TabViewCardDescription: View {    
     @State var currentTab: Int = 0 // State variable to track the current tab
     @Binding var showingSheet: Bool
+    @Binding var theme: String
 
     var body: some View {
         VStack(spacing: 10) {
@@ -25,7 +26,8 @@ struct TabViewCardDescription: View {
                 })
             }
             TabView(selection: self.$currentTab) {
-                ForEach(cards.indices, id: \.self) { index in
+                let cardList = theme == "Rabbit" ? cardsV2 : cards
+                ForEach(cardList.indices, id: \.self) { index in
                     CardInfo(card: cards[index]).tag(index)
                 }
             }
@@ -47,6 +49,6 @@ struct TabViewCardDescription: View {
 
 #Preview {
 //    TabViewCardDescription(showingSheet: .constant(true))
-    PlayCardTutorial()
+    PlayCardTutorial(theme: .constant("Rabbit"))
         .environmentObject(LocalizationManager()) // Inject the LocalizationManager for the preview
 }

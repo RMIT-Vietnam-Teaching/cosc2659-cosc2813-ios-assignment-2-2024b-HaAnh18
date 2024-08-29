@@ -136,14 +136,14 @@ struct BarChart: View {
     }
     
     func findPlayer(at location: CGPoint, in size: CGSize) -> Player? {
-            // Assuming the chart is divided equally for each player
-            let barWidth = size.width / CGFloat(players.count)
-            let index = Int(location.x / barWidth)
-            if index >= 0 && index < players.count {
-                return players[index]
-            }
-            return nil
+        // Assuming the chart is divided equally for each player
+        let barWidth = size.width / CGFloat(players.count)
+        let index = Int(location.x / barWidth)
+        if index >= 0 && index < players.count {
+            return players[index]
         }
+        return nil
+    }
 }
 
 #Preview {

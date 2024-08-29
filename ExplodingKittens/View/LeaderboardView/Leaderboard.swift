@@ -48,6 +48,7 @@ struct Leaderboard: View {
                         }
                         .frame(height: 30)
                         .padding(.top, 10)
+                        .padding(.horizontal, 20)
                         
                         HStack(spacing: 20) {
                             VStack(spacing: 10) {

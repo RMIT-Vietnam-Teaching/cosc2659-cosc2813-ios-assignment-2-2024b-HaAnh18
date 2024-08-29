@@ -26,7 +26,7 @@ struct DropZoneView: View {
 }
 
 #Preview {
-    PlayCardTutorial()
+    PlayCardTutorial(theme: .constant("Rabbit"))
         .environmentObject(LocalizationManager()) // Inject the LocalizationManager for the preview
 
 }

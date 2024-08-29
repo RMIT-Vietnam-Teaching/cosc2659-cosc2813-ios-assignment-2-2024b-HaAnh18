@@ -1,18 +1,6 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "" : {
-
-    },
-    "%@" : {
-
-    },
-    "%@ %%" : {
-
-    },
-    "%lld" : {
-
-    },
     "%lld cards left" : {
       "localizations" : {
         "en" : {
@@ -20,7 +8,7 @@
             "plural" : {
               "one" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
+                  "state" : "translated",
                   "value" : "%lld cards left"
                 }
               },
@@ -28,6 +16,18 @@
                 "stringUnit" : {
                   "state" : "new",
                   "value" : "%lld cards left"
+                }
+              }
+            }
+          }
+        },
+        "vi" : {
+          "variations" : {
+            "plural" : {
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Còn %lld lá bài "
                 }
               }
             }
@@ -246,7 +246,14 @@
       }
     },
     "Exploding Kittens" : {
-
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mèo Nổ"
+          }
+        }
+      }
     },
     "Force any other player to give you 1 card from their hand. They choose which card to give you." : {
       "extractionState" : "manual",
@@ -344,6 +351,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nếu bạn chơi một lá bài Bỏ Lượt như một cách phòng thủ trước một lá bài Tấn Công, nó chỉ kết thúc 1 trong 2 lượt. Hai lá bài Bỏ Lượt sẽ kết thúc cả hai lượt."
+          }
+        }
+      }
+    },
+    "Kitten" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mèo"
           }
         }
       }
@@ -602,6 +620,17 @@
         }
       }
     },
+    "Rabbit" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thỏ"
+          }
+        }
+      }
+    },
     "Resume Game" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -614,7 +643,14 @@
       }
     },
     "Return" : {
-
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trở về"
+          }
+        }
+      }
     },
     "See The Future" : {
       "extractionState" : "manual",
@@ -694,13 +730,35 @@
       }
     },
     "System" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hệ thống"
+          }
+        }
+      }
     },
     "Top 5 highest players" : {
-
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "5 người cao nhất"
+          }
+        }
+      }
     },
     "Top Card" : {
-
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thẻ trên cùng"
+          }
+        }
+      }
     },
     "Tutorial" : {
       "extractionState" : "manual",

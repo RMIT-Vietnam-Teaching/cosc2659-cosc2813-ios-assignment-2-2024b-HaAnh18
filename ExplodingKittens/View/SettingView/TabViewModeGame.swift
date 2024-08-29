@@ -70,7 +70,6 @@ struct TabBarItems: View {
         }, label: {
             VStack {
                 Text(localizationManager.localizedString(for: tabBarItemName))
-//                Text(tabBarItemName)
 
                     .font(Font.custom(currentTab == tab ? "Quicksand-Bold" : "Quicksand-Regular", size: 24))
                     .foregroundColor(currentTab == tab ? Color("red") : Color("custom-black"))

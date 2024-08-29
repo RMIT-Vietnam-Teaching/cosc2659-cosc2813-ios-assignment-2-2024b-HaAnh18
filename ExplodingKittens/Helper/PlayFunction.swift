@@ -7,10 +7,6 @@
 
 import SwiftUI
 
-//func randomPlay(cards: ) -> <#return type#> {
-//    <#function body#>
-//}
-
 func addCardFromList(cards: [Card], count: Int, to destination: inout [Card], remove: Bool, from cardList: inout [Card]) {
     for _ in 0..<count {
         if let card = cards.randomElement() {
@@ -46,7 +42,7 @@ func getRandomCard(card: Card, to destination: inout [Card], from removeList: in
     addCard(card: card, count: 1, to: &destination, remove: true, from: &removeList)
 }
 
-func getCardsForGame(to destination: inout [Card], numberOfPlayers: Int, level: String) {
+func getCardsForGame(to destination: inout [Card], numberOfPlayers: Int, level: String, cardList: [Card]) {
     var cardGame:  [Int: [String: Int]]
     let cardsForEasyGame: [Int: [String: Int]] = [
         2: ["Bomb": 1, "Defuse": 3, "See The Future": 4, "Shuffle": 4, "Skip": 4],
@@ -77,7 +73,7 @@ func getCardsForGame(to destination: inout [Card], numberOfPlayers: Int, level: 
     var emptyCardList: [Card] = []
     if let counts = cardGame[numberOfPlayers] {
         for (cardName, count) in counts {
-            addCardFromList(cards: cards.filter { $0.name == cardName }, count: count, to: &destination, remove: false, from: &emptyCardList)
+            addCardFromList(cards: cardList.filter { $0.name == cardName }, count: count, to: &destination, remove: false, from: &emptyCardList)
         }
     }
 

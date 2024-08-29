@@ -19,11 +19,13 @@ struct Settings: View {
     @Binding var appearanceMode: AppearanceMode
     @Binding var colorScheme: ColorScheme?
     @Binding var appearance: String
+    @Binding var theme: String
 
     let languageOptions = ["English", "Vietnamese"]
     let modeOptions = ["Easy", "Medium", "Hard"]
     let appearanceOptions = ["Light", "Dark", "System"]
-    
+    let themeOptions = ["Rabbit", "Kitten"]
+
     var body: some View {
         ZStack(alignment: .top) {
             Color("game-view-bg")
@@ -89,6 +91,22 @@ struct Settings: View {
                                     changeLanguage()
                                     UserDefaults.standard.set(language, forKey: "language")
 
+                                }
+                        }
+                        
+                        HStack(spacing: 20) {
+                            HStack {
+                                Spacer()
+                                Text("Theme:", manager: localizationManager)
+                                    .font(Font.custom("Quicksand-Medium", size: 24))
+                            }
+                            .frame(width: 250)
+
+                            
+                            DropDownView(selection: $theme, options: themeOptions)
+                                .onChange(of: theme, initial: true) {
+                                    oldValue, newValue in
+                                    UserDefaults.standard.set(theme, forKey: "theme")
                                 }
                         }
                         

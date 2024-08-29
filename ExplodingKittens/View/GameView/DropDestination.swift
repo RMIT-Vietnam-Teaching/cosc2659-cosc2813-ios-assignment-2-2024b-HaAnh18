@@ -37,10 +37,6 @@ struct DropDestination: View {
                     .scaledToFit()
             }
             .frame(width: 160, height: 160)
-            .onChange(of: droppedCards, initial: true) {
-                oldValue, newValue in
-//                checkPlayerCard(card: droppedCards[droppedCards.count - 1])
-            }
             
         }
         .onAppear {
