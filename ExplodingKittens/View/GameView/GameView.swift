@@ -70,7 +70,7 @@ struct GameView: View {
                     
                     Spacer()
                     
-                    if !playerList.isEmpty {
+                    if !playerList.isEmpty && playerList[currentTurn].countinuePlay {
                         VStack {
                             HStack {
                                 Text("Current Turn:", manager: localizationManager)
@@ -90,21 +90,19 @@ struct GameView: View {
                                     .font(Font.custom("Quicksand-Regular", size: 20))
                             }
                             
-//                            if currentTurn == 0 {
-                                HStack {
-                                    Text("Score:", manager: localizationManager)
-                                        .font(Font.custom("Quicksand-Medium", size: 20))
-                                        .frame(width: 130)
-                                    
-                                    Text("\(playerList[currentTurn].score)")
-                                        .font(Font.custom("Quicksand-Regular", size: 20))
-                                }
-//                            }
+                            HStack {
+                                Text("Score:", manager: localizationManager)
+                                    .font(Font.custom("Quicksand-Medium", size: 20))
+                                    .frame(width: 130)
+                                
+                                Text("\(playerList[currentTurn].score)")
+                                    .font(Font.custom("Quicksand-Regular", size: 20))
+                            }
+                            
                         }
                     }
                 }
-//                .frame(height: 50)
-//                .padding(.top, 10)
+                .padding(.top, 10)
                 .padding(.horizontal, 20)
                 
                 
@@ -152,7 +150,7 @@ struct GameView: View {
                             Spacer()
                         }
                     }
-                    .frame(height: geometry.size.height / 3 + 50)
+                    .frame(height: geometry.size.height / 3 + 40)
                     .zIndex(1)
                     
                     if !playerList.isEmpty {
@@ -195,6 +193,7 @@ struct GameView: View {
                             }, label: {
                                 Image(systemName: "info.circle")
                                     .padding(20)
+                                    .font(.system(size: 24))
                                     .foregroundColor(Color("custom-black"))
                             })
                             .sheet(isPresented: $showingSheet) {

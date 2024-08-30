@@ -35,14 +35,18 @@ struct Player: Equatable, Codable, Hashable {
         return totalGames > 0 ? (Double(win) / Double(totalGames)) * 100 : 0.0
     }
     
-    var archivement: [String: String] {
-        var arr: [String: String] = [:]
+    var archivement: [String: [String]] {
+        var arr: [String: [String]] = [:]
         if win >= 5 {
-            arr["Win 5 Games"] = "lightblue"
+            arr["Win 5 Games"] = ["lightblue", "star.circle"]
+        }
+        
+        if score >= 50 {
+            arr["Get 50 points"] = ["red", "heart.circle"]
         }
         
         if winRate == 100 {
-            arr["Perfect Wins"] = "game-view-bg"
+            arr["Perfect Wins"] = ["game-view-bg", "moon.stars.circle.fill"]
         }
         
         return arr

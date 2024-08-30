@@ -47,14 +47,21 @@ struct PlayerRow: View {
                 }
                 
                     
-//                    Spacer()
                     VStack(alignment: .leading, spacing: 10) {
                         Text(player.name)
                             .font(Font.custom("Quicksand-Medium", size: 30))
                         
                         HStack {
+                            Text("Level:")
+                                .font(Font.custom("Quicksand-Medium", size: 18))
+                            
+                            Text("\(player.level)")
+                                .font(Font.custom("Quicksand-Regular", size: 18))
+                        }
+                        
+                        HStack {
                             ForEach(Array(player.archivement.keys), id: \.self) { key in
-                                Badge(color: player.archivement[key]!, content: key)
+                                Badge(color: player.archivement[key]![0], content: key, image: player.archivement[key]![1])
                             }
                         }
                 }
@@ -69,11 +76,11 @@ struct PlayerRow: View {
             .padding(.horizontal, 20)
             
         }
-        .frame(height: 120)
+        .frame(height: 150)
     }
 }
 
 #Preview {
-    PlayerRow(player: Player(name: "John", cards: cards, numberOfTurn: 1, index: 0, countinuePlay: true, win: 7, lose: 3, level: 10), index: 5)
+    PlayerRow(player: Player(name: "John", cards: cards, numberOfTurn: 1, index: 0, countinuePlay: true, win: 7, lose: 0, level: 10), index: 5)
         .environmentObject(LocalizationManager()) // Inject the LocalizationManager for the preview
 }

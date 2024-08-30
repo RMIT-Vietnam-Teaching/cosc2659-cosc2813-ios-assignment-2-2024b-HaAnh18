@@ -84,6 +84,7 @@ struct PlayCardTutorial: View {
                         }, label: {
                             Image(systemName: "info.circle")
                                 .padding(20)
+                                .font(.system(size: 24))
                                 .foregroundColor(Color("custom-black"))
                         })
                         .sheet(isPresented: $showingSheet) {
