@@ -1,6 +1,18 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "" : {
+
+    },
+    "%@" : {
+
+    },
+    "%@ %%" : {
+
+    },
+    "%lld" : {
+
+    },
     "%lld cards left" : {
       "localizations" : {
         "en" : {
@@ -750,6 +762,9 @@
           }
         }
       }
+    },
+    "Theme:" : {
+
     },
     "Top 5 highest players" : {
       "localizations" : {
