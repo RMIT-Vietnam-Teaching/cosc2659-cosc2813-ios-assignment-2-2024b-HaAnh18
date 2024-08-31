@@ -31,13 +31,16 @@ struct GameOverView: View {
         GeometryReader {
             let size = $0.size
             
+            Color("game-view-bg")
+                .ignoresSafeArea()
+            
             ZStack {
                 
                 GifImage(name: "exploding")
                     .ignoresSafeArea()
                     .frame(width: size.width, height: size.height)
                     .aspectRatio(contentMode: .fill)
-                    .overlay(Color("game-view-bg").opacity(0.5))
+//                    .overlay(Color("game-view-bg").opacity(0.5))
                
                 VStack(spacing: 30) {
   
@@ -46,8 +49,12 @@ struct GameOverView: View {
                         .scaleEffect(isZoom ? 3 : 1)
                     
                     if showReturn {
-                        Text("Return", manager: localizationManager)
-                            .modifier(confirmButton())
+                        Button(action: {
+                            presentationMode.wrappedValue.dismiss()
+                        }, label: {
+                            Text("Return")
+                                .modifier(confirmButton())
+                        })
                     }
                 }
             }

@@ -20,6 +20,7 @@ import SwiftUI
 
 struct TabViewCardDescription: View {    
     @State var currentTab: Int = 0 // State variable to track the current tab
+    @State private var cardList: [Card] = cardsV2
     @Binding var showingSheet: Bool
     @Binding var theme: String
 
@@ -37,16 +38,15 @@ struct TabViewCardDescription: View {
                 })
             }
             TabView(selection: self.$currentTab) {
-                let cardList = theme == "Rabbit" ? cardsV2 : cards
                 ForEach(cardList.indices, id: \.self) { index in
-                    CardInfo(card: cards[index]).tag(index)
+                    CardInfo(card: cardList[index]).tag(index)
                 }
             }
 //                .frame(height: 250)
             .tabViewStyle(.page(indexDisplayMode: .never))
         
             HStack(spacing: 10) {
-                ForEach(cards.indices, id: \.self) { index in
+                ForEach(cardList.indices, id: \.self) { index in
                     Circle()
                         .fill(currentTab == index ? Color("lightblue") : Color.gray)
                         .frame(width: 10, height: 10)
@@ -55,11 +55,20 @@ struct TabViewCardDescription: View {
         }
         .transition(.scale)
         .padding()
+        .onAppear {
+            if theme == "Rabbit" {
+                cardList = cardsV2
+            } else {
+                cardList = cards
+            }
+        
+        }
     }
 }
 
 #Preview {
 //    TabViewCardDescription(showingSheet: .constant(true))
-    PlayCardTutorial(theme: .constant("Rabbit"))
-        .environmentObject(LocalizationManager()) // Inject the LocalizationManager for the preview
+//    PlayCardTutorial(theme: .constant("Rabbit"))
+//        .environmentObject(LocalizationManager()) // Inject the LocalizationManager for the preview
+    MenuView()
 }

@@ -45,3 +45,29 @@ struct confirmButton: ViewModifier {
             }
     }
 }
+
+struct chooseButton: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .foregroundColor(Color("custom-black"))
+            .frame(width: 200)
+            .font(Font.custom("Quicksand-Medium", size: 24))
+            .padding(10)
+            .background {
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(Color("lightblue"), lineWidth: 3.0)
+            }
+    }
+}
+
+struct AnyViewModifier: ViewModifier {
+    private let modifier: (Content) -> AnyView
+
+    init<M: ViewModifier>(_ modifier: M) {
+        self.modifier = { content in AnyView(content.modifier(modifier)) }
+    }
+
+    func body(content: Content) -> some View {
+        modifier(content)
+    }
+}

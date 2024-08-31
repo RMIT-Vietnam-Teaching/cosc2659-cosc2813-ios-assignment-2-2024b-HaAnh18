@@ -30,12 +30,18 @@ struct GifImage: UIViewRepresentable {
         let webView = WKWebView()
         webView.scrollView.isScrollEnabled = false // Disable scrolling
         webView.scrollView.bounces = false
+        
+        // Set the background of the webView to be transparent
+        webView.isOpaque = false
+        webView.backgroundColor = .clear
+        webView.scrollView.backgroundColor = .clear
+        
         loadGif(webView: webView)
         return webView
     }
     
     func updateUIView(_ uiView: UIViewType, context: Context) {
-        
+        // Not needed for this simple implementation
     }
     
     private func loadGif(webView: WKWebView) {

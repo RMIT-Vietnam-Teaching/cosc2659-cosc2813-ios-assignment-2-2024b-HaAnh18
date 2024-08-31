@@ -113,6 +113,9 @@
         }
       }
     },
+    "Bottom" : {
+
+    },
     "Click For Card Description" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -643,6 +646,9 @@
         }
       }
     },
+    "Random" : {
+
+    },
     "Resume Game" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -685,6 +691,9 @@
           }
         }
       }
+    },
+    "Set Bomb Back" : {
+
     },
     "Settings" : {
       "extractionState" : "manual",
@@ -764,6 +773,9 @@
       }
     },
     "Theme:" : {
+
+    },
+    "Top" : {
 
     },
     "Top 5 highest players" : {

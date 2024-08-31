@@ -76,15 +76,18 @@ struct Settings: View {
 
                                 
 
-                            DropDownView(selection: $modeGame, options: modeOptions)
-                                .onChange(of: modeGame, initial: true) {
-                                    oldValue, newValue in
-                                    UserDefaults.standard.set(modeGame, forKey: "modeGame")
+                            HStack {
+                                DropDownView(selection: $modeGame, options: modeOptions)
+                                    .onChange(of: modeGame, initial: true) {
+                                        oldValue, newValue in
+                                        UserDefaults.standard.set(modeGame, forKey: "modeGame")
 
-                                }
-                            
-                            
+                                    }
+                                Spacer()
+                            }
+                            .frame(width: 250)
                         }
+                        
                         
                         HStack(spacing: 20) {
                             HStack {
@@ -96,13 +99,18 @@ struct Settings: View {
                             .frame(width: 250)
 
                             
-                            DropDownView(selection: $language, options: languageOptions)
-                                .onChange(of: language, initial: true) {
-                                    oldValue, newValue in
-                                    changeLanguage()
-                                    UserDefaults.standard.set(language, forKey: "language")
+                            HStack {
+                                DropDownView(selection: $language, options: languageOptions)
+                                    .onChange(of: language, initial: true) {
+                                        oldValue, newValue in
+                                        changeLanguage()
+                                        UserDefaults.standard.set(language, forKey: "language")
 
-                                }
+                                    }
+                                
+                                Spacer()
+                            }
+                            .frame(width: 250)
                         }
                         
                         HStack(spacing: 20) {
@@ -114,11 +122,16 @@ struct Settings: View {
                             .frame(width: 250)
 
                             
-                            DropDownView(selection: $theme, options: themeOptions)
-                                .onChange(of: theme, initial: true) {
-                                    oldValue, newValue in
-                                    UserDefaults.standard.set(theme, forKey: "theme")
-                                }
+                            HStack {
+                                DropDownView(selection: $theme, options: themeOptions)
+                                    .onChange(of: theme, initial: true) {
+                                        oldValue, newValue in
+                                        UserDefaults.standard.set(theme, forKey: "theme")
+                                    }
+                                
+                                Spacer()
+                            }
+                            .frame(width: 250)
                         }
                         
                         HStack(spacing: 20) {
@@ -130,21 +143,26 @@ struct Settings: View {
                             .frame(width: 250)
 
                             
-                            DropDownView(selection: $appearance, options: appearanceOptions)
-                                .onChange(of: appearance, initial: true) {
-                                    oldValue, newValue in
-                                    if newValue == "Light" {
-                                        appearanceMode = .light
-                                        colorScheme = .light
+                            HStack {
+                                DropDownView(selection: $appearance, options: appearanceOptions)
+                                    .onChange(of: appearance, initial: true) {
+                                        oldValue, newValue in
+                                        if newValue == "Light" {
+                                            appearanceMode = .light
+                                            colorScheme = .light
 
-                                    } else if newValue == "Dark" {
-                                        appearanceMode = .dark
-                                        colorScheme = .dark
-                                    } else {
-                                        appearanceMode = .system
-                                        colorScheme = nil
+                                        } else if newValue == "Dark" {
+                                            appearanceMode = .dark
+                                            colorScheme = .dark
+                                        } else {
+                                            appearanceMode = .system
+                                            colorScheme = nil
+                                        }
                                     }
-                                }
+                                
+                                Spacer()
+                            }
+                            .frame(width: 250)
                         }
                     }
                 }
@@ -167,8 +185,10 @@ struct Settings: View {
                         showingSheet.toggle()
                     }, label: {
                         Image(systemName: "info.circle")
-                            .padding(20)
+                            .font(.system(size: 24))
+//                            .padding(24)
                             .foregroundColor(Color("custom-black"))
+//                            .background(.pink)
                     })
                     .sheet(isPresented: $showingSheet) {
                         TabViewModeGame(showingSheet: $showingSheet)
