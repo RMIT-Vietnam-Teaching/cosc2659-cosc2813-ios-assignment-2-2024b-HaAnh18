@@ -39,8 +39,11 @@ struct GameView: View {
     @State private var playerName: String = ""
     @State private var showingSheet: Bool = false
     @State private var currentScore: Int = 0
-
+    @State private var defaultMode: String = "Easy"
     @State private var cardOffsets: [CGSize] = []
+    @State private var bombCard: Card?
+    @State private var percentBomb: CGFloat = 0
+    
     @Binding var isGameDataAvailable: Bool?
     @Binding var modeGame: String
     @Binding var theme: String
@@ -72,6 +75,15 @@ struct GameView: View {
                     
                     if !playerList.isEmpty && playerList[currentTurn].countinuePlay {
                         VStack {
+//                            HStack {
+//                                Text("Mode:", manager: localizationManager)
+//                                    .font(Font.custom("Quicksand-Medium", size: 20))
+//                                    .frame(width: 130)
+//                                
+//                                Text("\(defaultMode)")
+//                                    .font(Font.custom("Quicksand-Regular", size: 20))
+//                            }
+                            
                             HStack {
                                 Text("Current Turn:", manager: localizationManager)
                                     .font(Font.custom("Quicksand-Medium", size: 20))
@@ -131,12 +143,16 @@ struct GameView: View {
                         
                         HStack {
                             if !playerList.isEmpty {
-                                PickCardList(cardGame: $cardGame, playTurn: $playTurn, playerCards: $playerList[0].cards, currentTurn: $currentTurn, playerList: $playerList, droppedCards: $droppedCards, winGame: $winGame, stealCard: $stealCard, showTurn: $showTurn, isGameDataAvailable: $isGameDataAvailable, numberOfPlayers: numberOfPlayers, aiTurn: aiTurn, screenSize: sizeCategory)
+                                BombPercent(percent: $percentBomb)
+                                    .onChange(of: cardGame.count, initial: true) {
+                                        percentBomb = calculateBombPercent(cards: cardGame)
+                                    }
+                                
+                                PickCardList(cardGame: $cardGame, playTurn: $playTurn, playerCards: $playerList[0].cards, currentTurn: $currentTurn, playerList: $playerList, droppedCards: $droppedCards, winGame: $winGame, stealCard: $stealCard, showTurn: $showTurn, isGameDataAvailable: $isGameDataAvailable,  bomb: $bombCard, numberOfPlayers: numberOfPlayers, aiTurn: aiTurn, screenSize: sizeCategory)
                                     .onChange(of: currentTurn, initial: true) {
                                         checkWin()
                                         saveGameDataToUserDefaults()
                                     }
-                                    
                                 
                                 DropDestination(droppedCards: $droppedCards, screenSize: sizeCategory)
                             }
@@ -174,6 +190,7 @@ struct GameView: View {
                             .onChange(of: playerList[0].cards.count, initial: true) {
                                 oldValue, newValue in
                                 cardOffsets = Array(repeating: .zero, count: playerList[0].cards.count + 1)
+                                
                             }
                         }
                         .zIndex(100)
@@ -208,7 +225,7 @@ struct GameView: View {
                 
                                 
                 if seeFuture && !cardGame.isEmpty {
-                    SeeFutureDialog(seeFuture: $seeFuture, cards: cardGame)
+                    SeeFutureDialog(seeFuture: $seeFuture, cardList: cardGame)
                 }
                 
                 if winGame != nil {
@@ -227,6 +244,10 @@ struct GameView: View {
                 
                 if stealCard && !playerList.isEmpty {
                     PickStealCard(playerCards: $playerList[0].cards, playerList: $playerList, currentTurn: $currentTurn, stealCard: $stealCard, screenSize: sizeCategory)
+                }
+                
+                if bombCard != nil && !playerList.isEmpty {
+                    BombPosition(playerCards: $playerList[0].cards, droppedCards: $droppedCards, cardGame: $cardGame, bombCard: $bombCard, currentTurn: $currentTurn, playerList: $playerList)
                 }
                 
                 if stealOther && playerList.count > 2 {
@@ -254,9 +275,21 @@ struct GameView: View {
                 if oldValue != newValue {
                     if UserDefaults.standard.data(forKey: "gameData") == nil {
                         let cardList = theme == "Rabbit" ? cardsV2 : cards
+//                        if let player = getPlayer(name: playerName) {
+//                            if player.level < 3 && modeGame != "Easy" {
+//                                defaultMode = "Easy"
+//                            } else if player.level > 3 && player.level < 11 && modeGame == "Hard" {
+//                                defaultMode = "Medium"
+//                            } else if player.level >= 11 {
+//                                defaultMode = "Hard"
+//                            } else {
+//                                defaultMode = modeGame
+//                            }
+//                        }
                         getCardsForGame(to: &cardGame, numberOfPlayers: numberOfPlayers, level: modeGame, cardList: cardList)
                         setUpPlayers()
                         cardOffsets = Array(repeating: .zero, count: cardGame.count)
+                        percentBomb = calculateBombPercent(cards: cardGame)
                     }
                     
                 }
@@ -344,8 +377,6 @@ struct GameView: View {
         }
     }
     
-    
-    
     func checkWin() {
         var checking = true
         
@@ -366,8 +397,6 @@ struct GameView: View {
         }
     }
     
-    
-    
     func saveGameDataToUserDefaults() {
         let gameData = GameData(
             playerName: self.playerName,
@@ -385,7 +414,7 @@ struct GameView: View {
             cardOffsets: self.cardOffsets,
             modeGame: self.modeGame
         )
-        
+
         if let encodedData = try? JSONEncoder().encode(gameData) {
             UserDefaults.standard.set(encodedData, forKey: "gameData")
             print("Game data saved to UserDefaults.")
@@ -412,7 +441,9 @@ struct GameView: View {
             self.numberOfPlayers = decodedData.numberOfPlayers
             self.cardOffsets = decodedData.cardOffsets
             self.modeGame = decodedData.modeGame
+            print("Loaded modeGame: \(self.modeGame)")
             print("Game data loaded from UserDefaults.")
+
         } else {
             print("No saved game data found in UserDefaults.")
         }

@@ -31,6 +31,10 @@ struct PickCardList: View {
     @Binding var stealCard: Bool
     @Binding var showTurn: Bool
     @Binding var isGameDataAvailable: Bool?
+    @Binding var bomb: Card?
+    
+//    @State private var bomb: Card?
+    
     var numberOfPlayers: Int
     let aiTurn: () -> Void
     var screenSize: ScreenSizeCategory
@@ -54,15 +58,25 @@ struct PickCardList: View {
                                         addCard(card: card, count: 1, to: &droppedCards, remove: true, from: &playerCards)
                                         
                                         if let defuseCard = playerList[0].cards.first(where: { $0.name == "Defuse" }) {
-                                            addCard(card: defuseCard, count: 1, to: &droppedCards, remove: true, from: &playerCards)
-                                            
-                                            addCard(card: card, count: 1, to: &cardGame, remove: true, from: &droppedCards)
-                                            playerList[currentTurn].numberOfTurn -= 1
-                                            
-                                            if playerList[currentTurn].numberOfTurn == 0 {
-                                                playerList[currentTurn].numberOfTurn = 1
-                                                currentTurn = (currentTurn + 1) % numberOfPlayers
+//                                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                                withAnimation {
+                                                    addCard(card: defuseCard, count: 1, to: &droppedCards, remove: true, from: &playerCards)
+//                                                    let randomIndex = Int.random(in: 0...cardGame.count)
+//                                                    
+//                                                    cardGame.insert(card, at: randomIndex)
+                                                    bomb = card
+     
+//                                                    print(bomb != nil)
+//                                                    addCard(card: card, count: 1, to: &cardGame, remove: true, from: &droppedCards)
+//                                                }
                                             }
+                                            
+//                                            playerList[currentTurn].numberOfTurn -= 1
+//                                            
+//                                            if playerList[currentTurn].numberOfTurn == 0 {
+//                                                playerList[currentTurn].numberOfTurn = 1
+//                                                currentTurn = (currentTurn + 1) % numberOfPlayers
+//                                            }
 
                                         } else {
                                             updatePlayerResult(name: playerList[0].name, didWin: false, score: playerList[0].score)
@@ -83,7 +97,7 @@ struct PickCardList: View {
             }
             
             Text("\(cardGame.count) cards left")
-                .font(Font.custom("Quicksand-Regular", size: 20))
+                .font(Font.custom("Quicksand-Regular", size: 16))
             
         }
         .onAppear {
@@ -101,7 +115,7 @@ struct PickCardList: View {
             }
         })
         .onChange(of: cardGame.count, initial: false, { oldCount, newCount in
-            if oldCount != newCount {
+            if oldCount != newCount && bomb == nil {
                 if playTurn {
                     playerList[currentTurn].numberOfTurn -= 1
                     if playerList[currentTurn].numberOfTurn == 0 {

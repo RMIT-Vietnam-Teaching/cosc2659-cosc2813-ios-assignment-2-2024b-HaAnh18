@@ -182,3 +182,11 @@ func checkCard(card: Card, currentTurn: Int, players: inout [Player], cardGame: 
     }
 }
 
+func calculateBombPercent(cards: [Card]) -> CGFloat {
+    let bombCount = cards.filter { $0.name.contains("Bomb") }.count
+    let totalCount = cards.count
+    
+    guard totalCount > 0 else { return 0 } // Avoid division by zero
+    
+    return (CGFloat(bombCount) / CGFloat(totalCount)) * 100
+}

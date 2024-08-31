@@ -50,6 +50,9 @@
 		39914ABA2C7F14D80027C4DB /* cards-v2.json in Resources */ = {isa = PBXBuildFile; fileRef = 39914AB92C7F14D80027C4DB /* cards-v2.json */; };
 		39914ABC2C816AD20027C4DB /* Quicksand-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 39914ABB2C816AD20027C4DB /* Quicksand-Bold.ttf */; };
 		39914ABE2C816B230027C4DB /* Quicksand-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 39914ABD2C816B230027C4DB /* Quicksand-Regular.ttf */; };
+		39914AC02C8235E70027C4DB /* BombPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39914ABF2C8235E70027C4DB /* BombPosition.swift */; };
+		39914AC22C83048A0027C4DB /* BombPercent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39914AC12C83048A0027C4DB /* BombPercent.swift */; };
+		39914AC42C830C470027C4DB /* CurvedText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39914AC32C830C470027C4DB /* CurvedText.swift */; };
 		3993DE472C6E300C009D31CE /* SeeFutureDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3993DE462C6E300C009D31CE /* SeeFutureDialog.swift */; };
 		39A148CD2C68CE2500D35D71 /* ExplodingKittensApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A148CC2C68CE2500D35D71 /* ExplodingKittensApp.swift */; };
 		39A148CF2C68CE2500D35D71 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A148CE2C68CE2500D35D71 /* ContentView.swift */; };
@@ -116,6 +119,9 @@
 		39914AB92C7F14D80027C4DB /* cards-v2.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "cards-v2.json"; sourceTree = "<group>"; };
 		39914ABB2C816AD20027C4DB /* Quicksand-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Bold.ttf"; sourceTree = "<group>"; };
 		39914ABD2C816B230027C4DB /* Quicksand-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Regular.ttf"; sourceTree = "<group>"; };
+		39914ABF2C8235E70027C4DB /* BombPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BombPosition.swift; sourceTree = "<group>"; };
+		39914AC12C83048A0027C4DB /* BombPercent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BombPercent.swift; sourceTree = "<group>"; };
+		39914AC32C830C470027C4DB /* CurvedText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurvedText.swift; sourceTree = "<group>"; };
 		3993DE462C6E300C009D31CE /* SeeFutureDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeFutureDialog.swift; sourceTree = "<group>"; };
 		39A148C92C68CE2500D35D71 /* ExplodingKittens.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExplodingKittens.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		39A148CC2C68CE2500D35D71 /* ExplodingKittensApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplodingKittensApp.swift; sourceTree = "<group>"; };
@@ -322,6 +328,9 @@
 				397E18D02C7394FD00D66D51 /* WinView.swift */,
 				393FD4132C76360500787514 /* InputInfo.swift */,
 				396B06382C790BB400490C0D /* DraggableCard.swift */,
+				39914ABF2C8235E70027C4DB /* BombPosition.swift */,
+				39914AC12C83048A0027C4DB /* BombPercent.swift */,
+				39914AC32C830C470027C4DB /* CurvedText.swift */,
 			);
 			path = GameView;
 			sourceTree = "<group>";
@@ -455,6 +464,9 @@
 				393FD4352C777E5E00787514 /* BarChart.swift in Sources */,
 				39A148F72C691C1A00D35D71 /* PickCardList.swift in Sources */,
 				393FD4172C77197B00787514 /* Leaderboard.swift in Sources */,
+				39914AC42C830C470027C4DB /* CurvedText.swift in Sources */,
+				39914AC22C83048A0027C4DB /* BombPercent.swift in Sources */,
+				39914AC02C8235E70027C4DB /* BombPosition.swift in Sources */,
 				396B06472C7B378200490C0D /* TableView.swift in Sources */,
 				393FD4142C76360600787514 /* InputInfo.swift in Sources */,
 				393FD4192C77204B00787514 /* GameData.swift in Sources */,

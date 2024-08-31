@@ -171,7 +171,7 @@ struct LineChart: View {
             }
             .padding(.horizontal, 20)
             .padding(.vertical, 10)
-
+            .frame(minHeight: 300)
         }
     }
     

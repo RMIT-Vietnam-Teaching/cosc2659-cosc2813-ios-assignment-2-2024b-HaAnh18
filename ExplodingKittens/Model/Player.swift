@@ -105,3 +105,13 @@ func sortPlayers(_ players: [Player]) -> [Player] {
         }
     })
 }
+
+func getPlayer(name: String) -> Player? {
+    let players = getPlayers() // Retrieve the list of players
+    
+    if let player = players.first(where: { $0.name == name }) {
+        return player
+    } else {
+        return nil // Return nil if the player is not found
+    }
+}

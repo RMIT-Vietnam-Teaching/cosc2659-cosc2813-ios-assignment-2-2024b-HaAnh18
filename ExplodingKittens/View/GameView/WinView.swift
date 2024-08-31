@@ -31,12 +31,15 @@ struct WinView: View {
         GeometryReader {
             let size = $0.size
             
+            Color("game-view-bg")
+                .ignoresSafeArea()
+            
             ZStack {
                 GifImage(name: "winning")
                     .ignoresSafeArea()
                     .frame(width: size.width, height: size.height)
                     .aspectRatio(contentMode: .fill)
-                    .overlay(Color("game-view-bg").opacity(0.5))
+//                    .overlay(Color("game-view-bg").opacity(0.5))
                 
                 VStack(spacing: 30) {
                     Text("Winning", manager: localizationManager)

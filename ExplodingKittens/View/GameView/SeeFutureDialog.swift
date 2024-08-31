@@ -24,7 +24,7 @@ struct SeeFutureDialog: View {
     @State private var open: Bool = false
     @State private var isVisible = false
     @Binding var seeFuture: Bool
-    var cards: [Card]
+    var cardList: [Card]
     var body: some View {
         ZStack {
             Color(.gray)
@@ -38,8 +38,8 @@ struct SeeFutureDialog: View {
                 
                 VStack {
                     ZStack {
-                        if cards.count > 2 {
-                            cards[cards.count - 3].frontImage
+                        if cardList.count > 2 {
+                            cardList[cardList.count - 3].frontImage
                                 .resizable()
                                 .frame(width: 150, height: 150)
                                 .rotationEffect(.degrees(self.open ? 5 : 0))
@@ -47,8 +47,8 @@ struct SeeFutureDialog: View {
                                 .animation(.easeInOut, value: open)
                         }
                         
-                        if cards.count > 1 {
-                            cards[cards.count - 2].frontImage
+                        if cardList.count > 1 {
+                            cardList[cardList.count - 2].frontImage
                                 .resizable()
                                 .frame(width: 150, height: 150)
                                 .rotationEffect(.degrees(self.open ? -5 : 0))
@@ -64,7 +64,7 @@ struct SeeFutureDialog: View {
                                 .offset(y: -10)
                                 .foregroundColor(Color("red"))
                             
-                            cards[cards.count - 1].frontImage
+                            cardList[cardList.count - 1].frontImage
                                 .resizable()
                                 .frame(width: 150, height: 150)
                                 
@@ -105,9 +105,10 @@ struct SeeFutureDialog: View {
 #Preview {
 //    SeeFutureDialog(seeFuture: .constant(true), cards: cards)
 //    MenuView()
-    SeeFutureDialog(seeFuture: .constant(true), cards: cards)
+    SeeFutureDialog(seeFuture: .constant(true), cardList: cards)
         .environmentObject(LocalizationManager()) // Inject the LocalizationManager for the preview
 
 //    GameView(numberOfPlayers: 2)
 }
+
 
