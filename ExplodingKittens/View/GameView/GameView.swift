@@ -43,6 +43,7 @@ struct GameView: View {
     @State private var cardOffsets: [CGSize] = []
     @State private var bombCard: Card?
     @State private var percentBomb: CGFloat = 0
+    @State private var level: Int = 1
     
     @Binding var isGameDataAvailable: Bool?
     @Binding var modeGame: String
@@ -58,7 +59,7 @@ struct GameView: View {
                 Color("game-view-bg")
                     .ignoresSafeArea()
                 
-                HStack {
+                HStack(alignment: .top) {
                     Button(action: {
                         presentationMode.wrappedValue.dismiss()
 
@@ -73,49 +74,98 @@ struct GameView: View {
                     
                     Spacer()
                     
-                    if !playerList.isEmpty && playerList[currentTurn].countinuePlay {
+                    if !playerList.isEmpty  {
                         VStack {
-//                            HStack {
-//                                Text("Mode:", manager: localizationManager)
-//                                    .font(Font.custom("Quicksand-Medium", size: 20))
-//                                    .frame(width: 130)
-//                                
-//                                Text("\(defaultMode)")
-//                                    .font(Font.custom("Quicksand-Regular", size: 20))
-//                            }
+                            HStack {
+                                HStack {
+                                    Spacer()
+                                    Text("Current Turn:", manager: localizationManager)
+                                        .font(Font.custom("Quicksand-Medium", size: 20))
+                                        
+                                }
+                                .frame(width: 130)
+                                
+                                if playerList[currentTurn].countinuePlay {
+                                    Text("\(playerList[currentTurn].name)")
+                                        .font(Font.custom("Quicksand-Regular", size: 20))
+                                        .frame(width: 100)
+                                } else {
+                                    Spacer()
+                                        .frame(width: 100)
+                                }
+                                
+                            }
+                            .frame(width: 230)
                             
                             HStack {
-                                Text("Current Turn:", manager: localizationManager)
-                                    .font(Font.custom("Quicksand-Medium", size: 20))
-                                    .frame(width: 130)
+                                HStack {
+                                    Spacer()
+
+                                    Text("No. Turn:", manager: localizationManager)
+                                        .font(Font.custom("Quicksand-Medium", size: 20))
+                                }
+                                .frame(width: 130)
+
+                                if playerList[currentTurn].countinuePlay {
+                                    Text("\(playerList[currentTurn].numberOfTurn)")
+                                        .font(Font.custom("Quicksand-Regular", size: 20))
+                                        .frame(width: 100)
+                                } else {
+                                    Spacer()
+                                        .frame(width: 100)
+                                }
                                 
-                                Text("\(playerList[currentTurn].name)")
-                                    .font(Font.custom("Quicksand-Regular", size: 20))
                             }
+                            .frame(width: 230)
                             
                             HStack {
-                                Text("No. Turn:", manager: localizationManager)
-                                    .font(Font.custom("Quicksand-Medium", size: 20))
-                                    .frame(width: 130)
+                                HStack {
+                                    Spacer()
+                                    Text("Score:", manager: localizationManager)
+                                        .font(Font.custom("Quicksand-Medium", size: 20))
+                                }
+                                .frame(width: 130)
                                 
-                                Text("\(playerList[currentTurn].numberOfTurn)")
-                                    .font(Font.custom("Quicksand-Regular", size: 20))
+                                if playerList[currentTurn].countinuePlay {
+                                    Text("\(playerList[currentTurn].score)")
+                                        .font(.custom("Quicksand-Regular", size: 20))
+                                        .frame(width: 100)
+                                } else {
+                                    Spacer()
+                                        .frame(width: 100)
+                                }
+                                
                             }
+                            .frame(width: 230)
                             
                             HStack {
-                                Text("Score:", manager: localizationManager)
-                                    .font(Font.custom("Quicksand-Medium", size: 20))
-                                    .frame(width: 130)
+                                HStack {
+                                    Spacer()
+                                    
+                                    Text("Level:", manager: localizationManager)
+                                        .font(Font.custom("Quicksand-Medium", size: 20))
+                                }
+                                .frame(width: 130)
                                 
-                                Text("\(playerList[currentTurn].score)")
-                                    .font(Font.custom("Quicksand-Regular", size: 20))
+                                if playerList[currentTurn].countinuePlay {
+                                    Text("\(level)")
+                                        .font(Font.custom("Quicksand-Regular", size: 20))
+                                        .frame(width: 100)
+                                } else {
+                                    Spacer()
+                                        .frame(width: 100)
+                                }
+
+                                
                             }
+                            .frame(width: 230)
                             
                         }
                     }
                 }
                 .padding(.top, 10)
-                .padding(.horizontal, 20)
+                .padding(.horizontal, 10)
+//                .background(.pink)
                 
                 
                 VStack(spacing: sizeCategory == .small ? 20 : 30) {
@@ -130,7 +180,7 @@ struct GameView: View {
                             }
                         }
                     }
-                    .frame(height: geometry.size.height/3 - 50)
+                    .frame(height: geometry.size.height / 3 - 40)
                     
                     HStack {
                         if numberOfPlayers > 3 && !playerList.isEmpty && playerList[3].countinuePlay {
@@ -187,6 +237,7 @@ struct GameView: View {
                                     DraggableCard( card: card, dropZoneFrame: geometry.frame(in: .global), currentTurn: $currentTurn, playerList: $playerList, playTurn: $playTurn, seeFuture: $seeFuture, stealOther: $stealOther, cardGame: $cardGame,  cardOffset: $cardOffsets[index], droppedCards: $droppedCards, playerCards: $playerList[0].cards, currentScore: $currentScore, screenSize: sizeCategory)
                                 }
                             }
+                            .frame(height: geometry.size.height / 3)
                             .onChange(of: playerList[0].cards.count, initial: true) {
                                 oldValue, newValue in
                                 cardOffsets = Array(repeating: .zero, count: playerList[0].cards.count + 1)
@@ -194,7 +245,6 @@ struct GameView: View {
                             }
                         }
                         .zIndex(100)
-
                     }
                 }
                 
@@ -204,12 +254,11 @@ struct GameView: View {
                         VStack(spacing: 0) {
                             Spacer()
                             
-                            
                             Button(action: {
                                 showingSheet.toggle()
                             }, label: {
                                 Image(systemName: "info.circle")
-                                    .padding(20)
+                                    .padding(10)
                                     .font(.system(size: 24))
                                     .foregroundColor(Color("custom-black"))
                             })
@@ -264,6 +313,11 @@ struct GameView: View {
             .onAppear {
                 if resumeGame {
                     loadGameDataFromUserDefaults()
+                    if currentTurn != 0 {
+                        aiTurn()
+                    } else {
+                        playTurn = true
+                    }
                 } else {
                     isGameDataAvailable = false
                     removeGameDataFromUserDefaults()
@@ -275,23 +329,14 @@ struct GameView: View {
                 if oldValue != newValue {
                     if UserDefaults.standard.data(forKey: "gameData") == nil {
                         let cardList = theme == "Rabbit" ? cardsV2 : cards
-//                        if let player = getPlayer(name: playerName) {
-//                            if player.level < 3 && modeGame != "Easy" {
-//                                defaultMode = "Easy"
-//                            } else if player.level > 3 && player.level < 11 && modeGame == "Hard" {
-//                                defaultMode = "Medium"
-//                            } else if player.level >= 11 {
-//                                defaultMode = "Hard"
-//                            } else {
-//                                defaultMode = modeGame
-//                            }
-//                        }
-                        getCardsForGame(to: &cardGame, numberOfPlayers: numberOfPlayers, level: modeGame, cardList: cardList)
+                        if let player = getPlayer(name: playerName) {
+                            level = player.level
+                        }
+                        getCardsForGame(to: &cardGame, numberOfPlayers: numberOfPlayers, mode: modeGame, cardList: cardList, level: level)
                         setUpPlayers()
                         cardOffsets = Array(repeating: .zero, count: cardGame.count)
                         percentBomb = calculateBombPercent(cards: cardGame)
                     }
-                    
                 }
             }
             .onDisappear {
@@ -299,7 +344,7 @@ struct GameView: View {
                     saveGameDataToUserDefaults()
                     isGameDataAvailable = true
                 } else {
-                    UserDefaults.standard.removeObject(forKey: "gameData")
+                    removeGameDataFromUserDefaults()
                     isGameDataAvailable = false
                 }
             }
@@ -412,7 +457,10 @@ struct GameView: View {
             showInput: self.showInput,
             numberOfPlayers: self.numberOfPlayers,
             cardOffsets: self.cardOffsets,
-            modeGame: self.modeGame
+            modeGame: self.modeGame,
+            bombCard: self.bombCard,
+            percentBomb: self.percentBomb,
+            level: self.level
         )
 
         if let encodedData = try? JSONEncoder().encode(gameData) {
@@ -441,9 +489,10 @@ struct GameView: View {
             self.numberOfPlayers = decodedData.numberOfPlayers
             self.cardOffsets = decodedData.cardOffsets
             self.modeGame = decodedData.modeGame
-            print("Loaded modeGame: \(self.modeGame)")
+            self.bombCard = decodedData.bombCard
+            self.percentBomb = decodedData.percentBomb
+            self.level = decodedData.level
             print("Game data loaded from UserDefaults.")
-
         } else {
             print("No saved game data found in UserDefaults.")
         }
@@ -452,12 +501,7 @@ struct GameView: View {
 }
 
 #Preview {
-//    GameView(numberOfPlayers: 2)
     MenuView()
-//    GameView(isGameDataAvailable: .constant(true), modeGame: .constant("Hard"), resumeGame: false)
-//        .environmentObject(LocalizationManager()) // Inject the LocalizationManager for the preview
-//        .environmentObject(AudioManager())  Inject the LocalizationManager for the preview
-
 }
 
 

@@ -27,7 +27,7 @@ struct CardList: View {
     var body: some View {
         
         if position == "top" {
-            HStack(spacing: -60) {
+            HStack(spacing: cards.count < 10 ? -70 : -100) {
                 ForEach(cards, id: \.self) { card in
                     card.backImage
                         .resizable()
@@ -39,7 +39,7 @@ struct CardList: View {
             }
             .offset(y: -10)
         } else {
-            VStack(spacing: -70) {
+            VStack(spacing: cards.count < 6 ? -70 : -80) {
                 ForEach(cards, id: \.self) { card in
                     card.backImage
                         .resizable()
@@ -56,6 +56,6 @@ struct CardList: View {
 
 #Preview {
 //    MenuView()
-    CardList(cards: cards, position: "top", screenSize: .large)
+    CardList(cards: cards, position: "right", screenSize: .small)
 //    GameView(numberOfPlayers: 4)
 }

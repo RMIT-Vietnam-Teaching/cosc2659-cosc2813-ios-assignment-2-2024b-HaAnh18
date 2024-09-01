@@ -52,7 +52,6 @@
 		39914ABE2C816B230027C4DB /* Quicksand-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 39914ABD2C816B230027C4DB /* Quicksand-Regular.ttf */; };
 		39914AC02C8235E70027C4DB /* BombPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39914ABF2C8235E70027C4DB /* BombPosition.swift */; };
 		39914AC22C83048A0027C4DB /* BombPercent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39914AC12C83048A0027C4DB /* BombPercent.swift */; };
-		39914AC42C830C470027C4DB /* CurvedText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39914AC32C830C470027C4DB /* CurvedText.swift */; };
 		3993DE472C6E300C009D31CE /* SeeFutureDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3993DE462C6E300C009D31CE /* SeeFutureDialog.swift */; };
 		39A148CD2C68CE2500D35D71 /* ExplodingKittensApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A148CC2C68CE2500D35D71 /* ExplodingKittensApp.swift */; };
 		39A148CF2C68CE2500D35D71 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A148CE2C68CE2500D35D71 /* ContentView.swift */; };
@@ -62,11 +61,9 @@
 		39A148DF2C68CE4300D35D71 /* cards.json in Resources */ = {isa = PBXBuildFile; fileRef = 39A148DC2C68CE4300D35D71 /* cards.json */; };
 		39A148E02C68CE4300D35D71 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A148DD2C68CE4300D35D71 /* Card.swift */; };
 		39A148E42C68D3DC00D35D71 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A148E32C68D3DC00D35D71 /* GameView.swift */; };
-		39A148EC2C68D5BC00D35D71 /* DragDropDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A148E92C68D5BC00D35D71 /* DragDropDelegate.swift */; };
 		39A148ED2C68D5BC00D35D71 /* Modifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A148EA2C68D5BC00D35D71 /* Modifier.swift */; };
 		39A148EF2C68D5D300D35D71 /* CardList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A148EE2C68D5D300D35D71 /* CardList.swift */; };
 		39A148F12C68FAEC00D35D71 /* DropDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A148F02C68FAEC00D35D71 /* DropDestination.swift */; };
-		39A148F32C690E3900D35D71 /* DragCardList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A148F22C690E3900D35D71 /* DragCardList.swift */; };
 		39A148F52C690F2B00D35D71 /* PlayFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A148F42C690F2B00D35D71 /* PlayFunction.swift */; };
 		39A148F72C691C1A00D35D71 /* PickCardList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A148F62C691C1A00D35D71 /* PickCardList.swift */; };
 		39A148F92C6B5A0800D35D71 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A148F82C6B5A0800D35D71 /* Player.swift */; };
@@ -121,7 +118,6 @@
 		39914ABD2C816B230027C4DB /* Quicksand-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Regular.ttf"; sourceTree = "<group>"; };
 		39914ABF2C8235E70027C4DB /* BombPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BombPosition.swift; sourceTree = "<group>"; };
 		39914AC12C83048A0027C4DB /* BombPercent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BombPercent.swift; sourceTree = "<group>"; };
-		39914AC32C830C470027C4DB /* CurvedText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurvedText.swift; sourceTree = "<group>"; };
 		3993DE462C6E300C009D31CE /* SeeFutureDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeFutureDialog.swift; sourceTree = "<group>"; };
 		39A148C92C68CE2500D35D71 /* ExplodingKittens.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExplodingKittens.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		39A148CC2C68CE2500D35D71 /* ExplodingKittensApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplodingKittensApp.swift; sourceTree = "<group>"; };
@@ -132,11 +128,9 @@
 		39A148DC2C68CE4300D35D71 /* cards.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cards.json; sourceTree = "<group>"; };
 		39A148DD2C68CE4300D35D71 /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		39A148E32C68D3DC00D35D71 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
-		39A148E92C68D5BC00D35D71 /* DragDropDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DragDropDelegate.swift; sourceTree = "<group>"; };
 		39A148EA2C68D5BC00D35D71 /* Modifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Modifier.swift; sourceTree = "<group>"; };
 		39A148EE2C68D5D300D35D71 /* CardList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardList.swift; sourceTree = "<group>"; };
 		39A148F02C68FAEC00D35D71 /* DropDestination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDestination.swift; sourceTree = "<group>"; };
-		39A148F22C690E3900D35D71 /* DragCardList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragCardList.swift; sourceTree = "<group>"; };
 		39A148F42C690F2B00D35D71 /* PlayFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayFunction.swift; sourceTree = "<group>"; };
 		39A148F62C691C1A00D35D71 /* PickCardList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickCardList.swift; sourceTree = "<group>"; };
 		39A148F82C6B5A0800D35D71 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
@@ -223,15 +217,6 @@
 			path = SettingView;
 			sourceTree = "<group>";
 		};
-		396B06542C7B8F8100490C0D /* Language */ = {
-			isa = PBXGroup;
-			children = (
-				396B06522C7B878F00490C0D /* Localizable.xcstrings */,
-				396B06552C7B8F9F00490C0D /* LocalizationManager.swift */,
-			);
-			path = Language;
-			sourceTree = "<group>";
-		};
 		397E18CB2C738EED00D66D51 /* GIF */ = {
 			isa = PBXGroup;
 			children = (
@@ -262,9 +247,9 @@
 		39A148CB2C68CE2500D35D71 /* ExplodingKittens */ = {
 			isa = PBXGroup;
 			children = (
-				3957A01D2C7C80C500CDEAFD /* Sound */,
-				396B06542C7B8F8100490C0D /* Language */,
 				397E18DE2C739EE700D66D51 /* Info.plist */,
+				396B06522C7B878F00490C0D /* Localizable.xcstrings */,
+				3957A01D2C7C80C500CDEAFD /* Sound */,
 				393FD41B2C77518A00787514 /* Font */,
 				397E18CB2C738EED00D66D51 /* GIF */,
 				39A148E72C68D5B300D35D71 /* Helper */,
@@ -319,7 +304,6 @@
 				39A148EE2C68D5D300D35D71 /* CardList.swift */,
 				39A148E32C68D3DC00D35D71 /* GameView.swift */,
 				39A148F02C68FAEC00D35D71 /* DropDestination.swift */,
-				39A148F22C690E3900D35D71 /* DragCardList.swift */,
 				39A148F62C691C1A00D35D71 /* PickCardList.swift */,
 				3993DE462C6E300C009D31CE /* SeeFutureDialog.swift */,
 				39BBB71E2C6FA37700AA77E6 /* PickStealCard.swift */,
@@ -330,7 +314,6 @@
 				396B06382C790BB400490C0D /* DraggableCard.swift */,
 				39914ABF2C8235E70027C4DB /* BombPosition.swift */,
 				39914AC12C83048A0027C4DB /* BombPercent.swift */,
-				39914AC32C830C470027C4DB /* CurvedText.swift */,
 			);
 			path = GameView;
 			sourceTree = "<group>";
@@ -338,7 +321,7 @@
 		39A148E72C68D5B300D35D71 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				39A148E92C68D5BC00D35D71 /* DragDropDelegate.swift */,
+				396B06552C7B8F9F00490C0D /* LocalizationManager.swift */,
 				39A148EA2C68D5BC00D35D71 /* Modifier.swift */,
 				39A148F42C690F2B00D35D71 /* PlayFunction.swift */,
 				397E18C92C738D7900D66D51 /* GifImage.swift */,
@@ -443,7 +426,6 @@
 				393FD4372C77864300787514 /* LineChart.swift in Sources */,
 				396B063D2C7B210300490C0D /* ModeGame.swift in Sources */,
 				396B06562C7B8F9F00490C0D /* LocalizationManager.swift in Sources */,
-				39A148F32C690E3900D35D71 /* DragCardList.swift in Sources */,
 				397E18CA2C738D7900D66D51 /* GifImage.swift in Sources */,
 				39A148F12C68FAEC00D35D71 /* DropDestination.swift in Sources */,
 				393FD4332C7769C200787514 /* Loader.swift in Sources */,
@@ -451,7 +433,6 @@
 				397E18D12C7394FD00D66D51 /* WinView.swift in Sources */,
 				39A148F92C6B5A0800D35D71 /* Player.swift in Sources */,
 				396B06352C78EADC00490C0D /* DropDownView.swift in Sources */,
-				39A148EC2C68D5BC00D35D71 /* DragDropDelegate.swift in Sources */,
 				393FD4122C7623BA00787514 /* DropZoneView.swift in Sources */,
 				393FD4002C75A00700787514 /* PlayCardTutorial.swift in Sources */,
 				396B06332C78E8CB00490C0D /* Settings.swift in Sources */,
@@ -464,7 +445,6 @@
 				393FD4352C777E5E00787514 /* BarChart.swift in Sources */,
 				39A148F72C691C1A00D35D71 /* PickCardList.swift in Sources */,
 				393FD4172C77197B00787514 /* Leaderboard.swift in Sources */,
-				39914AC42C830C470027C4DB /* CurvedText.swift in Sources */,
 				39914AC22C83048A0027C4DB /* BombPercent.swift in Sources */,
 				39914AC02C8235E70027C4DB /* BombPosition.swift in Sources */,
 				396B06472C7B378200490C0D /* TableView.swift in Sources */,
