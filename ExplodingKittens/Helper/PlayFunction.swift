@@ -53,29 +53,29 @@ func getRandomCard(card: Card, to destination: inout [Card], from removeList: in
     addCard(card: card, count: 1, to: &destination, remove: true, from: &removeList)
 }
 
-func getCardsForGame(to destination: inout [Card], numberOfPlayers: Int, level: String, cardList: [Card]) {
+func getCardsForGame(to destination: inout [Card], numberOfPlayers: Int, mode: String, cardList: [Card], level: Int) {
     var cardGame:  [Int: [String: Int]]
     let cardsForEasyGame: [Int: [String: Int]] = [
-        2: ["Bomb": 1, "Defuse": 3, "See The Future": 4, "Shuffle": 4, "Skip": 4],
-        3: ["Bomb": 2, "Defuse": 4, "See The Future": 4, "Shuffle": 5, "Skip": 5],
-        4: ["Bomb": 3, "Defuse": 5, "See The Future": 5, "Shuffle": 6, "Skip": 6]
+        2: ["Bomb": 1, "Defuse": 3, "See The Future": 3 + level, "Shuffle": 3 + level, "Skip": 3 + level],
+        3: ["Bomb": 2, "Defuse": 4, "See The Future": 3 + level, "Shuffle": 4 + level, "Skip": 4 + level],
+        4: ["Bomb": 3, "Defuse": 5, "See The Future": 4 + level, "Shuffle": 5 + level, "Skip": 5 + level]
     ]
     
     let cardsForMediumGame: [Int: [String: Int]] = [
-        2: ["Bomb": 1, "Defuse": 3, "See The Future": 4, "Shuffle": 4, "Skip": 4, "Steal A Card": 4],
-        3: ["Bomb": 2, "Defuse": 4, "See The Future": 4, "Shuffle": 5, "Skip": 5, "Steal A Card": 5],
-        4: ["Bomb": 3, "Defuse": 5, "See The Future": 5, "Shuffle": 6, "Skip": 6, "Steal A Card": 6]
+        2: ["Bomb": 1, "Defuse": 3, "See The Future": 3 + level, "Shuffle": 3 + level, "Skip": 3 + level, "Steal A Card": 3 + level],
+        3: ["Bomb": 2, "Defuse": 4, "See The Future": 3 + level, "Shuffle": 4 + level, "Skip": 4 + level, "Steal A Card": 4 + level],
+        4: ["Bomb": 3, "Defuse": 5, "See The Future": 4 + level, "Shuffle": 5 + level, "Skip": 5 + level, "Steal A Card": 5 + level]
     ]
     
     let cardsForHardGame: [Int: [String: Int]] = [
-        2: ["Bomb": 1, "Defuse": 3, "Attack": 3, "See The Future": 4, "Shuffle": 4, "Skip": 4, "Steal A Card": 4],
-        3: ["Bomb": 2, "Defuse": 4, "Attack": 4, "See The Future": 4, "Shuffle": 5, "Skip": 5, "Steal A Card": 5],
-        4: ["Bomb": 3, "Defuse": 5, "Attack": 5, "See The Future": 5, "Shuffle": 6, "Skip": 6, "Steal A Card": 6]
+        2: ["Bomb": 1, "Defuse": 3, "Attack": 2 + level, "See The Future": 3 + level, "Shuffle": 3 + level, "Skip": 3 + level, "Steal A Card": 3 + level],
+        3: ["Bomb": 2, "Defuse": 4, "Attack": 3 + level, "See The Future": 3 + level, "Shuffle": 4 + level, "Skip": 4 + level, "Steal A Card": 4 + level],
+        4: ["Bomb": 3, "Defuse": 5, "Attack": 4 + level, "See The Future": 4 + level, "Shuffle": 5 + level, "Skip": 5 + level, "Steal A Card": 5 + level]
     ]
     
-    if level == "Easy" {
+    if mode == "Easy" {
         cardGame = cardsForEasyGame
-    } else if level == "Medium" {
+    } else if mode == "Medium" {
         cardGame = cardsForMediumGame
     } else {
         cardGame = cardsForHardGame

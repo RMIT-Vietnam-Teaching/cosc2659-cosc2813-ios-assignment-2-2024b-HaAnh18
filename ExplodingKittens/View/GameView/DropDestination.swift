@@ -32,7 +32,7 @@ struct DropDestination: View {
             
             if droppedCards.count == 0 {
                 Text("Drop Your Card Here", manager: localizationManager)
-                    .font(Font.custom("Quicksand-Medium", size: 24))
+                    .font(Font.custom("Quicksand-Medium", size: 20))
                     .frame(width: screenSize == .small ? 140 : screenSize == .medium ? 150 : 210)
                     .multilineTextAlignment(.center)
             }
@@ -45,7 +45,6 @@ struct DropDestination: View {
                     .frame(width: screenSize == .small ? 140 : screenSize == .medium ? 150 : 210, height: screenSize == .small ? 140 : screenSize == .medium ? 150 : 210)
                     .scaledToFit()
             }
-//            .frame(width: 160, height: 160)
             
         }
     }

@@ -29,8 +29,8 @@ struct DropZoneView: View {
                    ? 150 : 200, height: screenSize == .small ? 140 : screenSize == .medium
                    ? 150 : 200)
             .overlay(
-                Text("Drop Here", manager: localizationManager)
-                    .font(Font.custom("Quicksand-Medium", size: 24))
+                Text("Drop Your Card Here", manager: localizationManager)
+                    .font(Font.custom("Quicksand-Medium", size: 20))
                     .foregroundColor(Color("custom-black"))
             )
     }

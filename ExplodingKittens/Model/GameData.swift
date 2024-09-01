@@ -34,6 +34,9 @@ struct GameData: Codable {
     var numberOfPlayers: Int = 2
     var cardOffsets: [CGSize] = []
     var modeGame: String = "Easy"
+    var bombCard: Card?
+    var percentBomb: CGFloat = 0
+    var level: Int = 1
 }
 
 func loadGameData() -> GameData? {

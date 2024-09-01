@@ -22,10 +22,6 @@ struct BombPercent: View {
     // purple -> green, red -> yellow,
     var body: some View {
         ZStack {
-            //            Image("bomb-percent")
-            //                .resizable()
-            //                .frame(width: 150, height: 150)
-            
             Circle()
                 .fill(.white)
                 .frame(width: 70, height: 70)
@@ -64,11 +60,11 @@ struct BombPercent: View {
     
     private func startRandomScaling() {
         withAnimation(.random) {
-            scale = CGFloat.random(in: 0.8...1.0) // Random scaling between 0.5x and 1.5x
+            scale = CGFloat.random(in: 0.8...1.2) // Random scaling between 0.8x and 1.5x
         }
         Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { _ in
             withAnimation(.random) {
-                scale = CGFloat.random(in: 0.8...1.0) // Continuously apply random scaling
+                scale = CGFloat.random(in: 0.8...1.2) // Continuously apply random scaling
             }
         }
     }

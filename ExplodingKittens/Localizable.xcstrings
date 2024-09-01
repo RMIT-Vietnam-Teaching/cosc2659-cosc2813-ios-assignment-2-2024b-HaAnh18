@@ -2,16 +2,44 @@
   "sourceLanguage" : "en",
   "strings" : {
     "" : {
-
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " "
+          }
+        }
+      }
     },
     "%@" : {
-
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ "
+          }
+        }
+      }
     },
     "%@ %%" : {
-
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ %%"
+          }
+        }
+      }
     },
     "%lld" : {
-
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld"
+          }
+        }
+      }
     },
     "%lld cards left" : {
       "localizations" : {
@@ -114,7 +142,25 @@
       }
     },
     "Bottom" : {
-
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dưới cùng"
+          }
+        }
+      }
+    },
+    "Chance Of Bomb" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Khả năng trúng bom"
+          }
+        }
+      }
     },
     "Click For Card Description" : {
       "extractionState" : "manual",
@@ -647,7 +693,14 @@
       }
     },
     "Random" : {
-
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ngẫu nhiên"
+          }
+        }
+      }
     },
     "Resume Game" : {
       "extractionState" : "manual",
@@ -693,7 +746,14 @@
       }
     },
     "Set Bomb Back" : {
-
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đặt bom trở lại"
+          }
+        }
+      }
     },
     "Settings" : {
       "extractionState" : "manual",
@@ -773,10 +833,24 @@
       }
     },
     "Theme:" : {
-
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chủ đề:"
+          }
+        }
+      }
     },
     "Top" : {
-
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trên cùng"
+          }
+        }
+      }
     },
     "Top 5 highest players" : {
       "localizations" : {
