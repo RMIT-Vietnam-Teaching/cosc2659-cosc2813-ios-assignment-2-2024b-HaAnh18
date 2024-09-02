@@ -50,7 +50,7 @@ struct GameOverView: View {
                         Button(action: {
                             presentationMode.wrappedValue.dismiss()
                         }, label: {
-                            Text("Return")
+                            Text("Return", manager: localizationManager)
                                 .modifier(confirmButton())
                         })
                     }

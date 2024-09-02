@@ -45,7 +45,7 @@ struct BombPosition: View {
                         // Set the choice to "Top", indicating that the user selected this option.
                         choice = "Top"
                     }, label: {
-                        Text("Top")
+                        Text("Top", manager: localizationManager)
                             .modifier(choice == "Top" ? AnyViewModifier(chooseButton()) : AnyViewModifier(buttonCapsule()))
                     })
                     
@@ -56,7 +56,7 @@ struct BombPosition: View {
                         // Set the choice to "Bottom", indicating that the user selected this option.
                         choice = "Bottom"
                     }, label: {
-                        Text("Bottom")
+                        Text("Bottom", manager: localizationManager)
                             .modifier(choice == "Bottom" ? AnyViewModifier(chooseButton()) : AnyViewModifier(buttonCapsule()))
                     })
                     
@@ -67,7 +67,7 @@ struct BombPosition: View {
                         // Set the choice to "Random", indicating that the user selected this option.
                         choice = "Random"
                     }, label: {
-                        Text("Random")
+                        Text("Random", manager: localizationManager)
                             .modifier(choice == "Random" ? AnyViewModifier(chooseButton()) : AnyViewModifier(buttonCapsule()))
                     })
                     
@@ -90,7 +90,7 @@ struct BombPosition: View {
                                 currentTurn = (currentTurn + 1) % playerList.count
                             }
                         }, label: {
-                            Text("Confirm")
+                            Text("Confirm", manager: localizationManager)
                                 .modifier(confirmButton())
                         })
                     }

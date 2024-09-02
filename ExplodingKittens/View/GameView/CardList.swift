@@ -24,8 +24,12 @@ struct CardList: View {
     var screenSize: ScreenSizeCategory
     
     var body: some View {
+        let spacingIphone = cards.count < 6 ? -70 : -100
+        
+        let spacingIpad = cards.count < 6 ? -120 : -160
+        
         if position == "top" {
-            HStack(spacing: cards.count < 10 ? -70 : -100) {
+            HStack(spacing: screenSize == .large ? CGFloat(spacingIpad) : CGFloat(spacingIphone)) {
                 ForEach(cards, id: \.self) { card in
                     card.backImage
                         .resizable()
@@ -37,7 +41,7 @@ struct CardList: View {
             }
             .offset(y: -10)
         } else {
-            VStack(spacing: cards.count < 6 ? -70 : -80) {
+            VStack(spacing: screenSize == .large ? CGFloat(spacingIpad) : CGFloat(spacingIphone)) {
                 ForEach(cards, id: \.self) { card in
                     card.backImage
                         .resizable()
@@ -54,6 +58,6 @@ struct CardList: View {
 
 #Preview {
 //    MenuView()
-    CardList(cards: cards, position: "right", screenSize: .small)
+    CardList(cards: cards, position: "right", screenSize: .large)
 //    GameView(numberOfPlayers: 4)
 }
