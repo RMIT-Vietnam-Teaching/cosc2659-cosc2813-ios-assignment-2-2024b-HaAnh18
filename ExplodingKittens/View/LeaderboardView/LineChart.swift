@@ -29,38 +29,61 @@ struct LineChart: View {
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 25.0)
-                .foregroundColor(.white)
+                .foregroundColor(Color("player-row"))
             
             VStack(spacing: 10) {
                 Text("No. games each player", manager: localizationManager)
                     .font(Font.custom("Quicksand-Medium", size: 20))
+                    .foregroundColor(.black)
                 
                 GeometryReader { geometry in
                     Chart() {
+                        // Iterate through each player to plot their wins and losses.
                         ForEach(players, id: \.self) { player in
                             // Line for Wins
                             LineMark(
-                                x: .value("Player", player.name),
-                                y: .value("Wins", player.win),
-                                series: .value("", "Wins")
+                                x: .value("Player", player.name), // X-axis represents the player's name.
+                                y: .value("Wins", player.win), // Y-axis represents the number of wins.
+                                series: .value("", "Wins") // Series label for the wins line.
                             )
-                            .foregroundStyle(Color.green)
-                            .symbol(Circle())
-                            
+                            .foregroundStyle(.green) // Set the line color to green for wins.
+                            .symbol(Circle()) // Use a circle symbol for the points on the line.
                             
                             // Line for Losses
                             LineMark(
-                                x: .value("Player", player.name),
-                                y: .value("Losses", player.lose),
-                                series: .value("", "Lose")
+                                x: .value("Player", player.name), // X-axis represents the player's name.
+                                y: .value("Losses", player.lose), // Y-axis represents the number of losses.
+                                series: .value("", "Lose") // Series label for the losses line.
                             )
-                            .foregroundStyle(Color.red)
-                            .symbol(Circle())
+                            .foregroundStyle(.red) // Set the line color to red for losses.
+                            .symbol(Circle()) // Use a circle symbol for the points on the line.
                             
                         }
                     }
-                    .chartXAxisLabel(localizationManager.localizedString(for: "Player"))
-                    .chartYAxisLabel(localizationManager.localizedString(for: "Number of Games"))
+                    .chartXAxis {
+                        AxisMarks { _ in
+                            AxisValueLabel() // This sets the label for the x-axis (player names)
+                                .foregroundStyle(.black) // Set the color of the player names
+                            AxisGridLine() // This sets the grid line for the x-axis
+                                .foregroundStyle(Color("chart-line")) // Set the color of the x-axis grid lines
+                        }
+                    }
+                    .chartYAxis {
+                        AxisMarks { _ in
+                            AxisValueLabel() // This sets the label for the y-axis (numbers on the y-axis)
+                                .foregroundStyle(.black) // Optional: Set the color of the y-axis labels
+                            AxisGridLine() // This sets the grid line for the y-axis
+                                .foregroundStyle(Color("chart-line")) // Set the color of the y-axis grid lines
+                        }
+                    }
+                    .chartXAxisLabel {
+                        Text(localizationManager.localizedString(for: "Player"))
+                            .foregroundStyle(.black) // Set the color for the X-axis label
+                    }
+                    .chartYAxisLabel {
+                        Text(localizationManager.localizedString(for: "Number of Games"))
+                            .foregroundStyle(.black) // Set the color for the Y-axis label
+                    }
                     .padding()
                     .overlay(
                         Color.clear
@@ -86,9 +109,12 @@ struct LineChart: View {
                             HStack {
                                 Text("Player:", manager: localizationManager)
                                     .font(Font.custom("Quicksand-Bold", size: 16))
+                                    .foregroundColor(.black)
 
                                 
                                 Text(selectedPlayer.name)
+                                    .font(Font.custom("Quicksand-Regular", size: 16))
+                                    .foregroundColor(.black)
                                 
                                 Spacer()
                             }
@@ -97,10 +123,12 @@ struct LineChart: View {
                             HStack {
                                 Text("Level:", manager: localizationManager)
                                     .font(Font.custom("Quicksand-Bold", size: 16))
+                                    .foregroundColor(.black)
 
                                 
                                 Text("\(selectedPlayer.level)")
                                     .font(Font.custom("Quicksand-Regular", size: 16))
+                                    .foregroundColor(.black)
                                 
                                 Spacer()
                             }
@@ -109,10 +137,12 @@ struct LineChart: View {
                             HStack {
                                 Text("Wins:", manager: localizationManager)
                                     .font(Font.custom("Quicksand-Bold", size: 16))
+                                    .foregroundColor(.black)
 
                                 
                                 Text("\(selectedPlayer.win)")
                                     .font(Font.custom("Quicksand-Regular", size: 16))
+                                    .foregroundColor(.black)
                                 Spacer()
                             }
                             .padding(.horizontal, 10)
@@ -120,10 +150,12 @@ struct LineChart: View {
                             HStack {
                                 Text("Losses:", manager: localizationManager)
                                     .font(Font.custom("Quicksand-Bold", size: 16))
+                                    .foregroundColor(.black)
 
                                 
                                 Text("\(selectedPlayer.lose)")
                                     .font(Font.custom("Quicksand-Regular", size: 16))
+                                    .foregroundColor(.black)
                                 Spacer()
                             }
                             .padding(.horizontal, 10)
@@ -131,22 +163,22 @@ struct LineChart: View {
                             HStack {
                                 Text("Win Rate:", manager: localizationManager)
                                     .font(Font.custom("Quicksand-Bold", size: 16))
-
+                                    .foregroundColor(.black)
                                 
                                 Text("\(String(format: "%.0f", selectedPlayer.winRate)) %")
                                     .font(Font.custom("Quicksand-Regular", size: 16))
+                                    .foregroundColor(.black)
+                                
                                 Spacer()
                             }
                             .padding(.horizontal, 10)
                         }
-//                                .padding(8)
                         .frame(width: 160)
                         .background(Color.white)
                         .cornerRadius(8)
                         .shadow(radius: 4)
                         .position(x: xPosition, y: dragLocation.y - 50) // Adjust y-offset as needed
                     }
-                    
                 }
                 
                 HStack {

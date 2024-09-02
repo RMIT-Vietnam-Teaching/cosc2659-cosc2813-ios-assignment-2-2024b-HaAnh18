@@ -39,15 +39,6 @@ struct GameData: Codable {
     var level: Int = 1
 }
 
-func loadGameData() -> GameData? {
-    if let savedData = UserDefaults.standard.data(forKey: "gameData"),
-       let decodedData = try? JSONDecoder().decode(GameData.self, from: savedData) {
-        print("Game data loaded")
-        return decodedData
-    }
-    return nil
-}
-
 func removeGameDataFromUserDefaults() {
     UserDefaults.standard.removeObject(forKey: "gameData")
     print("Game data removed from UserDefaults.")

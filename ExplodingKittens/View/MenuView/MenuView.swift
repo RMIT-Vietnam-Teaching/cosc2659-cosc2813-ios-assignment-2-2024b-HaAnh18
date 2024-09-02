@@ -53,6 +53,7 @@ struct MenuView: View {
                                 VStack(alignment: .leading) {
                                     VStack(spacing: 10) {
                                         if isGameDataAvailable != nil && isGameDataAvailable == true {
+                                            // Only show the NavigationLink if isGameDataAvailable is not nil and is true.
                                             NavigationLink(destination: GameView(isGameDataAvailable: $isGameDataAvailable, modeGame: $modeGame, theme: $theme, resumeGame: true)) {
                                                 Text("Resume Game", manager: localizationManager)
                                                     .modifier(buttonCapsule())
@@ -84,39 +85,50 @@ struct MenuView: View {
                                 .frame(width: size.width / 2)
                             }
                         } else {
+                            // Display the MenuViewIpad for larger size categories.
                             MenuViewIpad(isGameDataAvailable: $isGameDataAvailable, language: $language, appearanceMode: $appearanceMode, colorScheme: $colorScheme, appearance: $appearance, modeGame: $modeGame, theme: $theme)
                         }
                     }
                 }
             }
             .onAppear {
+                // Check if game data is available
                 if isGameDataAvailable == nil {
+                    // Check if there is any saved game data in UserDefaults
                     isGameDataAvailable = UserDefaults.standard.data(forKey: "gameData") != nil
                 }
+                
+                // Retrieve the game mode from UserDefaults
                 if let mode = UserDefaults.standard.string(forKey: "modeGame") {
                     modeGame = mode
                 } else {
+                    // Print a message if no game mode data is found
                     print("No modeGame data found in UserDefaults.")
                 }
                 
+                // Retrieve the language setting from UserDefaults
                 if let language = UserDefaults.standard.string(forKey: "language") {
                     self.language = language
                 } else {
+                    // Print a message if no language data is found
                     print("No modeGame data found in UserDefaults.")
                 }
                 
+                // Retrieve the theme setting from UserDefaults
                 if let themeGame = UserDefaults.standard.string(forKey: "theme") {
                     self.theme = themeGame
                 } else {
+                    // Print a message if no theme data is found
                     print("No modeGame data found in UserDefaults.")
                 }
+                
+                // Play background music
 //                audioManager.playBackgroundMusic(fileName: "background", fileType: "mp3")
             }
         }
         .preferredColorScheme(colorScheme) // Set the preferred color scheme
         .environmentObject(localizationManager)
         .environmentObject(audioManager)
-
     }
 }
 

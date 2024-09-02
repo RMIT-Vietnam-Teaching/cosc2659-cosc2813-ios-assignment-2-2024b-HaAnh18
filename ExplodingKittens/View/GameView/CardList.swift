@@ -22,10 +22,8 @@ struct CardList: View {
     var cards: [Card]
     var position: String
     var screenSize: ScreenSizeCategory
-//    @State private var cardSize: CGFloat? = nil
     
     var body: some View {
-        
         if position == "top" {
             HStack(spacing: cards.count < 10 ? -70 : -100) {
                 ForEach(cards, id: \.self) { card in

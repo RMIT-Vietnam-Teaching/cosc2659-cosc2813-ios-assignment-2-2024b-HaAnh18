@@ -41,6 +41,7 @@ struct BombPercent: View {
             
             Text("\(String(format: "%.0f", percent)) %")
                 .font(Font.custom("Quicksand-Bold", size: 20))
+                .foregroundColor(.black)
             
             Image("bomb-percent")
                 .resizable()
@@ -48,9 +49,6 @@ struct BombPercent: View {
                 .offset(y: -7)
         }
         .scaleEffect(scale)
-//        .onAppear {
-//            startRandomScaling()
-//        }
         .onChange(of: percent, initial: true) {
             if percent >= 80 {
                 startRandomScaling()

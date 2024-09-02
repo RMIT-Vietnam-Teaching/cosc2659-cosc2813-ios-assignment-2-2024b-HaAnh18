@@ -79,35 +79,48 @@ struct DraggableCard: View {
         }
     }
     
+    // Case for the "Skip" card: Decreases the current player's turn count by 1.
     func checkPlayerCard(card: Card) {
         switch card.name {
         case "Skip":
             playerList[currentTurn].numberOfTurn -= 1
             playerList[currentTurn].score += card.score
             
+            // If the current player has no turns left, reset their turn count to 1 and move to the next player.
             if playerList[currentTurn].numberOfTurn == 0 {
                 playTurn = false
                 playerList[currentTurn].numberOfTurn = 1
                 currentTurn = (currentTurn + 1) % playerList.count
             }
             break
+            
+        // Case for the "Attack" card: Decreases the current player's turn count by 1,
+        // and adds an extra turn to the next player in the sequence.
         case "Attack":
             playerList[currentTurn].numberOfTurn = 0
             playerList[(currentTurn + 1) % playerList.count].numberOfTurn += 1
             playerList[currentTurn].score += card.score
             
+            // If the current player has no turns left, reset their turn count to 1 and move to the next player.
             if playerList[currentTurn].numberOfTurn == 0 {
                 playTurn = false
                 playerList[currentTurn].numberOfTurn = 1
                 currentTurn = (currentTurn + 1) % playerList.count
             }
             break
+            
+        // Case for the "See The Future" card: Increases the player's score and allows
+        // the player to preview the upcoming cards after a brief delay.
         case "See The Future":
             playerList[currentTurn].score += card.score
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 seeFuture = true
             }
             break
+            
+        // Case for the "Steal A Card" card: Allows the player to steal a card from another player.
+        // If there are more than 2 players, the player can choose whom to steal from.
+        // If there are only 2 players, the AI gives a card to the player.
         case "Steal A Card":
             if playerList.count > 2 {
                 stealOther = true
@@ -116,13 +129,21 @@ struct DraggableCard: View {
             }
             playerList[currentTurn].score += card.score
             break
+            
+        // Case for the "Shuffle" card: Shuffles the remaining cards in the deck and
+        // increases the player's score.
         case "Shuffle":
             cardGame.shuffle()
             playerList[currentTurn].score += card.score
             break
+            
+        // Default case: If the card name doesn't match any recognized cases, no action is taken.
         default:
             break
         }
     }
+}
 
+#Preview {
+    MenuView()
 }

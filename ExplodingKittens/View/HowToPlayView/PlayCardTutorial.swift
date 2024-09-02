@@ -42,7 +42,6 @@ struct PlayCardTutorial: View {
             let sizeCategory = getScreenSizeCategory(for: geometry.size)
             Color("game-view-bg")
             
-            
             ZStack(alignment: .top) {
                 HStack {
                     Button(action: {
@@ -241,23 +240,36 @@ struct PlayCardTutorial: View {
         .ignoresSafeArea()
         .navigationBarBackButtonHidden(true)
         .onAppear {
+            // Choose the card set based on the selected theme.
             pickCards = theme == "Rabbit" ? cardsV2 : cards
+            
+            // Prepare the selected card set for the game.
             prepareCards()
+            
+            // Filter out "Bomb" cards from the player's card set, based on the selected theme.
             playerCards = theme == "Rabbit" ? cardsV2.filter {$0.name != "Bomb"} : cards.filter {$0.name != "Bomb"}
+            
+            // Calculate the percentage of "Bomb" cards in the selected card set.
             percentBomb = calculateBombPercent(cards: pickCards)
+            
+            // Delay the animation by 0.2 seconds after the view appears.
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                 withAnimation{
+                    // Trigger an animation by setting step1 to true.
                     step1 = true
                 }
             }
-            
         }
-
     }
     
     private func prepareCards() {
-        let bombCards = pickCards.filter { $0.name == "Bomb" } // Step 1: Filter out "Bomb" cards
-        pickCards.removeAll { $0.name == "Bomb" } // Step 2: Remove "Bomb" cards from the original array
+        // Filter out "Bomb" cards
+        let bombCards = pickCards.filter { $0.name == "Bomb" }
+        
+        // Remove "Bomb" cards from the original array
+        pickCards.removeAll { $0.name == "Bomb" }
+        
+        // Insert the first "Bomb" card at the beginning of the pickCards array
         pickCards.insert(bombCards[0], at: 0)
     }
 }

@@ -39,7 +39,10 @@ struct BombPosition: View {
                         .foregroundColor(Color("custom-black"))
                     
                     Button(action: {
+                        // Set the position to the top of the deck (the last position in the cardGame array).
                         position = cardGame.count
+                        
+                        // Set the choice to "Top", indicating that the user selected this option.
                         choice = "Top"
                     }, label: {
                         Text("Top")
@@ -47,7 +50,10 @@ struct BombPosition: View {
                     })
                     
                     Button(action: {
+                        // Set the position to the bottom of the deck (the first position in the cardGame array).
                         position = 0
+                        
+                        // Set the choice to "Bottom", indicating that the user selected this option.
                         choice = "Bottom"
                     }, label: {
                         Text("Bottom")
@@ -55,7 +61,10 @@ struct BombPosition: View {
                     })
                     
                     Button(action: {
+                        // Set the position to a random value within the range of the deck (from 0 to the last position).
                         position = Int.random(in: 0...cardGame.count)
+                        
+                        // Set the choice to "Random", indicating that the user selected this option.
                         choice = "Random"
                     }, label: {
                         Text("Random")
@@ -64,12 +73,20 @@ struct BombPosition: View {
                     
                     if position != nil {
                         Button(action: {
+                            // Insert the bombCard at the specified position in the cardGame deck.
                             cardGame.insert(bombCard!, at: position!)
+                            
+                            // Reset the bombCard to nil after placing it in the deck.
                             bombCard = nil
+                            
+                            // Decrease the current player's number of turns by 1.
                             playerList[currentTurn].numberOfTurn -= 1
                             
                             if playerList[currentTurn].numberOfTurn == 0 {
+                                // If no turns left, reset their turn count to 1 for the next round.
                                 playerList[currentTurn].numberOfTurn = 1
+                                
+                                // Move to the next player's turn.
                                 currentTurn = (currentTurn + 1) % playerList.count
                             }
                         }, label: {
@@ -78,8 +95,6 @@ struct BombPosition: View {
                         })
                     }
                 }
-             
-                
             }
         }
         .onAppear {
@@ -90,15 +105,11 @@ struct BombPosition: View {
             withAnimation(.easeInOut(duration: 1.0)) {
                 open = true
             }
-            
-
         }
         .opacity(isVisible ? 1 : 0)
     }
 }
 
 #Preview {
-//    BombPosition()
     MenuView()
-    
 }

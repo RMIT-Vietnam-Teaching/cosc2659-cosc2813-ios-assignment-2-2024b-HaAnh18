@@ -20,13 +20,6 @@ import SwiftUI
 import Charts
 
 struct BarChart: View {
-//    @State private var players: [Player] = [
-//        Player(name: "John", cards: cards, numberOfTurn: 1, index: 0, countinuePlay: true, win: 7, lose: 3, level: 10), // Level 10, Win rate 70%
-//        Player(name: "Alice", cards: cards, numberOfTurn: 1, index: 1, countinuePlay: true, win: 9, lose: 1, level: 1),
-//        Player(name: "Bob", cards: cards, numberOfTurn: 1, index: 2, countinuePlay: true, win: 5, lose: 5, level: 5),
-//        Player(name: "A", cards: cards, numberOfTurn: 1, index: 2, countinuePlay: true, win: 5, lose: 5, level: 5),
-//        Player(name: "B", cards: cards, numberOfTurn: 1, index: 2, countinuePlay: true, win: 5, lose: 5, level: 5)
-//       ]
     @EnvironmentObject var localizationManager: LocalizationManager
 
     @Binding var players: [Player]
@@ -36,48 +29,77 @@ struct BarChart: View {
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 25.0)
-                .foregroundColor(.white)
+                .foregroundColor(Color("player-row"))
             
             VStack(spacing: 10) {
                 Text("Top 5 highest players", manager: localizationManager)
                     .font(Font.custom("Quicksand-Medium", size: 20))
+                    .foregroundColor(.black)
                 
                 VStack {
                     GeometryReader { geometry in
                         Chart {
+                            // Loop through the top 5 players and create a BarMark for each.
                             ForEach(players.prefix(5), id: \.self) { player in
                                 BarMark(x: .value(localizationManager.localizedString(for: "Player"), player.name),
                                         y: .value(localizationManager.localizedString(for:"Win Rate"), player.winRate))
                             }
                         }
                         .foregroundColor(Color("lightblue"))
+                        .chartXAxis {
+                            AxisMarks { _ in
+                                AxisValueLabel()
+                                    .foregroundStyle(.black) // Set color for the player names (x-axis labels)
+                                AxisGridLine()
+                                    .foregroundStyle(Color("chart-line")) // Set color for the x-axis grid lines
+                            }
+                        }
+                        .chartYAxis {
+                            AxisMarks { _ in
+                                AxisValueLabel() // Ensure y-axis labels are shown
+                                    .foregroundStyle(.black) // Optional: Set color for y-axis labels
+                                AxisGridLine()
+                                    .foregroundStyle(Color("chart-line")) // Set color for the y-axis grid lines
+                            }
+                        }
                         .overlay(
+                            // Add an invisible overlay to detect drag gestures.
                             Color.clear
-                                .contentShape(Rectangle())
+                                .contentShape(Rectangle()) // Defines the area that is sensitive to gestures.
                                 .gesture(
+                                    // Add a drag gesture to detect touch and drag interactions.
                                     DragGesture(minimumDistance: 0)
                                         .onChanged { value in
+                                            // When the user drags, update the drag location and find the corresponding player.
                                             dragLocation = value.location
                                             selectedPlayer = findPlayer(at: value.location, in: geometry.size)
                                         }
                                         .onEnded { _ in
+                                            // When the drag ends, clear the selected player.
                                             selectedPlayer = nil
                                         }
                                 )
                         )
                                     
                         if let selectedPlayer = selectedPlayer {
+                            // Calculate the width of each bar in the chart.
                             let barWidth = (geometry.size.width / CGFloat(players.count))
+                            
+                            // Find the index of the selected player in the players array.
                             let index = players.firstIndex(of: selectedPlayer) ?? 0
+                            
+                            // Calculate the x position of the tooltip based on the player's index.
                             let xPosition = CGFloat(index) * barWidth + barWidth / 2
                             
                             VStack {
                                 HStack {
                                     Text("Player:", manager: localizationManager)
                                         .font(Font.custom("Quicksand-Bold", size: 16))
+                                        .foregroundColor(.black)
 
                                     
                                     Text(selectedPlayer.name)
+                                        .foregroundColor(.black)
                                     
                                     Spacer()
                                 }
@@ -86,9 +108,11 @@ struct BarChart: View {
                                 HStack {
                                     Text("Level:", manager: localizationManager)
                                         .font(Font.custom("Quicksand-Bold", size: 16))
+                                        .foregroundColor(.black)
 
                                     
                                     Text("\(selectedPlayer.level)")
+                                        .foregroundColor(.black)
                                     
                                     Spacer()
                                 }
@@ -97,10 +121,12 @@ struct BarChart: View {
                                 HStack {
                                     Text("Wins:", manager: localizationManager)
                                         .font(Font.custom("Quicksand-Bold", size: 16))
+                                        .foregroundColor(.black)
 
-                                    
                                     Text("\(selectedPlayer.win)")
                                         .font(Font.custom("Quicksand-Regular", size: 16))
+                                        .foregroundColor(.black)
+                                    
                                     Spacer()
                                 }
                                 .padding(.horizontal, 10)
@@ -108,10 +134,13 @@ struct BarChart: View {
                                 HStack {
                                     Text("Losses:", manager: localizationManager)
                                         .font(Font.custom("Quicksand-Bold", size: 16))
+                                        .foregroundColor(.black)
 
                                     
                                     Text("\(selectedPlayer.lose)")
                                         .font(Font.custom("Quicksand-Regular", size: 16))
+                                        .foregroundColor(.black)
+                                    
                                     Spacer()
                                 }
                                 .padding(.horizontal, 10)
@@ -119,26 +148,25 @@ struct BarChart: View {
                                 HStack {
                                     Text("Win Rate:", manager: localizationManager)
                                         .font(Font.custom("Quicksand-Bold", size: 16))
+                                        .foregroundColor(.black)
 
                                     
                                     Text("\(String(format: "%.0f", selectedPlayer.winRate)) %")
                                         .font(Font.custom("Quicksand-Regular", size: 16))
+                                        .foregroundColor(.black)
+                                    
                                     Spacer()
                                 }
                                 .padding(.horizontal, 10)
                             }
-//                                .padding(8)
                             .frame(width: 160)
                             .background(Color.white)
                             .cornerRadius(8)
                             .shadow(radius: 4)
                             .position(x: xPosition, y: dragLocation.y - 50) // Adjust y-offset as needed
                         }
-                        
                     }
                 }
-                
-                
             }
             .padding(.horizontal, 20)
             .padding(.vertical, 10)
@@ -147,12 +175,19 @@ struct BarChart: View {
     }
     
     func findPlayer(at location: CGPoint, in size: CGSize) -> Player? {
-        // Assuming the chart is divided equally for each player
+        // Calculate the width of each bar in the chart based on the total width and the number of players.
         let barWidth = size.width / CGFloat(players.count)
+        
+        // Determine the index of the player by dividing the x-coordinate of the touch location by the bar width.
         let index = Int(location.x / barWidth)
+        
+        // Check if the calculated index is within the valid range of the players array.
         if index >= 0 && index < players.count {
+            // If the index is valid, return the corresponding player.
             return players[index]
         }
+        
+        // If the index is out of bounds, return nil.
         return nil
     }
 }

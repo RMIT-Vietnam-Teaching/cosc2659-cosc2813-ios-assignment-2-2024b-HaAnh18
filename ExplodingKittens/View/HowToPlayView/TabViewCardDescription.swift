@@ -42,7 +42,6 @@ struct TabViewCardDescription: View {
                     CardInfo(card: cardList[index]).tag(index)
                 }
             }
-//                .frame(height: 250)
             .tabViewStyle(.page(indexDisplayMode: .never))
         
             HStack(spacing: 10) {
@@ -68,7 +67,7 @@ struct TabViewCardDescription: View {
 
 #Preview {
 //    TabViewCardDescription(showingSheet: .constant(true))
-//    PlayCardTutorial(theme: .constant("Rabbit"))
-//        .environmentObject(LocalizationManager()) // Inject the LocalizationManager for the preview
-    MenuView()
+    PlayCardTutorial(theme: .constant("Rabbit"))
+        .environmentObject(LocalizationManager()) // Inject the LocalizationManager for the preview
+//    MenuView()
 }

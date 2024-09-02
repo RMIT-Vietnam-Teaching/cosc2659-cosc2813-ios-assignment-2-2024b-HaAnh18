@@ -47,14 +47,11 @@ struct Badge: View {
                         Capsule()
                             .foregroundColor(Color(color))
                     }
+                    .foregroundColor(.black)
                     .offset(y: 5)
-    //                .opacity(open ? 1 : 0)
                     .animation(.easeInOut(duration: 0.3), value: open) // Apply animation to the transition
-    //                .frame(width: 100)
             }
         }
-//        .frame(width: 20)
-        
     }
 }
 

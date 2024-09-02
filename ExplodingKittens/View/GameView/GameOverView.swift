@@ -35,12 +35,10 @@ struct GameOverView: View {
                 .ignoresSafeArea()
             
             ZStack {
-                
                 GifImage(name: "exploding")
                     .ignoresSafeArea()
                     .frame(width: size.width, height: size.height)
                     .aspectRatio(contentMode: .fill)
-//                    .overlay(Color("game-view-bg").opacity(0.5))
                
                 VStack(spacing: 30) {
   
@@ -84,6 +82,4 @@ struct GameOverView: View {
 #Preview {
     GameOverView()
         .environmentObject(LocalizationManager()) // Inject the LocalizationManager for the preview
-//    MenuView()
-//    GameView(numberOfPlayers: 2)
 }

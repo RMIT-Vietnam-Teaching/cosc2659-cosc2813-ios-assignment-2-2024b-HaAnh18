@@ -24,13 +24,15 @@ struct TabViewModeGame: View {
 
     var body: some View {
         ZStack(alignment: .top) {
+            // A TabView that allows the user to swipe between different game mode descriptions.
             TabView(selection: self.$currentTab) {
+                // Each ModeGameDescription view is tagged with a unique index.
                 ModeGameDescription(modeGame: modeGame[0]).tag(0)
                 ModeGameDescription(modeGame: modeGame[1]).tag(1)
                 ModeGameDescription(modeGame: modeGame[2]).tag(2)
 
             }
-            .tabViewStyle(.page(indexDisplayMode: .never))
+            .tabViewStyle(.page(indexDisplayMode: .never)) // Style the TabView as a page view with hidden index indicators.
 
             TabBarView(currentTab: $currentTab)
             
@@ -58,6 +60,7 @@ struct TabBarView: View {
     
     var body: some View {
         HStack(spacing: 5) {
+            // Loop through each tab option, associating it with its index
             ForEach(Array(zip(self.tabBarOptions.indices, self.tabBarOptions)), id: \.0, content: { index, name in
                 TabBarItems(currentTab: self.$currentTab, namespace: namespace.self, tabBarItemName: name, tab: index)
             })
@@ -77,19 +80,22 @@ struct TabBarItems: View {
     
     var body: some View {
         Button(action: {
+            // When the button is tapped, set the current tab to this tab's index
             self.currentTab = tab
         }, label: {
             VStack {
+                // Display the tab name, localized and styled based on whether it's the current tab
                 Text(localizationManager.localizedString(for: tabBarItemName))
-
                     .font(Font.custom(currentTab == tab ? "Quicksand-Bold" : "Quicksand-Regular", size: 24))
                     .foregroundColor(currentTab == tab ? Color("red") : Color("custom-black"))
 
                 if currentTab == tab { // If this is the current tab
+                    // Show a colored underline with a matched geometry effect
                     Color(currentTab == tab ? Color("red") : Color("custom-black"))
                         .frame(height: 1)
                         .matchedGeometryEffect(id: "underline", in: namespace, properties: .frame)
                 } else {
+                    // Otherwise, show a clear (invisible) underline to maintain spacing
                     Color.clear
                         .frame(height: 1)
                 }

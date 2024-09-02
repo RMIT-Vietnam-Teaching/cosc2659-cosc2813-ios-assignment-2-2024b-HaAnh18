@@ -95,8 +95,6 @@ struct SeeFutureDialog: View {
             withAnimation(.easeInOut(duration: 1.0)) {
                 open = true
             }
-            
-
         }
         .opacity(isVisible ? 1 : 0)
     }

@@ -41,7 +41,9 @@ struct DropDownView: View {
                         
                     
                 }
+                // Adds a tap gesture to the view that toggles the `isExpanded` state with an animation.
                 .onTapGesture {
+                    // Perform the toggle action with an animation.
                     withAnimation(.easeInOut) {
                         isExpanded.toggle()
                     }
@@ -64,6 +66,7 @@ struct DropDownView: View {
                         .frame(height: 40)
                         .padding(.horizontal)
                         .onTapGesture {
+                            // When an option is tapped, animate the toggle of `isExpanded` and update the selection.
                             withAnimation(.snappy) {
                                 isExpanded.toggle()
                                 selection = option

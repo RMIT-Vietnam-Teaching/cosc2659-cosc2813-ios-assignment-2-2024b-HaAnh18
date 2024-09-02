@@ -27,18 +27,18 @@ struct PickStealCard: View {
     @Binding var stealCard: Bool
     @State private var isVisible = false
     @State var chosenCard: Card?
-    @State private var widthRecSize: CGFloat = 10
-    @State private var heightRecSize: CGFloat = 10
     
     var screenSize: ScreenSizeCategory
 
     var body: some View {
         GeometryReader { geometry in
             let size = geometry.size
+            let widthRecSize = screenSize == .small ? 600 : screenSize == .medium ? 600 : 700
             
+            let heightRecSize = screenSize == .small ? 300 : screenSize == .medium ? 300 : 350
             ZStack {
                 RoundedRectangle(cornerRadius: 25.0)
-                    .frame(width: widthRecSize, height: heightRecSize)
+                    .frame(width: CGFloat(widthRecSize), height: CGFloat(heightRecSize))
                     .foregroundColor(Color("custom-white"))
                 
                 VStack(spacing: 20) {
@@ -71,12 +71,13 @@ struct PickStealCard: View {
                             }
                         }
                     }
-                    .frame(width: widthRecSize - 10)
+                    .frame(width: CGFloat(widthRecSize) - 10)
                     
                     if chosenCard != nil {
                         withAnimation(.easeIn(duration: 1)) {
                             Button(action: {
                                 withAnimation {
+                                    // Add the chosen card to the previous player's hand and removing it from the deck.
                                     addCard(card: chosenCard!, count: 1, to: &playerList[ (currentTurn - 1 + playerList.count) % playerList.count].cards, remove: false, from:  &playerCards)
                                     
                                     removeCard(card: chosenCard!, from: &playerCards)
@@ -99,38 +100,15 @@ struct PickStealCard: View {
             .onAppear {
                 withAnimation(.easeInOut(duration: 1.0)) {
                     isVisible = true
-                    setComponentSize()
                 }
             }
-        }
-    }
-    
-    func setComponentSize() {
-        switch screenSize {
-        case .small:
-            widthRecSize = 600
-            heightRecSize = 300
-        case .medium:
-            widthRecSize = 600
-            heightRecSize = 300
-        case .large:
-            widthRecSize = 700
-            heightRecSize = 350
-        case .extraLarge:
-            widthRecSize = 120
-            heightRecSize = 200
         }
     }
 }
 
 #Preview {
-//    PickStealCard(cards: .constant(cards), chosenCard: .constant(cards[0]))
-//    MenuView()
-
     PickStealCard(playerCards: .constant(cards), playerList: .constant([]), currentTurn: .constant(0), stealCard: .constant(true), screenSize: .small)
         .environmentObject(LocalizationManager()) // Inject the LocalizationManager for the preview
-
-//    GameView(numberOfPlayers: 4)
 }
 
 

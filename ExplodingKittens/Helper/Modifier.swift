@@ -19,7 +19,10 @@
 import Foundation
 import SwiftUI
 
+// A custom view modifier that styles a view as a capsule-shaped button.
 struct buttonCapsule: ViewModifier {
+    
+    // This method defines the modifications applied to the content.
     func body(content: Content) -> some View {
         content
             .foregroundColor(Color("custom-black"))
@@ -33,7 +36,10 @@ struct buttonCapsule: ViewModifier {
     }
 }
 
+// A custom view modifier to style a confirm button.
 struct confirmButton: ViewModifier {
+    
+    // This method defines the modifications applied to the content.
     func body(content: Content) -> some View {
         content
             .foregroundColor(.black)
@@ -46,7 +52,10 @@ struct confirmButton: ViewModifier {
     }
 }
 
+// A custom view modifier to style a choose button.
 struct chooseButton: ViewModifier {
+    
+    // This method defines the modifications applied to the content.
     func body(content: Content) -> some View {
         content
             .foregroundColor(Color("custom-black"))
@@ -60,13 +69,18 @@ struct chooseButton: ViewModifier {
     }
 }
 
+// A generic view modifier that can apply any given `ViewModifier` at runtime.
 struct AnyViewModifier: ViewModifier {
+    
+    // Stores the modifier to be applied, as a closure that returns `AnyView`.
     private let modifier: (Content) -> AnyView
 
+    // Initializer that takes any `ViewModifier` and stores it as a type-erased closure.
     init<M: ViewModifier>(_ modifier: M) {
         self.modifier = { content in AnyView(content.modifier(modifier)) }
     }
 
+    // This method applies the stored modifier to the content.
     func body(content: Content) -> some View {
         modifier(content)
     }

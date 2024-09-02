@@ -33,7 +33,6 @@ struct InputInfo: View {
             ZStack {
                 RoundedRectangle(cornerRadius: 25.0)
                     .frame(width: 400, height: 300)
-//                    .frame(width: widthRecSize, height: heightRecSize)
                     .alignmentGuide(.leading) { d in
                         (size.width - d.width) / 2
                     }
@@ -41,7 +40,6 @@ struct InputInfo: View {
                         (size.height - d.height) / 2
                     }
                     .foregroundColor(Color("custom-white"))
-//                    .foregroundColor(.blue.opacity(0.3))
                 
                 VStack(spacing: 20) {
                     Text("New Game", manager: localizationManager)
@@ -51,7 +49,6 @@ struct InputInfo: View {
                         HStack {
                             Text("Player Name:", manager: localizationManager)
                                 .font(Font.custom("Quicksand-Medium", size: 20))
-                            
                             
                             TextField(localizationManager.localizedString(for:"Type your name"), text: $playerName)
                                 .frame(width: 200)
@@ -138,7 +135,5 @@ struct InputInfo: View {
 }
 
 #Preview {
-//    InputInfo()
     MenuView()
-//    GameView(isGameDataAvailable: .constant(false), resumeGame: false)
 }

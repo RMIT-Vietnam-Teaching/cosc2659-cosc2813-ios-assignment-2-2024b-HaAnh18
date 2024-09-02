@@ -39,7 +39,6 @@ struct WinView: View {
                     .ignoresSafeArea()
                     .frame(width: size.width, height: size.height)
                     .aspectRatio(contentMode: .fill)
-//                    .overlay(Color("game-view-bg").opacity(0.5))
                 
                 VStack(spacing: 30) {
                     Text("Winning", manager: localizationManager)

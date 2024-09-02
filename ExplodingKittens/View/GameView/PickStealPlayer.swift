@@ -27,8 +27,6 @@ struct PickStealPlayer: View {
     @Binding var stealOther: Bool
     @State private var chosenPlayer: Int = 0
     @State private var isVisible = false
-    @State private var widthRecSize: CGFloat = 10
-    @State private var heightRecSize: CGFloat = 10
     
     var screenSize: ScreenSizeCategory
     
@@ -37,15 +35,17 @@ struct PickStealPlayer: View {
             let size = geometry.size
             
             ZStack {
+                let widthRecSize = screenSize == .large ? 900 : 720
+
                 RoundedRectangle(cornerRadius: 25.0)
-                    .frame(width: widthRecSize, height: heightRecSize)
+                    .frame(width: CGFloat(widthRecSize), height: 350)
                     .foregroundColor(Color("custom-white"))
                 
                 VStack(spacing: -10) {
                     Button(action: {
                         chosenPlayer = 2
                     }, label: {
-                        CardList(cards: playerList[2].cards, position: "top", screenSize: screenSize)
+                        CardList(cards: playerList[2].cards, position: "top", screenSize: .medium)
                             .shadow(color: Color("red"), radius: playerList[chosenPlayer] == playerList[2] ? 10 : 0)
                     })
                     
@@ -55,7 +55,7 @@ struct PickStealPlayer: View {
                             Button(action: {
                                 chosenPlayer = 3
                             }, label: {
-                                CardList(cards: playerList[3].cards, position: "left", screenSize: screenSize)
+                                CardList(cards: playerList[3].cards, position: "left", screenSize: .medium)
                                     .shadow(color: Color("red"), radius: playerList[chosenPlayer] == playerList[3] ? 10 : 0)
                             })
                         }
@@ -71,7 +71,7 @@ struct PickStealPlayer: View {
                             Button(action: {
                                 chosenPlayer = 1
                             }, label: {
-                                CardList(cards: playerList[1].cards, position: "left", screenSize: screenSize)
+                                CardList(cards: playerList[1].cards, position: "left", screenSize: .medium)
                                     .shadow(color: Color("red"), radius: playerList[chosenPlayer] == playerList[1] ? 10 : 0)
                             })
                         }
@@ -100,37 +100,11 @@ struct PickStealPlayer: View {
             .onAppear {
                 withAnimation(.easeInOut(duration: 1.0)) {
                     isVisible = true
-                    setComponentSize()
                 }
             }
         }
     }
-    
-    func setComponentSize() {
-        switch screenSize {
-        case .small:
-            widthRecSize = 700
-            heightRecSize = 320
-        case .medium:
-            widthRecSize = 700
-            heightRecSize = 320
-        case .large:
-            widthRecSize = 700
-            heightRecSize = 320
-        case .extraLarge:
-            widthRecSize = 700
-            heightRecSize = 320
-        }
-    }
 }
-
-//#Preview {
-//    PickStealPlayer()
-//    MenuView()
-//    PickStealCard(playerCards: .constant(cards), playerList: <#T##[Player]#>, currentTurn: <#T##Int#>, stealCard: <#T##Bool#>, screenSize: <#T##ScreenSizeCategory#>)
-
-//    GameView(isGameDataAvailable: .constant(false), resumeGame: false)
-//}
 
 var players: [Player] = [
     Player(name: "John", cards: cards, numberOfTurn: 1, index: 0, countinuePlay: true, win: 0, lose: 0, level: 10), // Level 10, Win rate 70%

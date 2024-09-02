@@ -19,6 +19,7 @@
 import Foundation
 import SwiftUI
 
+// Enum to represent different screen size categories.
 enum ScreenSizeCategory {
     case small
     case medium
@@ -26,9 +27,12 @@ enum ScreenSizeCategory {
     case extraLarge
 }
 
+// Function to determine the screen size category based on the minimum dimension (width or height) of the screen.
 func getScreenSizeCategory(for size: CGSize) -> ScreenSizeCategory {
+    // Calculate the minimum dimension (either width or height) of the screen size.
     let minDimension = min(size.width, size.height)
     
+    // Determine the screen size category based on the minimum dimension.
     switch minDimension {
     case 0..<375:
         return .small

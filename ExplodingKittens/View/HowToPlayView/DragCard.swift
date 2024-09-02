@@ -21,21 +21,17 @@ import SwiftUI
 struct DragCard: View {
     let card: Card
     let dropZoneFrame: CGRect // Drop zone frame
-//    @Binding var isDragging: Bool
-//    @Binding var isCardInDropZone: Bool
     @Binding var cardOffset: CGSize
     @Binding var currentCard: Card?
     @Binding var cardVisible: Bool // Track visibility of the card
-    @State private var cardSize: CGFloat = 10
     var screenSize: ScreenSizeCategory
 
     var body: some View {
         ZStack {
             card.frontImage
-//                .foregroundColor(.blue)
                 .resizable()
                 .scaledToFit()
-                .frame(width: cardSize, height: cardSize)
+                .frame(width: screenSize == .small ? 140 : screenSize == .medium ? 150 : 200, height: screenSize == .small ? 140 : screenSize == .medium ? 150 : 200)
                 .offset(cardOffset)
                 .gesture(
                     DragGesture()
@@ -47,9 +43,9 @@ struct DragCard: View {
 //                            self.isDragging = false
                             
                             // Calculate the card's center position in global coordinates
-                            let cardCenterX = self.cardOffset.width + cardSize / 2
-                            let cardCenterY = self.cardOffset.height + cardSize / 2
-                            
+                            let cardSize = screenSize == .small ? 140 : screenSize == .medium ? 150 : 200
+                            let cardCenterX = self.cardOffset.width + CGFloat(cardSize / 2)
+                            let cardCenterY = self.cardOffset.height + CGFloat(cardSize / 2)
                             
                             // Check if the card is fully within the drop zone bounds using global coordinates
                             let isInsideDropZone =
@@ -64,37 +60,17 @@ struct DragCard: View {
                                 withAnimation {
                                     currentCard = card
                                     self.cardVisible = false
-//                                    self.isCardInDropZone = true
                                 }
                             } else {
                                 // Reset the card to its original position
                                 withAnimation {
                                     self.cardOffset = .zero
-//                                    self.isCardInDropZone = false
                                 }
                             }
                         }
                 )
         }
-        .onAppear {
-            setComponentSize()
-        }
     }
-        
-    
-    func setComponentSize() {
-        switch screenSize {
-        case .small:
-            cardSize = 140
-        case .medium:
-            cardSize = 150
-        case .large:
-            cardSize = 200
-        case .extraLarge:
-            cardSize = 120
-        }
-    }
-
 }
 
 #Preview {

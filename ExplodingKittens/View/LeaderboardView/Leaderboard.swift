@@ -24,13 +24,6 @@ struct Leaderboard: View {
     @EnvironmentObject var localizationManager: LocalizationManager
     
     @State private var players: [Player] = []
-//    @State private var players: [Player] = [
-//        Player(name: "John", cards: cards, numberOfTurn: 1, index: 0, countinuePlay: true, win: 7, lose: 3, level: 10), // Level 10, Win rate 70%
-//        Player(name: "Alice", cards: cards, numberOfTurn: 1, index: 1, countinuePlay: true, win: 9, lose: 1, level: 1),
-//        Player(name: "Bob", cards: cards, numberOfTurn: 1, index: 2, countinuePlay: true, win: 5, lose: 5, level: 5),
-//        Player(name: "A", cards: cards, numberOfTurn: 1, index: 2, countinuePlay: true, win: 5, lose: 0, level: 5),
-//        Player(name: "B", cards: cards, numberOfTurn: 1, index: 2, countinuePlay: true, win: 5, lose: 5, level: 5)
-//       ]
     
     var body: some View {
         GeometryReader {
@@ -43,16 +36,17 @@ struct Leaderboard: View {
                 ScrollView {
                     VStack(spacing: 10) {
                         HStack {
+                            // A button that dismisses the current view and returns to the previous screen.
                             Button(action: {
+                                // Dismiss the current view by accessing the wrapped value of the presentation mode.
                                 presentationMode.wrappedValue.dismiss()
-
                             }, label: {
                                 Image(systemName: "arrow.left")
-                                    .foregroundColor(.black)
+                                    .foregroundColor(Color("custom-black"))
 
                                 Text("Menu", manager: localizationManager)
                                     .font(Font.custom("Quicksand-Regular", size: 24))
-                                    .foregroundColor(.black)
+                                    .foregroundColor(Color("custom-black"))
                             })
                             
                             Spacer()
@@ -65,6 +59,7 @@ struct Leaderboard: View {
                             VStack(spacing: 10) {
                                 Text("Leaderboard", manager: localizationManager)
                                     .font(Font.custom("Quicksand-Bold", size: 32))
+                                    .foregroundColor(Color("custom-black"))
                
                                 ForEach(players.indices, id: \.self) {
                                     index in
@@ -80,6 +75,7 @@ struct Leaderboard: View {
                                 VStack(spacing: 10) {
                                     Text("Statistics", manager: localizationManager)
                                         .font(Font.custom("Quicksand-Bold", size: 32))
+                                        .foregroundColor(Color("custom-black"))
                                     
                                     if !players.isEmpty {
                                         BarChart(players: $players)
@@ -100,10 +96,13 @@ struct Leaderboard: View {
             }
         }
         .onAppear {
+            // When the view appears, fetch and set the players.
             players = getPlayers()
+            
+            // Sort the players using the `sortPlayers` function and update the `players` array.
             players = sortPlayers(players)
         }
-        .navigationBarBackButtonHidden(true)
+        .navigationBarBackButtonHidden(true) // Hide the default navigation bar back button.
     }
     
 }
