@@ -173,7 +173,7 @@ struct PlayCardTutorial: View {
                                 }
                             })
                             
-                            Text("\(pickCards.count) cards left")
+                            Text(localizationManager.localizedString(for: "%lld cards left", count: pickCards.count))
                                 .font(Font.custom("Quicksand-Regular", size: 16))
                         }
                                   

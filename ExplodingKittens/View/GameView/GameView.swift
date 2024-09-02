@@ -244,7 +244,10 @@ struct GameView: View {
                                     .opacity(showTurn ? 1 : 0)
                             }
                             
-                            HStack(spacing: playerList[0].cards.count < 10 ? -80 : -100) {
+                            let spacingIphone = playerList[0].cards.count < 10 ? -80 : -100
+                            
+                            let spacingIpad = playerList[0].cards.count < 8 ? -100 : -150
+                            HStack(spacing: sizeCategory == .large ? CGFloat(spacingIpad) : CGFloat(spacingIphone)) {
                                 ForEach(playerList[0].cards.indices, id: \.self) { index in
                                     let card = playerList[0].cards[index]
                                     // Retrieve the card at the current index in the loop.
@@ -289,7 +292,7 @@ struct GameView: View {
                         }
                         
                     }
-                    .padding(.vertical, sizeCategory == .small ? 30 : 0)
+                    .padding(.vertical, sizeCategory == .small ? 30 : 50)
                 }
                 
                                 

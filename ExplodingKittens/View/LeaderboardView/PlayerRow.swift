@@ -19,6 +19,7 @@
 import SwiftUI
 
 struct PlayerRow: View {
+    @EnvironmentObject var localizationManager: LocalizationManager
     @State private var isAppear = true
     var player: Player
     var index: Int
@@ -52,7 +53,7 @@ struct PlayerRow: View {
                         .foregroundColor(.black)
                     
                     HStack {
-                        Text("Level:")
+                        Text("Level:", manager: localizationManager)
                             .font(Font.custom("Quicksand-Medium", size: 18))
                             .foregroundColor(.black)
                         

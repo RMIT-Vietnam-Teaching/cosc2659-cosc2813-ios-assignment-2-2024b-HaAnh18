@@ -25,7 +25,7 @@ struct MenuView: View {
     @State private var isGameDataAvailable: Bool?
     @State private var language: String = "English"
     @State private var appearanceMode: AppearanceMode = .light
-    @State private var colorScheme: ColorScheme?
+    @State private var colorScheme: ColorScheme? = .light
     @State private var appearance: String = "Light"
     @State private var modeGame: String = "Easy"
     @State private var theme: String = "Rabbit"
@@ -123,7 +123,7 @@ struct MenuView: View {
                 }
                 
                 // Play background music
-//                audioManager.playBackgroundMusic(fileName: "background", fileType: "mp3")
+                audioManager.playBackgroundMusic(fileName: "background", fileType: "mp3")
             }
         }
         .preferredColorScheme(colorScheme) // Set the preferred color scheme

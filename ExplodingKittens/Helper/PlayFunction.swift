@@ -164,7 +164,10 @@ func aiGiveCard(to destination: inout [Card], from removeList: inout [Card]) {
        let card = removeList.first(where: { $0.name == cardName }) {
         
         // Add the found card to the destination list and remove it from the removeList.
+//        addCard(card: card, count: 1, to: &destination, remove: true, from: &removeList)
         addCard(card: card, count: 1, to: &destination, remove: true, from: &removeList)
+//            removeCard(card: card, from: &removeList)
+        
     }
 }
 

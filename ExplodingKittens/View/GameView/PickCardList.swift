@@ -93,8 +93,8 @@ struct PickCardList: View {
                         }
                 }
             }
-            
-            Text("\(cardGame.count) cards left", manager: localizationManager)
+           
+            Text(localizationManager.localizedString(for: "%lld cards left", count: cardGame.count))
                 .font(Font.custom("Quicksand-Regular", size: 16))
         }
         .onAppear {

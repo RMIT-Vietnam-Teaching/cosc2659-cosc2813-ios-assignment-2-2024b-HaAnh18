@@ -180,7 +180,7 @@ struct Settings: View {
                                             colorScheme = nil
                                         }
                                         
-                                        UserDefaults.standard.set(appearance, forKey: "appearance")
+//                                        UserDefaults.standard.set(appearance, forKey: "appearance")
 
                                     }
                                 
@@ -202,7 +202,7 @@ struct Settings: View {
                 UserDefaults.standard.set(language, forKey: "language")
                 
                 // Save the current appearance mode to UserDefaults under the key "appearance".
-                UserDefaults.standard.set(appearance, forKey: "appearance")
+//                UserDefaults.standard.set(appearance, forKey: "appearance")
                 
                 // Save the current theme setting to UserDefaults under the key "theme".
                 UserDefaults.standard.set(theme, forKey: "theme")
@@ -223,6 +223,7 @@ struct Settings: View {
                             .font(.system(size: 24))
                             .foregroundColor(Color("custom-black"))
                     })
+                    .padding(10)
                     // Present a sheet when `showingSheet` is true.
                     .sheet(isPresented: $showingSheet) {
                         // The content of the sheet, which is a view named `TabViewModeGame`.

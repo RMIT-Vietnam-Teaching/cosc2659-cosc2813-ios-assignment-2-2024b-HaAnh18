@@ -40,6 +40,15 @@ class LocalizationManager: ObservableObject {
         return NSLocalizedString(key, bundle: bundle, comment: "")
     }
     
+    // This function retrieves the localized string for a given key with a count for pluralization.
+        func localizedString(for key: String, count: Int) -> String {
+            guard let path = Bundle.main.path(forResource: currentLanguage, ofType: "lproj"),
+                  let bundle = Bundle(path: path) else {
+                return String(format: NSLocalizedString(key, comment: ""), count)
+            }
+            return String(format: NSLocalizedString(key, tableName: nil, bundle: bundle, value: "", comment: ""), count)
+        }
+    
     // This function changes the current language of the app.
     // - Parameters:
     //   - language: The new language code to switch to.

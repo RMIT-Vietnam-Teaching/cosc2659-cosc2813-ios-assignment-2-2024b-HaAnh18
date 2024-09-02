@@ -125,7 +125,9 @@ struct DraggableCard: View {
             if playerList.count > 2 {
                 stealOther = true
             } else {
-                aiGiveCard(to: &playerCards, from: &playerList[1].cards)
+                withAnimation{
+                    aiGiveCard(to: &playerCards, from: &playerList[1].cards)
+                }
             }
             playerList[currentTurn].score += card.score
             break

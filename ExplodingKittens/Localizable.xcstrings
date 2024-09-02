@@ -42,6 +42,7 @@
       }
     },
     "%lld cards left" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "variations" : {
@@ -147,6 +148,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dưới cùng"
+          }
+        }
+      }
+    },
+    "cards_left" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Còn lá bài "
           }
         }
       }
@@ -334,6 +346,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Thua cuộc"
+          }
+        }
+      }
+    },
+    "Get 50 points" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đạt 50 điểm"
           }
         }
       }
