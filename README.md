@@ -2,30 +2,37 @@
 
 ## 💄 Description
 
-- This is an application that recommends cosmetics products for various colour schemes in order to improve the user's natural appearance
-- The primary objective of this application is to assist females who are experiencing difficulty in selecting cosmetics products that are appropriate for their skin tone and colour
-- support them in identifying the most suitable products to enhance their natural appearance
+- This project involves the development of a digital version of the well-known card game "Exploding Kittens". 
+- This game aims to provide both entertainment and strategic significance by requiring players to outsmart their adversaries by strategically playing cards to prevent "exploding" while attempting to get others to draw the explosive cards. 
 
 <p align="center">
-  <img src="./Screenshots/welcome-screen.png" width="200" > 
-  <img src="./Screenshots/navigation-list-screen.png" width="200" > 
-  <img src="./Screenshots/product-detailed-screen.png" width="200" > 
-  <img src="./Screenshots/app-icon.png" width="200" >
+  <img src="./Screenshots/menu-view.png" width="200" > 
+  <img src="./Screenshots/game-view.png" width="200" > 
+  <img src="./Screenshots/leaderboard-view.png" width="200" > 
+  <img src="./Screenshots/tutorial-view.png" width="200" >
+  <img src="./Screenshots/setting-view.png" width="200" >
 </p>
+
+## 💗 How To Play
+
+- The game is played with a deck of cards, where each card has a distinct action that may either assist the player in avoiding danger or creating challenges for the opponents to overcome. 
+- Each player has the ability to play any number of cards in order to avoid the bomb through their unique function of each card, and conclude their turn by retaining the card. 
+- If a player receives a bomb card, they are immediately eliminated from the game unless they possess a "Defuse" card that enables them to neutralise the explosion and remain in the game. 
+- The game continues until only one player remains. 
 
 ## 💖 Live Demo (Youtube Video)
 
 <table>
   <tr>
-     <td style="text-align: center; font-weight: bold;">Simulator</td>
-     <td style="text-align: center; font-weight: bold;">Device</td>
+     <td ="text-align: center; font-weight: bold;">iPhone Simulator</td>
+     <td style="text-align: center; font-weight: bold;">iPhone Device</td>
   </tr>
   <tr>
-    <td><a href="https://youtu.be/XdE2AnAX6OM?si=-CB_0Fnh9vzgo5Vm">
-    <img src="./Screenshots/welcome-screen.png" width="360" alt="Watch the video">
+    <td><a href="https://youtu.be/IUqZgQhey24">
+    <img src="./Screenshots/menu-view.png" width="360" alt="Watch the video">
 </a></td>
-        <td><a href="https://youtu.be/OZI27ruNm_M">
-    <img src="./Screenshots/welcome-screen.png" width="360" alt="Watch the video">
+        <td><a href="https://youtu.be/hsLKNOv8qSw">
+    <img src="./Screenshots/menu-view.png" width="360" alt="Watch the video">
 </a></td>
    </tr>
 

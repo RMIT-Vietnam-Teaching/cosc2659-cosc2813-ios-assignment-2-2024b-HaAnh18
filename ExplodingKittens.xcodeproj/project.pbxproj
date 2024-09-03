@@ -53,6 +53,11 @@
 		39914AC02C8235E70027C4DB /* BombPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39914ABF2C8235E70027C4DB /* BombPosition.swift */; };
 		39914AC22C83048A0027C4DB /* BombPercent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39914AC12C83048A0027C4DB /* BombPercent.swift */; };
 		3993DE472C6E300C009D31CE /* SeeFutureDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3993DE462C6E300C009D31CE /* SeeFutureDialog.swift */; };
+		39A142482C86F608003A2D30 /* tutorial-view.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A142432C86F608003A2D30 /* tutorial-view.png */; };
+		39A142492C86F608003A2D30 /* leaderboard-view.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A142442C86F608003A2D30 /* leaderboard-view.png */; };
+		39A1424A2C86F608003A2D30 /* menu-view.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A142452C86F608003A2D30 /* menu-view.png */; };
+		39A1424B2C86F608003A2D30 /* setting-view.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A142462C86F608003A2D30 /* setting-view.png */; };
+		39A1424C2C86F608003A2D30 /* game-view.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A142472C86F608003A2D30 /* game-view.png */; };
 		39A148CD2C68CE2500D35D71 /* ExplodingKittensApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A148CC2C68CE2500D35D71 /* ExplodingKittensApp.swift */; };
 		39A148CF2C68CE2500D35D71 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A148CE2C68CE2500D35D71 /* ContentView.swift */; };
 		39A148D12C68CE2700D35D71 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39A148D02C68CE2700D35D71 /* Assets.xcassets */; };
@@ -119,6 +124,11 @@
 		39914ABF2C8235E70027C4DB /* BombPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BombPosition.swift; sourceTree = "<group>"; };
 		39914AC12C83048A0027C4DB /* BombPercent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BombPercent.swift; sourceTree = "<group>"; };
 		3993DE462C6E300C009D31CE /* SeeFutureDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeFutureDialog.swift; sourceTree = "<group>"; };
+		39A142432C86F608003A2D30 /* tutorial-view.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tutorial-view.png"; sourceTree = "<group>"; };
+		39A142442C86F608003A2D30 /* leaderboard-view.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "leaderboard-view.png"; sourceTree = "<group>"; };
+		39A142452C86F608003A2D30 /* menu-view.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu-view.png"; sourceTree = "<group>"; };
+		39A142462C86F608003A2D30 /* setting-view.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "setting-view.png"; sourceTree = "<group>"; };
+		39A142472C86F608003A2D30 /* game-view.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "game-view.png"; sourceTree = "<group>"; };
 		39A148C92C68CE2500D35D71 /* ExplodingKittens.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExplodingKittens.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		39A148CC2C68CE2500D35D71 /* ExplodingKittensApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplodingKittensApp.swift; sourceTree = "<group>"; };
 		39A148CE2C68CE2500D35D71 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -231,6 +241,11 @@
 		39914AC72C864C6B0027C4DB /* Screenshots */ = {
 			isa = PBXGroup;
 			children = (
+				39A142472C86F608003A2D30 /* game-view.png */,
+				39A142442C86F608003A2D30 /* leaderboard-view.png */,
+				39A142452C86F608003A2D30 /* menu-view.png */,
+				39A142462C86F608003A2D30 /* setting-view.png */,
+				39A142432C86F608003A2D30 /* tutorial-view.png */,
 			);
 			path = Screenshots;
 			sourceTree = "<group>";
@@ -398,18 +413,23 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39A142492C86F608003A2D30 /* leaderboard-view.png in Resources */,
 				397E18CF2C738FBF00D66D51 /* bomb.gif in Resources */,
 				3957A0232C7C85A800CDEAFD /* background.mp3 in Resources */,
 				3957A02D2C7DACD700CDEAFD /* pick-card.mp3 in Resources */,
 				397E18EC2C74D77300D66D51 /* turn.gif in Resources */,
 				39A148D42C68CE2700D35D71 /* Preview Assets.xcassets in Resources */,
+				39A1424C2C86F608003A2D30 /* game-view.png in Resources */,
 				396B06412C7B224B00490C0D /* modeGame.json in Resources */,
 				39A148DF2C68CE4300D35D71 /* cards.json in Resources */,
 				39914ABE2C816B230027C4DB /* Quicksand-Regular.ttf in Resources */,
 				39A148D12C68CE2700D35D71 /* Assets.xcassets in Resources */,
+				39A142482C86F608003A2D30 /* tutorial-view.png in Resources */,
 				3957A02B2C7DABAF00CDEAFD /* play-card.mp3 in Resources */,
+				39A1424A2C86F608003A2D30 /* menu-view.png in Resources */,
 				396B06302C78E1B300490C0D /* winning.gif in Resources */,
 				3957A0312C7DB45A00CDEAFD /* gameover.mp3 in Resources */,
+				39A1424B2C86F608003A2D30 /* setting-view.png in Resources */,
 				39914ABC2C816AD20027C4DB /* Quicksand-Bold.ttf in Resources */,
 				3957A02F2C7DAF4900CDEAFD /* winning.mp3 in Resources */,
 				39914ABA2C7F14D80027C4DB /* cards-v2.json in Resources */,
