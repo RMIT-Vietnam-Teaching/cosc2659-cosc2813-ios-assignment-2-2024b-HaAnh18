@@ -14,6 +14,7 @@
   Created  date: 06/08/2024
   Last modified: 03/09/2024
   Acknowledgement:
+ https://www.hackingwithswift.com/books/ios-swiftui/moving-views-with-draggesture-and-offset
 */
 
 import SwiftUI

@@ -59,6 +59,7 @@
 		39A1424B2C86F608003A2D30 /* setting-view.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A142462C86F608003A2D30 /* setting-view.png */; };
 		39A1424C2C86F608003A2D30 /* game-view.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A142472C86F608003A2D30 /* game-view.png */; };
 		39A1424E2C86F88E003A2D30 /* iPad-view.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A1424D2C86F88E003A2D30 /* iPad-view.png */; };
+		39A142522C86FA1B003A2D30 /* GithubLink.txt in Resources */ = {isa = PBXBuildFile; fileRef = 39A142512C86FA1B003A2D30 /* GithubLink.txt */; };
 		39A148CD2C68CE2500D35D71 /* ExplodingKittensApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A148CC2C68CE2500D35D71 /* ExplodingKittensApp.swift */; };
 		39A148CF2C68CE2500D35D71 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A148CE2C68CE2500D35D71 /* ContentView.swift */; };
 		39A148D12C68CE2700D35D71 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39A148D02C68CE2700D35D71 /* Assets.xcassets */; };
@@ -131,6 +132,7 @@
 		39A142462C86F608003A2D30 /* setting-view.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "setting-view.png"; sourceTree = "<group>"; };
 		39A142472C86F608003A2D30 /* game-view.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "game-view.png"; sourceTree = "<group>"; };
 		39A1424D2C86F88E003A2D30 /* iPad-view.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPad-view.png"; sourceTree = "<group>"; };
+		39A142512C86FA1B003A2D30 /* GithubLink.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = GithubLink.txt; sourceTree = "<group>"; };
 		39A148C92C68CE2500D35D71 /* ExplodingKittens.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExplodingKittens.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		39A148CC2C68CE2500D35D71 /* ExplodingKittensApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplodingKittensApp.swift; sourceTree = "<group>"; };
 		39A148CE2C68CE2500D35D71 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 		39A148C02C68CE2500D35D71 = {
 			isa = PBXGroup;
 			children = (
+				39A142512C86FA1B003A2D30 /* GithubLink.txt */,
 				39914AC72C864C6B0027C4DB /* Screenshots */,
 				39A148CB2C68CE2500D35D71 /* ExplodingKittens */,
 				39A148CA2C68CE2500D35D71 /* Products */,
@@ -437,6 +440,7 @@
 				3957A02F2C7DAF4900CDEAFD /* winning.mp3 in Resources */,
 				39914ABA2C7F14D80027C4DB /* cards-v2.json in Resources */,
 				396B062A2C78A5C100490C0D /* Quicksand-Medium.ttf in Resources */,
+				39A142522C86FA1B003A2D30 /* GithubLink.txt in Resources */,
 				396B06532C7B878F00490C0D /* Localizable.xcstrings in Resources */,
 				39A1424E2C86F88E003A2D30 /* iPad-view.png in Resources */,
 				396B062E2C78D98E00490C0D /* exploding.gif in Resources */,
