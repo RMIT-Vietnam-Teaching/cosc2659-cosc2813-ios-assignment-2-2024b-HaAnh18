@@ -161,15 +161,15 @@ struct Settings: View {
                             HStack {
                                 // A custom drop-down view that binds the selected appearance mode to a state variable and updates the app's appearance settings.
                                 DropDownView(selection: $appearance, options: appearanceOptions)
-                                    .onChange(of: appearance, initial: true) {
+                                    .onChange(of: appearance, initial: false) {
                                         oldValue, newValue in
                                         // When the appearance selection changes, update the appearanceMode and colorScheme based on the new value.
-                                        if newValue == "Light" {
+                                        if appearance == "Light" {
                                             // Set appearance mode and color scheme to light.
                                             appearanceMode = .light
                                             colorScheme = .light
 
-                                        } else if newValue == "Dark" {
+                                        } else if appearance == "Dark" {
                                             // Set appearance mode and color scheme to dark.
                                             appearanceMode = .dark
                                             colorScheme = .dark
@@ -181,7 +181,6 @@ struct Settings: View {
                                         }
                                         
                                         UserDefaults.standard.set(appearance, forKey: "appearance")
-
                                     }
                                 
                                 Spacer()
@@ -206,8 +205,9 @@ struct Settings: View {
                 
                 // Save the current theme setting to UserDefaults under the key "theme".
                 UserDefaults.standard.set(theme, forKey: "theme")
+                
             }
-            
+
             HStack {
                 Spacer()
                 
@@ -249,7 +249,6 @@ struct Settings: View {
 }
 
 #Preview {
-//    Settings(modeGame: .constant("Easy"), language: .constant("English"), appearanceMode: .constant(.light), colorScheme: .constant(.light), appearance: .constant("Light"))
     MenuView()
 }
 

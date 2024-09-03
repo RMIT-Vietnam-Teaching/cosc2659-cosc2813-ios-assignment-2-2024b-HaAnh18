@@ -228,9 +228,17 @@
 			path = GIF;
 			sourceTree = "<group>";
 		};
+		39914AC72C864C6B0027C4DB /* Screenshots */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Screenshots;
+			sourceTree = "<group>";
+		};
 		39A148C02C68CE2500D35D71 = {
 			isa = PBXGroup;
 			children = (
+				39914AC72C864C6B0027C4DB /* Screenshots */,
 				39A148CB2C68CE2500D35D71 /* ExplodingKittens */,
 				39A148CA2C68CE2500D35D71 /* Products */,
 			);

@@ -24,7 +24,6 @@ enum ScreenSizeCategory {
     case small
     case medium
     case large
-    case extraLarge
 }
 
 // Function to determine the screen size category based on the minimum dimension (width or height) of the screen.
@@ -41,6 +40,6 @@ func getScreenSizeCategory(for size: CGSize) -> ScreenSizeCategory {
     case 768..<1024:
         return .large
     default:
-        return .extraLarge
+        return .medium
     }
 }
