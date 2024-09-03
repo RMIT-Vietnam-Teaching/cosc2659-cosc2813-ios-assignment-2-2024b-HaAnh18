@@ -6,11 +6,11 @@
 - This game aims to provide both entertainment and strategic significance by requiring players to outsmart their adversaries by strategically playing cards to prevent "exploding" while attempting to get others to draw the explosive cards. 
 
 <p align="center">
-  <img src="./Screenshots/menu-view.png" width="200" > 
-  <img src="./Screenshots/game-view.png" width="200" > 
-  <img src="./Screenshots/leaderboard-view.png" width="200" > 
-  <img src="./Screenshots/tutorial-view.png" width="200" >
-  <img src="./Screenshots/setting-view.png" width="200" >
+  <img src="./Screenshots/menu-view.png" width="400" > 
+  <img src="./Screenshots/game-view.png" width="400" > 
+  <img src="./Screenshots/leaderboard-view.png" width="400" > 
+  <img src="./Screenshots/tutorial-view.png" width="400" >
+  <img src="./Screenshots/setting-view.png" width="400" >
 </p>
 
 ## 💗 How To Play
@@ -24,8 +24,8 @@
 
 <table>
   <tr>
-     <td ="text-align: center; font-weight: bold;">iPhone Simulator</td>
-     <td style="text-align: center; font-weight: bold;">iPhone Device</td>
+     <td ="text-align: center; font-weight: bold;">IPhone Simulator</td>
+     <td style="text-align: center; font-weight: bold;">IPhone Device</td>
   </tr>
   <tr>
     <td><a href="https://youtu.be/IUqZgQhey24">
@@ -33,6 +33,22 @@
 </a></td>
         <td><a href="https://youtu.be/hsLKNOv8qSw">
     <img src="./Screenshots/menu-view.png" width="360" alt="Watch the video">
+</a></td>
+   </tr>
+
+ </table>
+ 
+ <table>
+  <tr>
+     <td ="text-align: center; font-weight: bold;">IPad Simulator</td>
+     <td style="text-align: center; font-weight: bold;">IPad Device</td>
+  </tr>
+  <tr>
+    <td><a href="https://youtu.be/QlGvbgNjzKU">
+    <img src="./Screenshots/iPad-view.png" width="360" alt="Watch the video">
+</a></td>
+        <td><a href="https://youtu.be/4QDXxdHNd-M">
+    <img src="./Screenshots/iPad-view.png" width="360" alt="Watch the video">
 </a></td>
    </tr>
 
