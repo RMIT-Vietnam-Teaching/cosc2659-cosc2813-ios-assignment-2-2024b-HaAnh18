@@ -58,7 +58,7 @@
 - Xcode 15.4
 - SwiftUI Framework
 - Target Deployment iOS 17.5
-- Library: MapKit, AVFoundation, WebKit
+- Library: AVFoundation, WebKit
 
 ## 🌸 Author
 - Nguyen Tran Ha Anh (s3938490)
