@@ -25,13 +25,13 @@ struct DropZoneView: View {
     var body: some View {
         Rectangle()
             .strokeBorder(style: StrokeStyle(lineWidth: 2, dash: [10, 5]))
-            .frame(width: screenSize == .small ? 140 : screenSize == .medium
-                   ? 150 : 200, height: screenSize == .small ? 140 : screenSize == .medium
-                   ? 150 : 200)
+            .frame(width: screenSize == .small ? 150 : screenSize == .medium ? 160 : 220, height: screenSize == .small ? 150 : screenSize == .medium ? 160 : 220)
             .overlay(
                 Text("Drop Your Card Here", manager: localizationManager)
                     .font(Font.custom("Quicksand-Medium", size: 20))
                     .foregroundColor(Color("custom-black"))
+                    .frame(width: screenSize == .small ? 140 : screenSize == .medium ? 150 : 210)
+                    .multilineTextAlignment(.center)
             )
     }
 }
