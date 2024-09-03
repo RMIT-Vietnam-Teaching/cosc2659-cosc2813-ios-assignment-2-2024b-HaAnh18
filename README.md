@@ -1,6 +1,6 @@
 # Exploding Kittens 🎀
 
-## 💄 Description
+## 💕 Description
 
 - This project involves the development of a digital version of the well-known card game "Exploding Kittens". 
 - This game aims to provide both entertainment and strategic significance by requiring players to outsmart their adversaries by strategically playing cards to prevent "exploding" while attempting to get others to draw the explosive cards. 
