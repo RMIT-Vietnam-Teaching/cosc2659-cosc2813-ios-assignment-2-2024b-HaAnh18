@@ -389,7 +389,7 @@ struct GameView: View {
             .onDisappear {
                 // Check if the playerName is not empty AND the game has not been won or lost yet.
                 // 'winGame' being neither false nor true likely indicates that the game is still ongoing.
-                if playerName != "" && winGame != false && winGame != true {
+                if playerName != "" && winGame != false && winGame != true && !cardGame.isEmpty {
                     saveGameDataToUserDefaults()
                     isGameDataAvailable = true
                 } else {
