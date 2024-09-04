@@ -122,18 +122,21 @@ struct MenuView: View {
                     print("No modeGame data found in UserDefaults.")
                 }
                 
-                if let appearance = UserDefaults.standard.string(forKey: "appearance") {
-                    if appearance == "Light" {
+                if let appearanceData = UserDefaults.standard.string(forKey: "appearance") {
+                    if appearanceData == "Light" {
                         // Set appearance mode and color scheme to light.
+                        appearance = "Light"
                         appearanceMode = .light
                         colorScheme = .light
 
-                    } else if appearance == "Dark" {
+                    } else if appearanceData == "Dark" {
                         // Set appearance mode and color scheme to dark.
+                        appearance = "Dark"
                         appearanceMode = .dark
                         colorScheme = .dark
                     } else {
                         // Set appearance mode to system default and clear the color scheme (use system setting).
+                        appearance = "System"
                         appearanceMode = .system
                         colorScheme = nil
                     }
